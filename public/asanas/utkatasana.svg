@@ -1,0 +1,13 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chair Pose -->
+  <circle cx="50" cy="25" r="10" fill="#657856"/>
+  <path d="M50 35 L50 70" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 40 L40 15" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 40 L60 15" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 70 L35 90" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M35 90 L40 120" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 70 L65 90" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M65 90 L60 120" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="40" cy="125" rx="5" ry="3" fill="#657856"/>
+  <ellipse cx="60" cy="125" rx="5" ry="3" fill="#657856"/>
+</svg>

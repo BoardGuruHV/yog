@@ -1,0 +1,6 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Child's Pose -->
+  <ellipse cx="50" cy="90" rx="30" ry="15" stroke="#657856" stroke-width="4" fill="none"/>
+  <circle cx="30" cy="85" r="8" fill="#657856"/>
+  <path d="M30 85 L15 95" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+</svg>

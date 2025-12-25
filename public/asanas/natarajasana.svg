@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dancer Pose -->
+  <circle cx="40" cy="35" r="10" fill="#657856"/>
+  <path d="M40 45 L40 85" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M40 50 L25 25" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 50 L70 45" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M70 45 L80 35" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 85 L40 125" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M40 85 L70 60" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="40" cy="130" rx="5" ry="3" fill="#657856"/>
+</svg>

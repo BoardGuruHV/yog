@@ -1,0 +1,9 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bridge Pose -->
+  <circle cx="15" cy="80" r="8" fill="#657856"/>
+  <path d="M23 80 L40 80 Q50 50 60 80 L85 80" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M75 80 L75 100" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M85 80 L85 100" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="75" cy="105" rx="5" ry="3" fill="#657856"/>
+  <ellipse cx="85" cy="105" rx="5" ry="3" fill="#657856"/>
+</svg>

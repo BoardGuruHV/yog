@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Crow Pose -->
+  <circle cx="35" cy="65" r="10" fill="#657856"/>
+  <path d="M35 75 L55 85" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M45 80 L40 100" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M55 85 L60 100" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 100 L40 105" stroke="#657856" stroke-width="2" stroke-linecap="round"/>
+  <path d="M60 100 L60 105" stroke="#657856" stroke-width="2" stroke-linecap="round"/>
+  <path d="M55 85 L80 75" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M55 85 L75 95" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+</svg>

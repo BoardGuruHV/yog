@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Corpse Pose - Lying flat -->
+  <circle cx="15" cy="75" r="8" fill="#657856"/>
+  <path d="M23 75 L60 75" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M35 75 L25 60" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M35 75 L25 90" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M60 75 L80 65" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 75 L80 85" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="85" cy="65" rx="5" ry="3" fill="#657856"/>
+  <ellipse cx="85" cy="85" rx="5" ry="3" fill="#657856"/>
+</svg>

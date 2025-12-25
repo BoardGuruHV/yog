@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Triangle Pose -->
+  <circle cx="25" cy="55" r="10" fill="#657856"/>
+  <path d="M25 65 L50 80" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M25 60 L15 100" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M35 70 L60 40" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 80 L25 115" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 80 L85 115" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="25" cy="120" rx="6" ry="3" fill="#657856"/>
+  <ellipse cx="85" cy="120" rx="6" ry="3" fill="#657856"/>
+</svg>

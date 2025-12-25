@@ -1,0 +1,10 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lotus Pose -->
+  <circle cx="50" cy="40" r="12" fill="#657856"/>
+  <path d="M50 52 L50 90" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 60 L30 70" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 60 L70 70" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="50" cy="105" rx="35" ry="15" stroke="#657856" stroke-width="4" fill="none"/>
+  <path d="M30 70 L35 95" stroke="#657856" stroke-width="2" stroke-linecap="round"/>
+  <path d="M70 70 L65 95" stroke="#657856" stroke-width="2" stroke-linecap="round"/>
+</svg>

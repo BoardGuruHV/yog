@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Asana {
+  id              String   @id @default(cuid())
+  nameEnglish     String
+  nameSanskrit    String
+  description     String
+  category        Category
+  difficulty      Int      @default(1)
+  durationSeconds Int      @default(30)
+  benefits        String[]
+  targetBodyParts String[]
+  svgPath         String
+
+  contraindications Contraindication[]
+  modifications     Modification[]
+  programAsanas     ProgramAsana[]
+
+  createdAt DateTime @default(now())
+}
+
+enum Category {
+  STANDING
+  SEATED
+  PRONE
+  SUPINE
+  INVERSION
+  BALANCE
+  TWIST
+  FORWARD_BEND
+  BACK_BEND
+}
+
+model Condition {
+  id                String             @id @default(cuid())
+  name              String             @unique
+  description       String?
+  contraindications Contraindication[]
+  modifications     Modification[]
+}
+
+model Contraindication {
+  id          String    @id @default(cuid())
+  asana       Asana     @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  asanaId     String
+  condition   Condition @relation(fields: [conditionId], references: [id], onDelete: Cascade)
+  conditionId String
+  severity    String    @default("avoid")
+  notes       String?
+
+  @@unique([asanaId, conditionId])
+}
+
+model Modification {
+  id          String     @id @default(cuid())
+  asana       Asana      @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  asanaId     String
+  condition   Condition? @relation(fields: [conditionId], references: [id], onDelete: Cascade)
+  conditionId String?
+  forAge      String?
+  description String
+  svgPath     String?
+}
+
+model Program {
+  id            String         @id @default(cuid())
+  name          String
+  description   String?
+  totalDuration Int
+  asanas        ProgramAsana[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model ProgramAsana {
+  id        String  @id @default(cuid())
+  program   Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+  programId String
+  asana     Asana   @relation(fields: [asanaId], references: [id])
+  asanaId   String
+  order     Int
+  duration  Int
+  notes     String?
+
+  @@unique([programId, order])
+}

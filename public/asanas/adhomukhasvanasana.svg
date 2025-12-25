@@ -1,0 +1,9 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Downward Dog - Inverted V -->
+  <circle cx="25" cy="90" r="8" fill="#657856"/>
+  <path d="M25 90 L50 50" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 50 L75 95" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M25 95 L15 110" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="15" cy="115" rx="5" ry="3" fill="#657856"/>
+  <ellipse cx="75" cy="100" rx="5" ry="3" fill="#657856"/>
+</svg>

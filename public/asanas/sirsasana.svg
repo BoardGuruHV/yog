@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Headstand -->
+  <circle cx="50" cy="115" r="10" fill="#657856"/>
+  <path d="M50 105 L50 50" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 100 L35 115" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 100 L65 115" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 50 L40 20" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 50 L60 20" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="40" cy="18" rx="4" ry="2" fill="#657856"/>
+  <ellipse cx="60" cy="18" rx="4" ry="2" fill="#657856"/>
+</svg>

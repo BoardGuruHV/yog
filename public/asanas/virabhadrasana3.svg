@@ -1,0 +1,9 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warrior III - T shape -->
+  <circle cx="25" cy="70" r="10" fill="#657856"/>
+  <path d="M25 75 L60 75" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M25 75 L10 60" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M60 75 L95 75" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 75 L60 120" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="60" cy="125" rx="6" ry="3" fill="#657856"/>
+</svg>

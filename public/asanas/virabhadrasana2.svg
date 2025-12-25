@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warrior II -->
+  <circle cx="50" cy="50" r="10" fill="#657856"/>
+  <path d="M50 60 L50 85" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 65 L20 65" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 65 L80 65" stroke="#657856" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 85 L25 100" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M25 100 L25 120" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <path d="M50 85 L80 120" stroke="#657856" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="25" cy="125" rx="6" ry="3" fill="#657856"/>
+  <ellipse cx="80" cy="125" rx="6" ry="3" fill="#657856"/>
+</svg>
