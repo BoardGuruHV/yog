@@ -1,7 +1,22 @@
-import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/db";
+import { NextRequest } from 'next/server'
+import prisma from '@/lib/db'
+import { auth } from '@/lib/auth'
+import { rateLimit, RATE_LIMITS } from '@/lib/rate-limit'
+import {
+  validateBody,
+  successResponse,
+  errorResponse,
+  ErrorCodes,
+  handlePrismaError,
+  requireAuth,
+} from '@/lib/api-utils'
+import { createProgramSchema } from '@/lib/validation/schemas'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Rate limiting
+  const rateLimitResponse = rateLimit(request, RATE_LIMITS.read, 'programs-read')
+  if (rateLimitResponse) return rateLimitResponse
+
   try {
     const programs = await prisma.program.findMany({
       include: {
@@ -10,35 +25,41 @@ export async function GET() {
             asana: true,
           },
           orderBy: {
-            order: "asc",
+            order: 'asc',
           },
         },
       },
       orderBy: {
-        updatedAt: "desc",
+        updatedAt: 'desc',
       },
-    });
+    })
 
-    return NextResponse.json(programs);
+    return successResponse(programs)
   } catch (error) {
-    console.error("Error fetching programs:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch programs" },
-      { status: 500 }
-    );
+    console.error('Error fetching programs:', error)
+    return handlePrismaError(error)
   }
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { name, description, asanas } = body;
+  // Rate limiting
+  const rateLimitResponse = rateLimit(request, RATE_LIMITS.write, 'programs-write')
+  if (rateLimitResponse) return rateLimitResponse
 
+  // Authentication (optional - uncomment if programs should require auth)
+  // const session = await auth()
+  // const authResult = requireAuth(session)
+  // if ('error' in authResult) return authResult.error
+
+  // Validate request body
+  const validation = await validateBody(request, createProgramSchema)
+  if ('error' in validation) return validation.error
+
+  const { name, description, asanas } = validation.data
+
+  try {
     // Calculate total duration
-    const totalDuration = asanas.reduce(
-      (sum: number, a: { duration: number }) => sum + a.duration,
-      0
-    );
+    const totalDuration = asanas.reduce((sum, a) => sum + a.duration, 0)
 
     const program = await prisma.program.create({
       data: {
@@ -46,17 +67,12 @@ export async function POST(request: NextRequest) {
         description,
         totalDuration,
         asanas: {
-          create: asanas.map(
-            (
-              a: { asanaId: string; duration: number; notes?: string },
-              index: number
-            ) => ({
-              asanaId: a.asanaId,
-              order: index,
-              duration: a.duration,
-              notes: a.notes,
-            })
-          ),
+          create: asanas.map((a, index) => ({
+            asanaId: a.asanaId,
+            order: index,
+            duration: a.duration,
+            notes: a.notes,
+          })),
         },
       },
       include: {
@@ -65,18 +81,15 @@ export async function POST(request: NextRequest) {
             asana: true,
           },
           orderBy: {
-            order: "asc",
+            order: 'asc',
           },
         },
       },
-    });
+    })
 
-    return NextResponse.json(program, { status: 201 });
+    return successResponse(program, 201)
   } catch (error) {
-    console.error("Error creating program:", error);
-    return NextResponse.json(
-      { error: "Failed to create program" },
-      { status: 500 }
-    );
+    console.error('Error creating program:', error)
+    return handlePrismaError(error)
   }
 }
