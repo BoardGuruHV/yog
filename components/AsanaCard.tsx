@@ -1,18 +1,26 @@
 "use client";
 
-import { Plus, Check, Clock, Info } from "lucide-react";
+import { Plus, Check, Clock, Info, AlertOctagon, AlertTriangle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Asana, CATEGORY_LABELS, CATEGORY_COLORS } from "@/types";
 import { useProgram } from "@/context/ProgramContext";
 import { useState } from "react";
+import FavoriteButton from "@/components/favorites/FavoriteButton";
+
+interface HealthWarningInfo {
+  isContraindicated: boolean;
+  hasCaution: boolean;
+}
 
 interface AsanaCardProps {
   asana: Asana;
   showAddButton?: boolean;
+  healthWarning?: HealthWarningInfo;
+  isFavorited?: boolean;
 }
 
-export default function AsanaCard({ asana, showAddButton = true }: AsanaCardProps) {
+export default function AsanaCard({ asana, showAddButton = true, healthWarning, isFavorited = false }: AsanaCardProps) {
   const { addAsana, isInProgram } = useProgram();
   const [imageError, setImageError] = useState(false);
   const inProgram = isInProgram(asana.id);
@@ -73,11 +81,37 @@ export default function AsanaCard({ asana, showAddButton = true }: AsanaCardProp
             {CATEGORY_LABELS[asana.category]}
           </span>
 
-          {/* Duration Badge */}
-          <span className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium bg-white/80 text-sage-700 flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            {formatDuration(asana.durationSeconds)}
-          </span>
+          {/* Health Warning Badge */}
+          {healthWarning?.isContraindicated && (
+            <span
+              className="absolute bottom-3 left-3 p-1.5 rounded-full bg-red-100 text-red-600"
+              title="Not recommended for your conditions"
+            >
+              <AlertOctagon className="w-4 h-4" />
+            </span>
+          )}
+          {healthWarning?.hasCaution && !healthWarning?.isContraindicated && (
+            <span
+              className="absolute bottom-3 left-3 p-1.5 rounded-full bg-amber-100 text-amber-600"
+              title="Practice with caution"
+            >
+              <AlertTriangle className="w-4 h-4" />
+            </span>
+          )}
+
+          {/* Top Right Actions */}
+          <div className="absolute top-3 right-3 flex items-center gap-2">
+            <span className="px-2 py-1 rounded-full text-xs font-medium bg-white/80 text-sage-700 flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {formatDuration(asana.durationSeconds)}
+            </span>
+            <FavoriteButton
+              asanaId={asana.id}
+              initialFavorited={isFavorited}
+              size="sm"
+              className="bg-white/80 hover:bg-white"
+            />
+          </div>
 
           {/* Add Button */}
           {showAddButton && (

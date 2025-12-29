@@ -4,6 +4,7 @@ import { useState } from "react";
 import ProgramBuilder from "@/components/ProgramBuilder";
 import ProgramTimeline from "@/components/ProgramTimeline";
 import ProgramsList from "@/components/ProgramsList";
+import SafetyAlert from "@/components/SafetyAlert";
 import { ArrowLeft, List, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { useProgram } from "@/context/ProgramContext";
@@ -100,8 +101,19 @@ export default function ProgramPage() {
             {/* Timeline View */}
             <ProgramTimeline />
 
-            {/* Program Builder */}
-            <ProgramBuilder onSaved={handleBackToList} />
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Program Builder */}
+              <div className="lg:col-span-2">
+                <ProgramBuilder onSaved={handleBackToList} />
+              </div>
+
+              {/* Safety Analysis Sidebar */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-24">
+                  <SafetyAlert />
+                </div>
+              </div>
+            </div>
           </>
         )}
       </main>

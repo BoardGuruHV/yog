@@ -23,7 +23,10 @@ export async function GET(
     });
 
     if (!program) {
-      return NextResponse.json({ error: "Program not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Program not found" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(program);
@@ -31,27 +34,6 @@ export async function GET(
     console.error("Error fetching program:", error);
     return NextResponse.json(
       { error: "Failed to fetch program" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { id } = params;
-
-    await prisma.program.delete({
-      where: { id },
-    });
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Error deleting program:", error);
-    return NextResponse.json(
-      { error: "Failed to delete program" },
       { status: 500 }
     );
   }
@@ -72,7 +54,7 @@ export async function PUT(
       0
     );
 
-    // Delete existing program asanas and recreate
+    // Delete existing asanas and recreate
     await prisma.programAsana.deleteMany({
       where: { programId: id },
     });
@@ -114,6 +96,33 @@ export async function PUT(
     console.error("Error updating program:", error);
     return NextResponse.json(
       { error: "Failed to update program" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { id } = params;
+
+    // Delete associated asanas first
+    await prisma.programAsana.deleteMany({
+      where: { programId: id },
+    });
+
+    // Delete the program
+    await prisma.program.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error deleting program:", error);
+    return NextResponse.json(
+      { error: "Failed to delete program" },
       { status: 500 }
     );
   }

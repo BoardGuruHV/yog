@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, Trash2, Pencil, Copy, Plus } from "lucide-react";
+import { Clock, Trash2, Pencil, Copy, Plus, Play } from "lucide-react";
+import Link from "next/link";
 import { Program } from "@/types";
 import { useProgram } from "@/context/ProgramContext";
 
@@ -177,6 +178,14 @@ export default function ProgramsList({ onCreateNew, onEdit }: ProgramsListProps 
                 </div>
 
                 <div className="flex items-center gap-2">
+                  <Link
+                    href={`/practice/timer/${program.id}`}
+                    className="flex items-center gap-2 bg-sage-600 text-white px-3 py-2 rounded-lg hover:bg-sage-700 transition-colors"
+                    title="Start timed practice"
+                  >
+                    <Play className="w-4 h-4" />
+                    Practice
+                  </Link>
                   <button
                     onClick={() => handleEdit(program)}
                     className="flex items-center gap-2 bg-sage-100 text-sage-700 px-3 py-2 rounded-lg hover:bg-sage-200 transition-colors"

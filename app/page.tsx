@@ -3,17 +3,20 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import SearchBar from "@/components/SearchBar";
+import SmartSearch from "@/components/SmartSearch";
 import FilterBar from "@/components/FilterBar";
 import AsanaGrid from "@/components/AsanaGrid";
 import { Asana, FilterState } from "@/types";
 import { useProgram } from "@/context/ProgramContext";
-import { ShoppingBag, ArrowRight } from "lucide-react";
+import { useHealth } from "@/context/HealthContext";
+import { ShoppingBag, ArrowRight, Sparkles, Search, Heart } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
   const [asanas, setAsanas] = useState<Asana[]>([]);
   const [loading, setLoading] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
+  const [searchMode, setSearchMode] = useState<"basic" | "smart">("smart");
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
     difficulty: [],
@@ -21,6 +24,7 @@ export default function Home() {
     search: "",
   });
   const { state } = useProgram();
+  const { warningsMap, hasConditions, conditionCount } = useHealth();
 
   const fetchAsanas = useCallback(async () => {
     if (!initialLoad) setLoading(true);
@@ -75,12 +79,48 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Yoga Asana Library
             </h1>
-            <p className="text-xl text-sage-100 max-w-2xl mb-8">
+            <p className="text-xl text-sage-100 max-w-2xl mb-6">
               Explore our comprehensive collection of yoga poses. Filter by category,
               difficulty, or target body part to find the perfect asanas for your practice.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <SearchBar onSearch={handleSearch} />
+
+            {/* Search Mode Toggle */}
+            <div className="flex items-center gap-2 mb-4">
+              <button
+                onClick={() => setSearchMode("smart")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  searchMode === "smart"
+                    ? "bg-white text-sage-700"
+                    : "bg-sage-500/30 text-white hover:bg-sage-500/50"
+                }`}
+              >
+                <Sparkles className="w-4 h-4" />
+                Smart Search
+              </button>
+              <button
+                onClick={() => setSearchMode("basic")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  searchMode === "basic"
+                    ? "bg-white text-sage-700"
+                    : "bg-sage-500/30 text-white hover:bg-sage-500/50"
+                }`}
+              >
+                <Search className="w-4 h-4" />
+                Basic Search
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <div className="max-w-2xl">
+              {searchMode === "smart" ? (
+                <SmartSearch
+                  showAddToProgram={true}
+                  placeholder="Search naturally... e.g. 'gentle hip openers for beginners'"
+                  className="w-full"
+                />
+              ) : (
+                <SearchBar onSearch={handleSearch} />
+              )}
             </div>
           </div>
         </div>
@@ -125,7 +165,7 @@ export default function Home() {
           <FilterBar filters={filters} onFilterChange={handleFilterChange} />
         </div>
 
-        {/* Results Count */}
+        {/* Results Count & Health Filter Indicator */}
         <div className="mb-6 flex items-center justify-between">
           <p className="text-gray-600">
             {loading ? (
@@ -137,6 +177,17 @@ export default function Home() {
               </>
             )}
           </p>
+
+          {/* Health Conditions Indicator */}
+          {hasConditions && (
+            <Link
+              href="/onboarding/health"
+              className="flex items-center gap-2 px-3 py-1.5 bg-sage-50 border border-sage-200 rounded-lg text-sage-700 hover:bg-sage-100 transition-colors text-sm"
+            >
+              <Heart className="w-4 h-4" />
+              <span>{conditionCount} health condition{conditionCount !== 1 ? "s" : ""} active</span>
+            </Link>
+          )}
         </div>
 
         {/* Asana Grid */}

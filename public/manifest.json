@@ -1,0 +1,48 @@
+{
+  "name": "Yog - Yoga Asana Library",
+  "short_name": "Yog",
+  "description": "Your personal yoga companion with 35+ asanas, guided programs, meditation timer, and practice tracking",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7c9a73",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["health", "fitness", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Start Practice",
+      "short_name": "Practice",
+      "description": "Start a yoga practice session",
+      "url": "/program"
+    },
+    {
+      "name": "Meditation",
+      "short_name": "Meditate",
+      "description": "Start a meditation session",
+      "url": "/meditation"
+    },
+    {
+      "name": "My Streaks",
+      "short_name": "Streaks",
+      "description": "View your practice streaks",
+      "url": "/streaks"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

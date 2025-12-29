@@ -2,6 +2,7 @@
 
 import AsanaCard from "./AsanaCard";
 import { Asana } from "@/types";
+import { useHealth } from "@/context/HealthContext";
 
 interface AsanaGridProps {
   asanas: Asana[];
@@ -9,6 +10,7 @@ interface AsanaGridProps {
 }
 
 export default function AsanaGrid({ asanas, loading = false }: AsanaGridProps) {
+  const { getWarningForAsana } = useHealth();
   if (loading) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -51,7 +53,7 @@ export default function AsanaGrid({ asanas, loading = false }: AsanaGridProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {asanas.map((asana) => (
         <div key={asana.id}>
-          <AsanaCard asana={asana} />
+          <AsanaCard asana={asana} healthWarning={getWarningForAsana(asana.id)} />
         </div>
       ))}
     </div>

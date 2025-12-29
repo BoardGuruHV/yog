@@ -18,6 +18,9 @@ import {
 } from "@dnd-kit/sortable";
 import { useProgram } from "@/context/ProgramContext";
 import SortableAsanaItem from "./SortableAsanaItem";
+import PoseRecommendations from "./PoseRecommendations";
+import WarmupGenerator from "./program/WarmupGenerator";
+import CooldownGenerator from "./program/CooldownGenerator";
 import { Save, Trash2, Clock, Pencil } from "lucide-react";
 import Link from "next/link";
 
@@ -147,43 +150,69 @@ export default function ProgramBuilder({ onSaved }: ProgramBuilderProps) {
 
       {/* Asana List */}
       {state.asanas.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-md p-12 text-center border border-dashed border-sage-200">
-          <div className="text-6xl mb-4">🧘‍♀️</div>
-          <h3 className="text-xl font-semibold text-gray-700 mb-2">
-            Your program is empty
-          </h3>
-          <p className="text-gray-500 mb-6">
-            Go to the Asana Library and click the + button on poses to add them
-            to your program.
-          </p>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 bg-sage-600 text-white px-6 py-3 rounded-lg hover:bg-sage-700 transition-colors"
-          >
-            Browse Asanas
-          </Link>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="bg-white rounded-2xl shadow-md p-12 text-center border border-dashed border-sage-200">
+            <div className="text-6xl mb-4">🧘‍♀️</div>
+            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              Your program is empty
+            </h3>
+            <p className="text-gray-500 mb-6">
+              Go to the Asana Library and click the + button on poses to add them
+              to your program, or choose from the AI recommendations.
+            </p>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 bg-sage-600 text-white px-6 py-3 rounded-lg hover:bg-sage-700 transition-colors"
+            >
+              Browse Asanas
+            </Link>
+          </div>
+
+          {/* Starting Pose Recommendations */}
+          <PoseRecommendations mode="start" />
         </div>
       ) : (
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-        >
-          <SortableContext
-            items={state.asanas.map((a) => a.id)}
-            strategy={verticalListSortingStrategy}
-          >
-            <div className="space-y-3">
-              {state.asanas.map((programAsana, index) => (
-                <SortableAsanaItem
-                  key={programAsana.id}
-                  programAsana={programAsana}
-                  index={index}
-                />
-              ))}
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-4">
+            {/* Warmup Generator */}
+            <WarmupGenerator compact />
+
+            {/* Asana List */}
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={state.asanas.map((a) => a.id)}
+                strategy={verticalListSortingStrategy}
+              >
+                <div className="space-y-3">
+                  {state.asanas.map((programAsana, index) => (
+                    <SortableAsanaItem
+                      key={programAsana.id}
+                      programAsana={programAsana}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              </SortableContext>
+            </DndContext>
+
+            {/* Cooldown Generator */}
+            <CooldownGenerator compact />
+          </div>
+
+          {/* Next Pose Recommendations Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-4">
+              <PoseRecommendations
+                mode={state.asanas.length >= 8 ? "cooldown" : "next"}
+                compact
+              />
             </div>
-          </SortableContext>
-        </DndContext>
+          </div>
+        </div>
       )}
 
       {/* Action Buttons */}

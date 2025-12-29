@@ -22,6 +22,18 @@ model Asana {
   contraindications Contraindication[]
   modifications     Modification[]
   programAsanas     ProgramAsana[]
+  embedding         AsanaEmbedding?
+  favorites         Favorite[]
+  collectionAsanas  CollectionAsana[]
+  userNotes         UserAsanaNote[]
+  tutorial          AsanaTutorial?
+  pronunciation     Pronunciation?
+  anatomy           AsanaAnatomy?
+  videos            AsanaVideo[]
+  model3D           AsanaModel3D?
+  masteries         PoseMastery[]
+  flexibilityLogs   FlexibilityLog[]
+  reviews           AsanaReview[]
 
   createdAt DateTime @default(now())
 }
@@ -44,6 +56,7 @@ model Condition {
   description       String?
   contraindications Contraindication[]
   modifications     Modification[]
+  userConditions    UserCondition[]
 }
 
 model Contraindication {
@@ -70,13 +83,36 @@ model Modification {
 }
 
 model Program {
-  id            String         @id @default(cuid())
+  id            String          @id @default(cuid())
   name          String
   description   String?
   totalDuration Int
+  userId        String?
+  user          User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  instructorId  String?
+  instructor    Instructor?     @relation(fields: [instructorId], references: [id], onDelete: SetNull)
   asanas        ProgramAsana[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  isPublic      Boolean         @default(false)
+  sharedProgram SharedProgram?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([instructorId])
+}
+
+// Program Sharing
+model SharedProgram {
+  id          String   @id @default(cuid())
+  programId   String   @unique
+  program     Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  shareCode   String   @unique // Short URL code for sharing
+  isPublic    Boolean  @default(true)
+  views       Int      @default(0)
+  copies      Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([shareCode])
 }
 
 model ProgramAsana {
@@ -90,4 +126,697 @@ model ProgramAsana {
   notes     String?
 
   @@unique([programId, order])
+}
+
+// AI Chat Models
+model ChatSession {
+  id        String        @id @default(cuid())
+  userId    String?
+  user      User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String?
+  messages  ChatMessage[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model ChatMessage {
+  id        String      @id @default(cuid())
+  sessionId String
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      String      // "user" | "assistant"
+  content   String
+  createdAt DateTime    @default(now())
+}
+
+// Semantic Search Embeddings
+model AsanaEmbedding {
+  id        String @id @default(cuid())
+  asanaId   String @unique
+  asana     Asana  @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  embedding Json   // Float array stored as JSON
+  textHash  String // Hash of the text used to generate embedding
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Authentication Models
+model User {
+  id             String          @id @default(cuid())
+  email          String          @unique
+  name           String?
+  image          String?
+  password       String?         // For credentials auth
+  emailVerified  DateTime?
+  role           UserRole        @default(USER)
+  accounts       Account[]
+  sessions       Session[]
+  profile        UserProfile?
+  programs       Program[]
+  chatSessions   ChatSession[]
+  userConditions UserCondition[]
+  goals          Goal[]
+  reminders      Reminder[]
+  favorites      Favorite[]
+  collections    Collection[]
+  practiceLogs   PracticeLog[]
+  asanaNotes     UserAsanaNote[]
+  quizAttempts   QuizAttempt[]
+  streak         Streak?
+  masteries      PoseMastery[]
+  flexibilityLogs FlexibilityLog[]
+  achievements   UserAchievement[]
+  reviews        AsanaReview[]
+  freePassRequest FreePassRequest?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model UserProfile {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  age               Int?
+  experienceLevel   String?  // beginner, intermediate, advanced
+  goals             String[] // flexibility, strength, relaxation, etc.
+  conditions        String[] // Legacy: Health conditions as strings
+  preferredDuration Int?     // Preferred session duration in minutes
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// User Health Conditions - Links users to medical conditions
+model UserCondition {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conditionId String
+  condition   Condition @relation(fields: [conditionId], references: [id], onDelete: Cascade)
+  severity    String?   // mild, moderate, severe
+  notes       String?   // Personal notes about the condition
+  startDate   DateTime? // When the condition started
+  endDate     DateTime? // When the condition ended (for temporary conditions)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([userId, conditionId])
+}
+
+// Goal Setting & Tracking
+model Goal {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  type        String    // frequency, duration, streak, pose, custom
+  target      Int       // Target value
+  current     Int       @default(0) // Current progress
+  unit        String    // sessions, minutes, days, times
+  period      String?   // daily, weekly, monthly
+  asanaId     String?   // For pose-specific goals
+  deadline    DateTime?
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// Practice Reminders & Scheduling
+model Reminder {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  time        String   // "07:00" format
+  days        String[] // ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+  programId   String?  // Optional linked program
+  enabled     Boolean  @default(true)
+  notifyBefore Int     @default(15) // Minutes before to send notification
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Favorites & Collections
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  asanaId   String
+  asana     Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, asanaId])
+}
+
+model Collection {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  asanas      CollectionAsana[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+model CollectionAsana {
+  id           String     @id @default(cuid())
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  asanaId      String
+  asana        Asana      @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  order        Int
+  createdAt    DateTime   @default(now())
+
+  @@unique([collectionId, asanaId])
+}
+
+// Practice History & Journal
+model PracticeLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  programId   String?  // Optional linked program
+  programName String?  // Store program name for history even if program deleted
+  duration    Int      // Actual minutes practiced
+  moodBefore  Int?     // 1-5 scale
+  moodAfter   Int?     // 1-5 scale
+  energyLevel Int?     // 1-5 scale
+  notes       String?  // Free-form journal notes
+  poses       Json?    // Array of practiced pose IDs/names
+  tags        String[] // Custom tags like "morning", "energizing"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// User Personal Notes & Tags for Asanas
+model UserAsanaNote {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  asanaId   String
+  asana     Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  note      String?  // Personal notes about this asana
+  tags      String[] // Custom tags like "morning", "pre-run", "favorite"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, asanaId])
+}
+
+// Step-by-Step Pose Tutorials
+model AsanaTutorial {
+  id           String         @id @default(cuid())
+  asanaId      String         @unique
+  asana        Asana          @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  steps        TutorialStep[]
+  tips         String[]       // General tips for the pose
+  commonErrors String[]       // Common mistakes to avoid
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model TutorialStep {
+  id          String        @id @default(cuid())
+  tutorialId  String
+  tutorial    AsanaTutorial @relation(fields: [tutorialId], references: [id], onDelete: Cascade)
+  order       Int           // Step order (1, 2, 3...)
+  phase       String        // "preparation", "entry", "hold", "exit"
+  title       String        // Short title for the step
+  instruction String        // Detailed instruction
+  breathCue   String?       // "inhale", "exhale", "hold", or null
+  duration    Int?          // Suggested duration in seconds
+  imagePath   String?       // Optional image for this step
+  createdAt   DateTime      @default(now())
+
+  @@unique([tutorialId, order])
+}
+
+// Sanskrit Pronunciation Guide
+model Pronunciation {
+  id          String   @id @default(cuid())
+  asanaId     String   @unique
+  asana       Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  phonetic    String   // Phonetic spelling e.g. "tah-DAHS-ah-nah"
+  audioPath   String?  // Path to audio file (optional)
+  syllables   Json     // Array of syllables [{text: "ta", stress: false}, {text: "DA", stress: true}...]
+  ipa         String?  // International Phonetic Alphabet representation
+  meaning     String?  // Sanskrit meaning breakdown
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Yoga Anatomy - Muscles engaged in each pose
+model AsanaAnatomy {
+  id               String   @id @default(cuid())
+  asanaId          String   @unique
+  asana            Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  primaryMuscles   String[] // Muscles actively engaged/strengthened
+  secondaryMuscles String[] // Supporting muscles
+  stretchedMuscles String[] // Muscles being stretched
+  notes            String?  // Additional anatomical notes
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// Educational Articles - Yoga philosophy, history, and knowledge
+model Article {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  subtitle    String?
+  category    String   // "philosophy", "history", "anatomy", "lifestyle", "practice"
+  content     String   // Markdown content
+  excerpt     String?  // Short summary for cards
+  coverImage  String?  // URL or path to cover image
+  readTime    Int      // Estimated read time in minutes
+  tags        String[] // Tags for filtering
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Video Demonstrations for Asanas
+model AsanaVideo {
+  id          String   @id @default(cuid())
+  asanaId     String
+  asana       Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  title       String   // Video title
+  type        String   // "full", "quick", "modification", "tutorial"
+  platform    String   // "youtube", "vimeo", "self-hosted"
+  videoId     String   // YouTube/Vimeo ID or URL for self-hosted
+  duration    Int      // Duration in seconds
+  thumbnail   String?  // Custom thumbnail URL (if not using platform default)
+  description String?  // Brief description of the video
+  instructor  String?  // Instructor name
+  language    String   @default("en")
+  featured    Boolean  @default(false)
+  order       Int      @default(0) // For sorting videos
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([asanaId])
+}
+
+// 3D Models for Asanas
+model AsanaModel3D {
+  id          String   @id @default(cuid())
+  asanaId     String   @unique
+  asana       Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  modelPath   String   // Path to GLB/GLTF file
+  format      String   @default("glb") // "glb", "gltf", "obj"
+  scale       Float    @default(1.0) // Model scale factor
+  position    Json?    // [x, y, z] offset
+  rotation    Json?    // [x, y, z] initial rotation
+  hasRig      Boolean  @default(false) // Whether model has skeleton
+  hasMorphs   Boolean  @default(false) // Whether model has blend shapes
+  thumbnail   String?  // Preview thumbnail
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Quiz & Knowledge Tests
+model Quiz {
+  id          String         @id @default(cuid())
+  title       String
+  description String?
+  category    String         // "poses", "sanskrit", "benefits", "philosophy", "anatomy"
+  difficulty  String         @default("beginner") // "beginner", "intermediate", "advanced"
+  imageUrl    String?        // Cover image for quiz
+  timeLimit   Int?           // Time limit in seconds (null = no limit)
+  passingScore Int           @default(70) // Percentage to pass
+  featured    Boolean        @default(false)
+  published   Boolean        @default(true)
+  questions   QuizQuestion[]
+  attempts    QuizAttempt[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model QuizQuestion {
+  id          String   @id @default(cuid())
+  quizId      String
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  type        String   // "multiple_choice", "image_identify", "true_false", "matching"
+  question    String   // The question text
+  imageUrl    String?  // Optional image for the question
+  options     Json     // Array of option strings or objects
+  correctAnswer String // The correct answer (index or value)
+  explanation String?  // Explanation shown after answering
+  points      Int      @default(1) // Points for correct answer
+  order       Int      // Question order in quiz
+  createdAt   DateTime @default(now())
+
+  @@index([quizId])
+}
+
+model QuizAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizId      String
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  score       Int      // Points earned
+  maxScore    Int      // Maximum possible points
+  percentage  Float    // Score as percentage
+  passed      Boolean  // Whether attempt passed
+  answers     Json     // Array of user answers
+  timeSpent   Int?     // Time spent in seconds
+  completedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([quizId])
+}
+
+// Program Templates - Pre-made yoga program templates
+model ProgramTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String   // "morning", "evening", "office", "athletic", "relaxation", "strength", "flexibility"
+  duration    Int      // Total duration in minutes
+  difficulty  Int      @default(1) // 1-5 scale
+  goals       String[] // Array of goals like ["flexibility", "relaxation"]
+  asanas      Json     // Template asana sequence [{asanaId, duration, notes}]
+  thumbnail   String?  // Thumbnail image path
+  icon        String?  // Icon name for the category
+  featured    Boolean  @default(false)
+  popularity  Int      @default(0) // Track usage count
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([featured])
+}
+
+// Practice Streak System
+model Streak {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  lastPractice  DateTime?
+  freezesLeft   Int       @default(2) // Monthly streak freezes
+  freezesUsed   Int       @default(0) // Total freezes used this month
+  lastFreezeReset DateTime? // When freezes were last reset
+  totalPractices Int      @default(0) // Total number of practice sessions
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Practice Calendar Days - Track individual practice days
+model PracticeDay {
+  id        String   @id @default(cuid())
+  date      DateTime @db.Date // Just the date, no time
+  userId    String
+  duration  Int      // Total minutes practiced that day
+  sessions  Int      @default(1) // Number of sessions that day
+  wasFrozen Boolean  @default(false) // Whether a freeze was used
+  createdAt DateTime @default(now())
+
+  @@unique([userId, date])
+  @@index([userId])
+}
+
+// Pose Mastery Tracking
+model PoseMastery {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  asanaId       String
+  asana         Asana     @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  level         Int       @default(1) // 1-5 mastery level
+  practiceCount Int       @default(0) // Total times practiced
+  totalDuration Int       @default(0) // Total seconds held across all practices
+  bestHoldTime  Int       @default(0) // Best single hold time in seconds
+  lastPracticed DateTime?
+  notes         String?   // Personal notes about progress
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([userId, asanaId])
+  @@index([userId])
+  @@index([asanaId])
+}
+
+// Flexibility Progress Tracking
+model FlexibilityLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  asanaId     String
+  asana       Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  measurement Float?   // Value in cm or degrees depending on measurementType
+  measurementType String @default("reach") // "reach" (cm), "angle" (degrees), "hold" (seconds)
+  photoPath   String?  // Path to progress photo
+  notes       String?  // Personal notes about this entry
+  bodyPart    String?  // Which body part was measured (e.g., "hamstrings", "hips")
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([asanaId])
+  @@index([userId, asanaId])
+}
+
+// Achievement System
+model Achievement {
+  id          String   @id @default(cuid())
+  key         String   @unique  // Unique key for the achievement (e.g., "first_practice")
+  name        String            // Display name
+  description String            // Description of how to unlock
+  icon        String            // Emoji or icon name
+  category    String            // "streak", "mastery", "exploration", "practice", "special"
+  requirement Json              // Conditions to unlock {type, value, etc.}
+  points      Int      @default(10) // Points awarded for this achievement
+  rarity      String   @default("common") // "common", "uncommon", "rare", "epic", "legendary"
+  hidden      Boolean  @default(false) // Whether to hide until unlocked
+  order       Int      @default(0) // Display order within category
+  userAchievements UserAchievement[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  progress      Int         @default(0) // Current progress towards goal
+  unlockedAt    DateTime?   // When the achievement was unlocked (null = in progress)
+  notified      Boolean     @default(false) // Whether user has been notified
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@index([achievementId])
+}
+
+// Asana Ratings & Reviews
+model AsanaReview {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  asanaId   String
+  asana     Asana    @relation(fields: [asanaId], references: [id], onDelete: Cascade)
+  rating    Int      // 1-5 stars
+  title     String?  // Optional review title
+  review    String?  // Review text content
+  helpful   Int      @default(0) // Count of helpful votes
+  verified  Boolean  @default(false) // Whether user has actually practiced this pose
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, asanaId])
+  @@index([asanaId])
+  @@index([userId])
+}
+
+// Instructor Profiles
+model Instructor {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique // URL-friendly identifier
+  bio         String    // Short bio
+  longBio     String?   // Detailed biography
+  photoUrl    String?   // Profile photo URL
+  coverUrl    String?   // Cover/banner image URL
+  credentials String[]  // Certifications, qualifications
+  specialties String[]  // Areas of expertise (e.g., "Vinyasa", "Prenatal")
+  experience  Int?      // Years of teaching experience
+  location    String?   // City, Country
+  socialLinks Json?     // {instagram, youtube, website, etc.}
+  programs    Program[] // Programs created by this instructor
+  featured    Boolean   @default(false) // Featured on homepage
+  verified    Boolean   @default(false) // Verified instructor
+  order       Int       @default(0) // Display order for featured
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([featured])
+  @@index([slug])
+}
+
+// ============================================
+// FREE PASS SYSTEM - 24-hour trial access
+// ============================================
+
+enum FreePassStatus {
+  PENDING     // Awaiting admin approval
+  APPROVED    // Approved, access granted
+  REJECTED    // Rejected by admin
+  EXPIRED     // 24-hour window passed
+  COMPLETED   // Feedback submitted
+}
+
+// Free Pass Request - Stores trial access requests
+model FreePassRequest {
+  id              String          @id @default(cuid())
+  email           String
+  companyName     String?
+  companyDomain   String?         // Extracted from email domain
+  jobTitle        String?
+  useCase         String?         // How they plan to use the platform
+  status          FreePassStatus  @default(PENDING)
+
+  // Agreements
+  termsAcceptedAt DateTime
+  ndaAcceptedAt   DateTime
+  termsVersion    String          @default("1.0")
+  ndaVersion      String          @default("1.0")
+
+  // Request metadata
+  ipAddress       String?
+  userAgent       String?
+  referrer        String?
+
+  // Admin review
+  reviewedBy      String?         // Admin user ID
+  reviewedAt      DateTime?
+  rejectionReason String?
+  adminNotes      String?
+
+  // Access window (24 hours)
+  accessStartedAt DateTime?
+  accessExpiresAt DateTime?
+
+  // Link to created user (after approval)
+  userId          String?         @unique
+  user            User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  // Relations
+  activities      FreePassActivity[]
+  feedback        FreePassFeedback?
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([accessExpiresAt])
+}
+
+// Activity tracking for free pass users
+model FreePassActivity {
+  id              String          @id @default(cuid())
+  requestId       String
+  request         FreePassRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  action          String          // "page_view", "program_created", "asana_viewed", etc.
+  details         Json?           // Additional context
+  path            String?         // URL path
+  duration        Int?            // Time spent in seconds
+
+  createdAt       DateTime        @default(now())
+
+  @@index([requestId])
+  @@index([action])
+}
+
+// Feedback collected after 24-hour trial
+model FreePassFeedback {
+  id                   String          @id @default(cuid())
+  requestId            String          @unique
+  request              FreePassRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  // Ratings (1-5 scale)
+  overallScore         Int?
+  easeOfUseRating      Int?
+  contentQualityRating Int?
+  featureRating        Int?
+
+  // Qualitative feedback
+  wouldRecommend       Boolean?
+  mostUsefulFeature    String?
+  missingFeatures      String?
+  generalFeedback      String?
+
+  // Conversion intent
+  interestedInPaid     Boolean?
+  preferredPlan        String?         // "monthly", "yearly", "enterprise"
+
+  createdAt            DateTime        @default(now())
+}
+
+// Magic link tokens for passwordless authentication
+model MagicLinkToken {
+  id          String    @id @default(cuid())
+  identifier  String    // email address
+  token       String    @unique
+  tokenType   String    // "magic_link", "free_pass_activation"
+  expiresAt   DateTime
+  usedAt      DateTime?
+
+  createdAt   DateTime  @default(now())
+
+  @@index([identifier])
+  @@index([token])
 }

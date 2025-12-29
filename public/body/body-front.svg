@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" fill="none">
+  <!-- Head (not interactive) -->
+  <ellipse cx="100" cy="30" rx="25" ry="28" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Neck -->
+  <path id="neck" d="M90 55 L90 70 L110 70 L110 55 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Shoulders -->
+  <path id="shoulders" d="M50 75 L90 70 L110 70 L150 75 L150 90 L110 85 L90 85 L50 90 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Chest -->
+  <path id="chest" d="M65 90 L90 85 L110 85 L135 90 L135 130 L100 135 L65 130 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Arms (left) -->
+  <path id="arms-left" d="M50 75 L50 90 L35 130 L25 170 L30 175 L45 135 L55 100 L65 90 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Arms (right) -->
+  <path id="arms-right" d="M150 75 L150 90 L165 130 L175 170 L170 175 L155 135 L145 100 L135 90 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Wrists (left) -->
+  <path id="wrists-left" d="M25 170 L20 195 L30 200 L35 175 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Wrists (right) -->
+  <path id="wrists-right" d="M175 170 L180 195 L170 200 L165 175 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Core/Abs -->
+  <path id="core" d="M70 130 L100 135 L130 130 L130 190 L100 195 L70 190 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Hips -->
+  <path id="hips" d="M65 190 L70 190 L100 195 L130 190 L135 190 L140 220 L100 230 L60 220 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Quadriceps (left) -->
+  <path id="quadriceps-left" d="M60 220 L75 225 L80 290 L65 290 L55 250 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Quadriceps (right) -->
+  <path id="quadriceps-right" d="M140 220 L125 225 L120 290 L135 290 L145 250 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Knees (left) -->
+  <ellipse id="knees-left" cx="72" cy="300" rx="12" ry="15" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Knees (right) -->
+  <ellipse id="knees-right" cx="128" cy="300" rx="12" ry="15" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Lower legs/Shins (left) -->
+  <path id="shins-left" d="M65 315 L80 315 L78 370 L67 370 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Lower legs/Shins (right) -->
+  <path id="shins-right" d="M120 315 L135 315 L133 370 L122 370 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Ankles (left) -->
+  <ellipse id="ankles-left" cx="72" cy="378" rx="10" ry="8" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Ankles (right) -->
+  <ellipse id="ankles-right" cx="128" cy="378" rx="10" ry="8" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+</svg>

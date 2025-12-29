@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" fill="none">
+  <!-- Head (not interactive) -->
+  <ellipse cx="100" cy="30" rx="25" ry="28" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Neck (back) -->
+  <path id="neck-back" d="M90 55 L90 70 L110 70 L110 55 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Upper Back / Shoulders -->
+  <path id="upper_back" d="M50 75 L90 70 L110 70 L150 75 L145 130 L100 135 L55 130 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Spine -->
+  <path id="spine" d="M95 70 L105 70 L105 190 L95 190 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Arms (left back) -->
+  <path id="arms-back-left" d="M50 75 L50 90 L35 130 L25 170 L30 175 L45 135 L55 100 L55 130 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Arms (right back) -->
+  <path id="arms-back-right" d="M150 75 L150 90 L165 130 L175 170 L170 175 L155 135 L145 100 L145 130 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Lower Back -->
+  <path id="lower_back" d="M65 130 L95 135 L105 135 L135 130 L135 190 L100 195 L65 190 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Glutes -->
+  <path id="glutes" d="M60 190 L100 195 L140 190 L145 230 L100 240 L55 230 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Hamstrings (left) -->
+  <path id="hamstrings-left" d="M55 230 L80 235 L82 290 L60 290 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Hamstrings (right) -->
+  <path id="hamstrings-right" d="M145 230 L120 235 L118 290 L140 290 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Knees (back left) -->
+  <ellipse id="knees-back-left" cx="72" cy="300" rx="12" ry="15" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Knees (back right) -->
+  <ellipse id="knees-back-right" cx="128" cy="300" rx="12" ry="15" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Calves (left) -->
+  <path id="calves-left" d="M60 315 L82 315 L80 370 L62 370 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Calves (right) -->
+  <path id="calves-right" d="M118 315 L140 315 L138 370 L120 370 Z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Ankles (back left) -->
+  <ellipse id="ankles-back-left" cx="72" cy="378" rx="10" ry="8" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+
+  <!-- Ankles (back right) -->
+  <ellipse id="ankles-back-right" cx="128" cy="378" rx="10" ry="8" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1"/>
+</svg>

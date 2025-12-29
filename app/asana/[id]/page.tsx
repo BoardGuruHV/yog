@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   ArrowLeft,
   Clock,
@@ -12,9 +14,27 @@ import {
   Info,
   Target,
   Sparkles,
+  BookOpen,
 } from "lucide-react";
 import { Asana, CATEGORY_LABELS, CATEGORY_COLORS } from "@/types";
 import { useProgram } from "@/context/ProgramContext";
+import { HealthWarningCard, type HealthWarning } from "@/components/health/HealthWarningBadge";
+import PersonalNote from "@/components/notes/PersonalNote";
+import { PronunciationCard } from "@/components/pronunciation";
+import { AnatomyViewer } from "@/components/anatomy";
+import VideoGallery from "@/components/video/VideoGallery";
+
+// Dynamic import for 3D viewer to avoid SSR issues
+const PoseViewer3D = dynamic(() => import("@/components/3d/PoseViewer3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-white rounded-2xl border border-gray-100 p-6">
+      <div className="h-80 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-4 border-sage-200 border-t-sage-600" />
+      </div>
+    </div>
+  ),
+});
 
 export default function AsanaDetailPage({
   params,
@@ -22,9 +42,12 @@ export default function AsanaDetailPage({
   params: { id: string };
 }) {
   const { id } = params;
+  const { data: session } = useSession();
   const [asana, setAsana] = useState<Asana | null>(null);
   const [loading, setLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
+  const [healthWarnings, setHealthWarnings] = useState<HealthWarning[]>([]);
+  const [dismissedWarning, setDismissedWarning] = useState(false);
   const { addAsana, isInProgram } = useProgram();
 
   useEffect(() => {
@@ -43,6 +66,24 @@ export default function AsanaDetailPage({
     }
     fetchAsana();
   }, [id]);
+
+  // Fetch health warnings if user is logged in
+  useEffect(() => {
+    async function fetchHealthWarnings() {
+      if (!session?.user || !id) return;
+
+      try {
+        const response = await fetch(`/api/asanas/health?asanaId=${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setHealthWarnings(data.warnings || []);
+        }
+      } catch (error) {
+        console.error("Error fetching health warnings:", error);
+      }
+    }
+    fetchHealthWarnings();
+  }, [session, id]);
 
   if (loading) {
     return (
@@ -171,6 +212,14 @@ export default function AsanaDetailPage({
                     </>
                   )}
                 </button>
+
+                <Link
+                  href={`/learn/${asana.id}`}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg font-medium transition-colors border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-50 hover:border-indigo-300"
+                >
+                  <BookOpen className="w-5 h-5" />
+                  Learn This Pose
+                </Link>
               </div>
             </div>
           </div>
@@ -187,10 +236,42 @@ export default function AsanaDetailPage({
               </p>
             </div>
 
+            {/* Personalized Health Warning */}
+            {healthWarnings.length > 0 && !dismissedWarning && (
+              <HealthWarningCard
+                warnings={healthWarnings}
+                onDismiss={() => setDismissedWarning(true)}
+              />
+            )}
+
             {/* Description */}
             <div className="bg-white rounded-xl shadow-sm border border-sage-100 p-6">
               <p className="text-gray-700 leading-relaxed">{asana.description}</p>
             </div>
+
+            {/* Sanskrit Pronunciation */}
+            <PronunciationCard
+              asanaId={asana.id}
+              nameSanskrit={asana.nameSanskrit}
+            />
+
+            {/* Muscle Anatomy */}
+            <AnatomyViewer
+              asanaId={asana.id}
+              asanaName={asana.nameEnglish}
+            />
+
+            {/* Video Tutorials */}
+            <VideoGallery
+              asanaId={asana.id}
+              asanaName={asana.nameEnglish}
+            />
+
+            {/* 3D Pose Viewer */}
+            <PoseViewer3D
+              asanaId={asana.id}
+              asanaName={asana.nameEnglish}
+            />
 
             {/* Benefits */}
             <div className="bg-white rounded-xl shadow-sm border border-sage-100 p-6">
@@ -228,6 +309,9 @@ export default function AsanaDetailPage({
                 ))}
               </div>
             </div>
+
+            {/* Personal Notes */}
+            <PersonalNote asanaId={asana.id} asanaName={asana.nameEnglish} />
 
             {/* Contraindications */}
             {asana.contraindications && asana.contraindications.length > 0 && (

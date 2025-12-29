@@ -11,6 +11,12 @@ interface ProgramState {
   totalDuration: number;
 }
 
+interface SequenceAsana {
+  asanaId: string;
+  asana: Asana;
+  duration: number;
+}
+
 type ProgramAction =
   | { type: "ADD_ASANA"; asana: Asana }
   | { type: "REMOVE_ASANA"; id: string }
@@ -20,7 +26,9 @@ type ProgramAction =
   | { type: "UPDATE_DESCRIPTION"; description: string }
   | { type: "CLEAR_PROGRAM" }
   | { type: "LOAD_PROGRAM"; program: ProgramState }
-  | { type: "DUPLICATE_PROGRAM"; program: ProgramState };
+  | { type: "DUPLICATE_PROGRAM"; program: ProgramState }
+  | { type: "ADD_SEQUENCE_TO_START"; sequence: SequenceAsana[] }
+  | { type: "ADD_SEQUENCE_TO_END"; sequence: SequenceAsana[] };
 
 const initialState: ProgramState = {
   id: null,
@@ -97,6 +105,43 @@ function programReducer(state: ProgramState, action: ProgramAction): ProgramStat
         id: null, // Clear ID so it creates a new program on save
         name: `${action.program.name} (Copy)`,
       };
+    case "ADD_SEQUENCE_TO_START": {
+      const newAsanas: ProgramAsana[] = action.sequence.map((item, index) => ({
+        id: `temp-start-${Date.now()}-${index}`,
+        programId: "",
+        asanaId: item.asanaId,
+        asana: item.asana,
+        order: index,
+        duration: item.duration,
+      }));
+      const existingAsanas = state.asanas.map((a, index) => ({
+        ...a,
+        order: newAsanas.length + index,
+      }));
+      const allAsanas = [...newAsanas, ...existingAsanas];
+      return {
+        ...state,
+        asanas: allAsanas,
+        totalDuration: calculateTotalDuration(allAsanas),
+      };
+    }
+    case "ADD_SEQUENCE_TO_END": {
+      const startOrder = state.asanas.length;
+      const newAsanas: ProgramAsana[] = action.sequence.map((item, index) => ({
+        id: `temp-end-${Date.now()}-${index}`,
+        programId: "",
+        asanaId: item.asanaId,
+        asana: item.asana,
+        order: startOrder + index,
+        duration: item.duration,
+      }));
+      const allAsanas = [...state.asanas, ...newAsanas];
+      return {
+        ...state,
+        asanas: allAsanas,
+        totalDuration: calculateTotalDuration(allAsanas),
+      };
+    }
     default:
       return state;
   }
@@ -114,6 +159,8 @@ interface ProgramContextType {
   loadProgram: (program: ProgramState) => void;
   duplicateProgram: (program: ProgramState) => void;
   isInProgram: (asanaId: string) => boolean;
+  addSequenceToStart: (sequence: SequenceAsana[]) => void;
+  addSequenceToEnd: (sequence: SequenceAsana[]) => void;
 }
 
 const ProgramContext = createContext<ProgramContextType | undefined>(undefined);
@@ -137,6 +184,10 @@ export function ProgramProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "DUPLICATE_PROGRAM", program });
   const isInProgram = (asanaId: string) =>
     state.asanas.some((a) => a.asanaId === asanaId);
+  const addSequenceToStart = (sequence: SequenceAsana[]) =>
+    dispatch({ type: "ADD_SEQUENCE_TO_START", sequence });
+  const addSequenceToEnd = (sequence: SequenceAsana[]) =>
+    dispatch({ type: "ADD_SEQUENCE_TO_END", sequence });
 
   return (
     <ProgramContext.Provider
@@ -152,6 +203,8 @@ export function ProgramProvider({ children }: { children: ReactNode }) {
         loadProgram,
         duplicateProgram,
         isInProgram,
+        addSequenceToStart,
+        addSequenceToEnd,
       }}
     >
       {children}
