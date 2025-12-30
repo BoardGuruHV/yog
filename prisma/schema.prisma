@@ -187,6 +187,7 @@ model User {
   achievements   UserAchievement[]
   reviews        AsanaReview[]
   freePassRequest FreePassRequest?
+  pushSubscriptions PushSubscription[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 }
@@ -819,4 +820,62 @@ model MagicLinkToken {
 
   @@index([identifier])
   @@index([token])
+}
+
+// ============================================
+// PUSH NOTIFICATIONS
+// ============================================
+
+// Push notification subscriptions for Web Push API
+model PushSubscription {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  endpoint    String    @unique
+  p256dh      String    // Public key for encryption
+  auth        String    // Auth secret
+
+  // Device/browser info
+  userAgent   String?
+  deviceName  String?   // Optional friendly name
+
+  // Notification preferences
+  streakReminders     Boolean @default(true)
+  practiceReminders   Boolean @default(true)
+  achievements        Boolean @default(true)
+  goalProgress        Boolean @default(true)
+  newContent          Boolean @default(false)
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+// Notification history for tracking sent notifications
+model NotificationLog {
+  id            String    @id @default(cuid())
+  userId        String
+
+  type          String    // "streak_warning", "practice_reminder", "achievement", etc.
+  title         String
+  body          String
+  data          Json?     // Additional data payload
+
+  // Delivery status
+  sent          Boolean   @default(false)
+  delivered     Boolean   @default(false)
+  clicked       Boolean   @default(false)
+  error         String?   // Error message if failed
+
+  sentAt        DateTime?
+  deliveredAt   DateTime?
+  clickedAt     DateTime?
+
+  createdAt     DateTime  @default(now())
+
+  @@index([userId])
+  @@index([type])
+  @@index([sentAt])
 }

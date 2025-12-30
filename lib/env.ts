@@ -33,6 +33,11 @@ const envSchema = z.object({
   EMAIL_FROM: z.string().optional(),
   ADMIN_EMAIL: z.string().email().optional(),
 
+  // Push Notifications (Web Push)
+  NEXT_PUBLIC_VAPID_PUBLIC_KEY: z.string().optional(),
+  VAPID_PRIVATE_KEY: z.string().optional(),
+  VAPID_SUBJECT: z.string().optional(),
+
   // Node environment
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -73,6 +78,9 @@ function validateEnv() {
       RESEND_API_KEY: process.env.RESEND_API_KEY,
       EMAIL_FROM: process.env.EMAIL_FROM,
       ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+      NEXT_PUBLIC_VAPID_PUBLIC_KEY: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+      VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY,
+      VAPID_SUBJECT: process.env.VAPID_SUBJECT,
       NODE_ENV: (process.env.NODE_ENV as 'development' | 'production' | 'test') || 'development',
     }
   }
@@ -128,6 +136,13 @@ export function isAIConfigured(): boolean {
  */
 export function isEmailConfigured(): boolean {
   return !!env.RESEND_API_KEY
+}
+
+/**
+ * Check if push notifications are configured
+ */
+export function isPushNotificationsConfigured(): boolean {
+  return !!(env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && env.VAPID_PRIVATE_KEY)
 }
 
 /**

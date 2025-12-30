@@ -180,6 +180,8 @@ export const ErrorCodes = {
   DATABASE_ERROR: 'DATABASE_ERROR',
   /** External API call failed */
   EXTERNAL_SERVICE_ERROR: 'EXTERNAL_SERVICE_ERROR',
+  /** Service is not available or not configured */
+  SERVICE_UNAVAILABLE: 'SERVICE_UNAVAILABLE',
 } as const
 
 /** Type for error code values */
