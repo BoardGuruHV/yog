@@ -23,6 +23,12 @@ import {
 } from '@/lib/api-utils'
 import { parsePagination } from '@/lib/db/pagination'
 import { z } from 'zod'
+import {
+  sendFreePassApprovalEmail,
+  sendFreePassRejectionEmail,
+  isEmailConfigured,
+} from '@/lib/email'
+import { logger } from '@/lib/logger'
 
 // Validation schema for admin actions
 const adminActionSchema = z.object({
@@ -114,12 +120,31 @@ export const POST = withAdmin(
         case 'approve':
           result = await approveFreePassRequest(requestId, user.id, adminNotes)
 
-          console.log('Free Pass approved:', {
+          logger.info('Free Pass approved', {
             id: result.id,
             email: result.email,
             expiresAt: result.accessExpiresAt,
             approvedBy: user.id,
           })
+
+          // Send approval email with login link
+          if (isEmailConfigured() && result.accessExpiresAt) {
+            const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+            const loginLink = `${baseUrl}/free-pass/login?email=${encodeURIComponent(result.email)}`
+
+            const emailResult = await sendFreePassApprovalEmail({
+              to: result.email,
+              loginLink,
+              expiresAt: result.accessExpiresAt,
+            })
+
+            if (!emailResult.success) {
+              logger.error('Failed to send approval email', {
+                requestId: result.id,
+                error: emailResult.error,
+              })
+            }
+          }
 
           return successResponse({
             message: 'Free Pass approved successfully',
@@ -134,12 +159,27 @@ export const POST = withAdmin(
             adminNotes
           )
 
-          console.log('Free Pass rejected:', {
+          logger.info('Free Pass rejected', {
             id: result.id,
             email: result.email,
             reason: rejectionReason,
             rejectedBy: user.id,
           })
+
+          // Send rejection email
+          if (isEmailConfigured()) {
+            const emailResult = await sendFreePassRejectionEmail({
+              to: result.email,
+              reason: rejectionReason,
+            })
+
+            if (!emailResult.success) {
+              logger.error('Failed to send rejection email', {
+                requestId: result.id,
+                error: emailResult.error,
+              })
+            }
+          }
 
           return successResponse({
             message: 'Free Pass rejected',

@@ -7,6 +7,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createFreePassRequest, getFreePassByEmail } from '@/lib/db/free-pass';
 import { FreePassStatus } from '@prisma/client';
+import {
+  sendFreePassRequestConfirmationEmail,
+  sendFreePassAdminNotificationEmail,
+  isEmailConfigured,
+} from '@/lib/email';
+import { logger } from '@/lib/logger';
 
 // Rate limiting - simple in-memory store (in production, use Redis)
 const requestCounts = new Map<string, { count: number; resetTime: number }>();
@@ -120,16 +126,44 @@ export async function POST(request: NextRequest) {
       referrer,
     });
 
-    // TODO: Send email notification to admin
-    // In production, integrate with email service (SendGrid, Resend, etc.)
-    console.log('New Free Pass request:', {
-      id: freePassRequest.id,
-      email: freePassRequest.email,
-      companyName: freePassRequest.companyName,
-    });
+    // Send email notifications
+    if (isEmailConfigured()) {
+      // Send confirmation email to user
+      const confirmationResult = await sendFreePassRequestConfirmationEmail({
+        to: email,
+        requestId: freePassRequest.id,
+        companyName,
+      });
 
-    // TODO: Send confirmation email to user
-    console.log('Confirmation email would be sent to:', email);
+      if (!confirmationResult.success) {
+        logger.error('Failed to send Free Pass confirmation email', {
+          email,
+          requestId: freePassRequest.id,
+          error: confirmationResult.error,
+        });
+      }
+
+      // Send notification email to admin
+      const adminResult = await sendFreePassAdminNotificationEmail({
+        to: process.env.ADMIN_EMAIL || 'admin@yourdomain.com',
+        requestId: freePassRequest.id,
+        companyName,
+      });
+
+      if (!adminResult.success) {
+        logger.error('Failed to send admin notification email', {
+          requestId: freePassRequest.id,
+          error: adminResult.error,
+        });
+      }
+    } else {
+      // Log for development
+      logger.info('Free Pass request created (email not configured)', {
+        id: freePassRequest.id,
+        email: freePassRequest.email,
+        companyName: freePassRequest.companyName,
+      });
+    }
 
     return NextResponse.json({
       success: true,

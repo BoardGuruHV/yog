@@ -7,6 +7,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { nanoid } from 'nanoid';
+import { sendMagicLinkEmail, isEmailConfigured } from '@/lib/email';
+import { logger } from '@/lib/logger';
 
 // Token expiration time (15 minutes)
 const TOKEN_EXPIRY = 15 * 60 * 1000;
@@ -108,13 +110,26 @@ export async function POST(request: NextRequest) {
     const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
     const magicLink = `${baseUrl}/api/auth/verify-magic-link?token=${token}`;
 
-    // TODO: Send email with magic link
-    // In production, integrate with email service (SendGrid, Resend, etc.)
-    console.log('Magic link generated:', {
-      email: normalizedEmail,
-      link: magicLink,
-      expiresAt,
-    });
+    // Send email with magic link
+    if (isEmailConfigured()) {
+      const emailResult = await sendMagicLinkEmail({
+        to: normalizedEmail,
+        magicLink,
+        expiresInMinutes: 15,
+      });
+
+      if (!emailResult.success) {
+        logger.error('Failed to send magic link email', { email: normalizedEmail, error: emailResult.error });
+        // Don't expose email sending failure to prevent enumeration
+      }
+    } else {
+      // In development without email configured, log the link
+      logger.info('Magic link generated (email not configured)', {
+        email: normalizedEmail,
+        link: magicLink,
+        expiresAt,
+      });
+    }
 
     return NextResponse.json({
       success: true,

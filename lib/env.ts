@@ -28,6 +28,11 @@ const envSchema = z.object({
   // OpenRouter AI (optional)
   OPENROUTER_API_KEY: z.string().optional(),
 
+  // Email (Resend)
+  RESEND_API_KEY: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
+  ADMIN_EMAIL: z.string().email().optional(),
+
   // Node environment
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -65,6 +70,9 @@ function validateEnv() {
       GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
       GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
       OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
+      RESEND_API_KEY: process.env.RESEND_API_KEY,
+      EMAIL_FROM: process.env.EMAIL_FROM,
+      ADMIN_EMAIL: process.env.ADMIN_EMAIL,
       NODE_ENV: (process.env.NODE_ENV as 'development' | 'production' | 'test') || 'development',
     }
   }
@@ -113,6 +121,13 @@ export function isGoogleAuthConfigured(): boolean {
  */
 export function isAIConfigured(): boolean {
   return !!env.OPENROUTER_API_KEY
+}
+
+/**
+ * Check if email service is configured
+ */
+export function isEmailConfigured(): boolean {
+  return !!env.RESEND_API_KEY
 }
 
 /**
