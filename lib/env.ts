@@ -38,6 +38,13 @@ const envSchema = z.object({
   VAPID_PRIVATE_KEY: z.string().optional(),
   VAPID_SUBJECT: z.string().optional(),
 
+  // Stripe
+  STRIPE_SECRET_KEY: z.string().optional(),
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
+  STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  STRIPE_PREMIUM_PRICE_ID: z.string().optional(),
+  STRIPE_PRO_PRICE_ID: z.string().optional(),
+
   // Node environment
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -81,6 +88,11 @@ function validateEnv() {
       NEXT_PUBLIC_VAPID_PUBLIC_KEY: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
       VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY,
       VAPID_SUBJECT: process.env.VAPID_SUBJECT,
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+      STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+      STRIPE_PREMIUM_PRICE_ID: process.env.STRIPE_PREMIUM_PRICE_ID,
+      STRIPE_PRO_PRICE_ID: process.env.STRIPE_PRO_PRICE_ID,
       NODE_ENV: (process.env.NODE_ENV as 'development' | 'production' | 'test') || 'development',
     }
   }
@@ -143,6 +155,13 @@ export function isEmailConfigured(): boolean {
  */
 export function isPushNotificationsConfigured(): boolean {
   return !!(env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && env.VAPID_PRIVATE_KEY)
+}
+
+/**
+ * Check if Stripe payments are configured
+ */
+export function isStripeConfigured(): boolean {
+  return !!(env.STRIPE_SECRET_KEY && env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 }
 
 /**

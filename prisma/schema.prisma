@@ -188,6 +188,7 @@ model User {
   reviews        AsanaReview[]
   freePassRequest FreePassRequest?
   pushSubscriptions PushSubscription[]
+  subscription   Subscription?
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 }
@@ -878,4 +879,138 @@ model NotificationLog {
   @@index([userId])
   @@index([type])
   @@index([sentAt])
+}
+
+// ============================================
+// SUBSCRIPTION & BILLING
+// ============================================
+
+enum SubscriptionTier {
+  FREE
+  PREMIUM
+  PRO
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  TRIALING
+  PAUSED
+}
+
+// User subscription information
+model Subscription {
+  id                    String             @id @default(cuid())
+  userId                String             @unique
+  user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  tier                  SubscriptionTier   @default(FREE)
+  status                SubscriptionStatus @default(ACTIVE)
+
+  // Stripe IDs
+  stripeCustomerId      String?            @unique
+  stripeSubscriptionId  String?            @unique
+  stripePriceId         String?
+
+  // Billing cycle
+  currentPeriodStart    DateTime?
+  currentPeriodEnd      DateTime?
+  cancelAtPeriodEnd     Boolean            @default(false)
+
+  // Trial
+  trialStart            DateTime?
+  trialEnd              DateTime?
+
+  // Usage limits (reset monthly)
+  aiChatUsageToday      Int                @default(0)
+  aiChatUsageReset      DateTime           @default(now())
+  programsCreated       Int                @default(0)
+
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  @@index([stripeCustomerId])
+  @@index([stripeSubscriptionId])
+}
+
+// Payment history
+model PaymentHistory {
+  id                  String    @id @default(cuid())
+  userId              String
+
+  stripePaymentId     String    @unique
+  stripeInvoiceId     String?
+
+  amount              Int       // Amount in cents
+  currency            String    @default("usd")
+  status              String    // succeeded, failed, pending
+  description         String?
+
+  receiptUrl          String?
+  invoicePdf          String?
+
+  createdAt           DateTime  @default(now())
+
+  @@index([userId])
+  @@index([stripePaymentId])
+}
+
+// Referral system
+model Referral {
+  id                String    @id @default(cuid())
+  referrerId        String    // User who referred
+  referredId        String?   // User who was referred (null until signup)
+
+  code              String    @unique // Unique referral code
+
+  // Rewards
+  referrerRewardDays Int      @default(0) // Premium days earned by referrer
+  referredRewardDays Int      @default(0) // Premium days given to referred
+  rewardsApplied    Boolean   @default(false)
+
+  // Tracking
+  clickCount        Int       @default(0)
+  signedUp          Boolean   @default(false)
+  subscribed        Boolean   @default(false) // Converted to paid
+
+  createdAt         DateTime  @default(now())
+  signedUpAt        DateTime?
+  subscribedAt      DateTime?
+
+  @@index([referrerId])
+  @@index([code])
+}
+
+// Gift subscriptions
+model GiftSubscription {
+  id                String    @id @default(cuid())
+  purchaserId       String    // User who bought the gift
+  recipientEmail    String    // Email of recipient
+  recipientId       String?   // User ID once claimed
+
+  code              String    @unique // Redemption code
+  tier              SubscriptionTier
+  durationMonths    Int       @default(1)
+
+  // Purchase info
+  stripePaymentId   String?
+  amount            Int       // Amount in cents
+  currency          String    @default("usd")
+
+  // Status
+  redeemed          Boolean   @default(false)
+  redeemedAt        DateTime?
+  expiresAt         DateTime  // Code expiration
+
+  // Personalization
+  senderName        String?
+  recipientName     String?
+  message           String?
+
+  createdAt         DateTime  @default(now())
+
+  @@index([purchaserId])
+  @@index([code])
+  @@index([recipientEmail])
 }
