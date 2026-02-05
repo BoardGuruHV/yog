@@ -147,7 +147,7 @@ export default function ConditionSelector({
           placeholder="Search conditions..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none"
+          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden"
         />
       </div>
 
@@ -155,7 +155,7 @@ export default function ConditionSelector({
       {activeConditions.length > 0 && (
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
           <div className="flex items-start gap-2">
-            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-amber-800">
                 {activeConditions.length} condition{activeConditions.length !== 1 ? "s" : ""} selected
@@ -195,7 +195,7 @@ export default function ConditionSelector({
                   onClick={() => toggleCondition(condition.id)}
                 >
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
                       selected
                         ? "bg-sage-500 text-white"
                         : "border-2 border-gray-300"
@@ -230,7 +230,7 @@ export default function ConditionSelector({
                         e.stopPropagation();
                         toggleExpanded(condition.id);
                       }}
-                      className="p-1 hover:bg-sage-100 rounded"
+                      className="p-1 hover:bg-sage-100 rounded-sm"
                     >
                       {isExpanded ? (
                         <ChevronUp className="w-5 h-5 text-gray-500" />
@@ -287,7 +287,7 @@ export default function ConditionSelector({
                           }
                           placeholder="Add notes about your condition..."
                           rows={2}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none text-sm"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden text-sm"
                         />
                       </div>
                     )}
@@ -301,7 +301,7 @@ export default function ConditionSelector({
 
       {/* Info message */}
       <div className="flex items-start gap-2 text-sm text-gray-500 bg-gray-50 p-3 rounded-lg">
-        <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
+        <Info className="w-4 h-4 shrink-0 mt-0.5" />
         <p>
           Your health information is private and used only to personalize your yoga
           practice with appropriate warnings and modifications.

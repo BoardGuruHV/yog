@@ -78,7 +78,7 @@ export default function RecentActivityWidget() {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6">
+      <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6">
         <div className="flex items-center justify-center h-32">
           <Loader2 className="w-6 h-6 text-sage-400 animate-spin" />
         </div>
@@ -87,7 +87,7 @@ export default function RecentActivityWidget() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6">
+    <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <History className="w-5 h-5 text-sage-600" />

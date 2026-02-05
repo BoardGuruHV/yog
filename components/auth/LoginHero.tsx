@@ -89,12 +89,12 @@ export function LoginHero() {
 
   return (
     <div
-      className="relative hidden lg:flex flex-col justify-center p-12 xl:p-16 overflow-hidden bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900"
+      className="relative hidden lg:flex flex-col justify-center p-12 xl:p-16 overflow-hidden bg-linear-to-br from-emerald-900 via-green-800 to-teal-900"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/40 z-[1]" />
+      <div className="absolute inset-0 bg-linear-to-br from-black/20 to-black/40 z-1" />
 
       {/* Decorative circles */}
       <div className="absolute top-20 -left-20 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
@@ -113,7 +113,7 @@ export function LoginHero() {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="h-12 w-12 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+          <div className="h-12 w-12 rounded-xl bg-white/10 backdrop-blur-xs border border-white/20 flex items-center justify-center">
             <span className="text-2xl">&#129504;</span> {/* Lotus emoji or yoga pose */}
           </div>
           <span className="text-xl font-bold text-white">
@@ -162,7 +162,7 @@ export function LoginHero() {
                         repeat: Infinity,
                         delay: i * 0.5,
                       }}
-                      className="flex-shrink-0 h-10 w-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                      className="shrink-0 h-10 w-10 rounded-full bg-white/10 backdrop-blur-xs border border-white/20 flex items-center justify-center"
                     >
                       <Icon className="h-5 w-5 text-green-300" />
                     </motion.div>
@@ -173,7 +173,7 @@ export function LoginHero() {
             </ul>
 
             {/* Testimonial */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-5">
+            <div className="bg-white/10 backdrop-blur-xs border border-white/20 rounded-xl p-5">
               <p className="text-sm text-white/90 italic mb-3">
                 &ldquo;{currentProp.testimonial.text}&rdquo;
               </p>
@@ -194,7 +194,7 @@ export function LoginHero() {
             <button
               key={prop.id}
               onClick={() => handleIndicatorClick(i)}
-              className="group relative focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
+              className="group relative focus:outline-hidden focus:ring-2 focus:ring-white/50 rounded-sm"
               aria-label={`View ${prop.theme} slide (${i + 1} of ${valuePropositions.length})`}
               aria-selected={i === currentSlide}
               role="tab"
@@ -230,10 +230,10 @@ export function LoginHero() {
  */
 export function MobileHero() {
   return (
-    <div className="lg:hidden relative bg-gradient-to-br from-emerald-800 via-green-700 to-teal-800 p-6 pb-10">
+    <div className="lg:hidden relative bg-linear-to-br from-emerald-800 via-green-700 to-teal-800 p-6 pb-10">
       {/* Logo and brand */}
       <div className="flex items-center gap-2 text-white mb-4">
-        <div className="h-9 w-9 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+        <div className="h-9 w-9 rounded-lg bg-white/10 backdrop-blur-xs border border-white/20 flex items-center justify-center">
           <span className="text-lg">&#129504;</span>
         </div>
         <span className="text-lg font-bold">Yog - Yoga Asana Platform</span>

@@ -63,7 +63,7 @@ export default function VideoThumbnail({
         onClick={onClick}
         className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-sage-200 hover:shadow-md transition-all text-left group w-full"
       >
-        <div className="relative w-24 h-16 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">
+        <div className="relative w-24 h-16 rounded-md overflow-hidden shrink-0 bg-gray-100">
           {thumbnailUrl ? (
             <img
               src={thumbnailUrl}
@@ -71,7 +71,7 @@ export default function VideoThumbnail({
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-sage-400 to-sage-600 flex items-center justify-center">
+            <div className="w-full h-full bg-linear-to-br from-sage-400 to-sage-600 flex items-center justify-center">
               <Play className="w-6 h-6 text-white" />
             </div>
           )}
@@ -80,7 +80,7 @@ export default function VideoThumbnail({
               <Play className="w-4 h-4 text-sage-700 ml-0.5" fill="currentColor" />
             </div>
           </div>
-          <div className="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/75 rounded text-xs text-white">
+          <div className="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/75 rounded-sm text-xs text-white">
             {formatDuration(duration)}
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function VideoThumbnail({
           </h4>
           <div className="flex items-center gap-2 mt-1">
             {typeInfo && (
-              <span className={`text-xs px-2 py-0.5 rounded ${typeInfo.color}`}>
+              <span className={`text-xs px-2 py-0.5 rounded-sm ${typeInfo.color}`}>
                 {typeInfo.label}
               </span>
             )}
@@ -120,7 +120,7 @@ export default function VideoThumbnail({
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-sage-400 to-sage-600 flex items-center justify-center">
+          <div className="w-full h-full bg-linear-to-br from-sage-400 to-sage-600 flex items-center justify-center">
             <Play className="w-16 h-16 text-white/80" />
           </div>
         )}
@@ -133,7 +133,7 @@ export default function VideoThumbnail({
         </div>
 
         {/* Duration badge */}
-        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/75 rounded text-sm text-white font-medium">
+        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/75 rounded-sm text-sm text-white font-medium">
           {formatDuration(duration)}
         </div>
 

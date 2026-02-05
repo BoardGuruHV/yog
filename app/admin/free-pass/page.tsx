@@ -414,7 +414,7 @@ export default function AdminFreePassPage() {
                         <div className="md:col-span-2">
                           <span className="text-xs text-gray-500 uppercase tracking-wide">Use Case</span>
                           <p className="text-gray-900 flex items-start gap-2">
-                            <MessageSquare className="w-4 h-4 text-gray-400 mt-1 flex-shrink-0" />
+                            <MessageSquare className="w-4 h-4 text-gray-400 mt-1 shrink-0" />
                             {request.useCase}
                           </p>
                         </div>
@@ -507,7 +507,7 @@ export default function AdminFreePassPage() {
                   <select
                     value={rejectionReason}
                     onChange={(e) => setRejectionReason(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500"
                   >
                     <option value="">Select a reason...</option>
                     <option value="Invalid business email">Invalid business email</option>
@@ -528,7 +528,7 @@ export default function AdminFreePassPage() {
                   onChange={(e) => setActionNotes(e.target.value)}
                   placeholder="Add any internal notes..."
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 resize-none"
                 />
               </div>
 

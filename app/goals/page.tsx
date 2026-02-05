@@ -119,7 +119,7 @@ export default function GoalsPage() {
 
   if (status === "loading" || isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
       </div>
     );
@@ -133,9 +133,9 @@ export default function GoalsPage() {
   const completedGoals = goals.filter((g) => g.completed);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/dashboard"
@@ -178,7 +178,7 @@ export default function GoalsPage() {
                   onClick={() => setFilter(f)}
                   className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors capitalize ${
                     filter === f
-                      ? "bg-white text-gray-800 shadow-sm"
+                      ? "bg-white text-gray-800 shadow-xs"
                       : "text-gray-600 hover:text-gray-800"
                   }`}
                 >

@@ -194,7 +194,7 @@ export default function AchievementsPage() {
                 </div>
                 <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all"
+                    className="h-full bg-linear-to-r from-purple-500 to-pink-500 rounded-full transition-all"
                     style={{ width: `${data.completionPercentage}%` }}
                   />
                 </div>
@@ -211,7 +211,7 @@ export default function AchievementsPage() {
                   {data.recentUnlocks.map((achievement) => (
                     <div
                       key={achievement.id}
-                      className="flex-shrink-0 flex items-center gap-3 bg-green-50 rounded-lg px-4 py-2"
+                      className="shrink-0 flex items-center gap-3 bg-green-50 rounded-lg px-4 py-2"
                     >
                       <span className="text-2xl">{achievement.icon}</span>
                       <div>

@@ -39,7 +39,7 @@ export default function AnatomyLegend({
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <div
-            className="w-4 h-4 rounded"
+            className="w-4 h-4 rounded-sm"
             style={{ backgroundColor: colors.fill, border: `2px solid ${colors.stroke}` }}
           />
           <Icon className="w-4 h-4" style={{ color: colors.stroke }} />
@@ -105,7 +105,7 @@ export function LegendInline() {
         ([type, colors]) => (
           <div key={type} className="flex items-center gap-1.5">
             <div
-              className="w-3 h-3 rounded-sm"
+              className="w-3 h-3 rounded-xs"
               style={{ backgroundColor: colors.fill, border: `1px solid ${colors.stroke}` }}
             />
             <span className="text-gray-600">{colors.label}</span>

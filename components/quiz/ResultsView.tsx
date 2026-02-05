@@ -91,7 +91,7 @@ export default function ResultsView({
   return (
     <div className="max-w-2xl mx-auto">
       {/* Score Card */}
-      <div className={`bg-gradient-to-br ${getScoreBg()} rounded-3xl p-8 text-white text-center mb-8`}>
+      <div className={`bg-linear-to-br ${getScoreBg()} rounded-3xl p-8 text-white text-center mb-8`}>
         <div className="mb-4">
           {passed ? (
             <Trophy className="w-16 h-16 mx-auto text-yellow-300" />
@@ -183,7 +183,7 @@ export default function ResultsView({
             <div key={result.questionId} className="p-4">
               <div className="flex items-start gap-3">
                 <div
-                  className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
                     result.isCorrect ? "bg-green-100" : "bg-red-100"
                   }`}
                 >

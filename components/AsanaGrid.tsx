@@ -21,8 +21,8 @@ export default function AsanaGrid({ asanas, loading = false }: AsanaGridProps) {
           >
             <div className="h-48 bg-gray-200" />
             <div className="p-4 space-y-3">
-              <div className="h-5 bg-gray-200 rounded w-3/4" />
-              <div className="h-4 bg-gray-200 rounded w-1/2" />
+              <div className="h-5 bg-gray-200 rounded-sm w-3/4" />
+              <div className="h-4 bg-gray-200 rounded-sm w-1/2" />
               <div className="flex gap-1">
                 {Array.from({ length: 5 }).map((_, j) => (
                   <div key={j} className="w-2 h-2 rounded-full bg-gray-200" />

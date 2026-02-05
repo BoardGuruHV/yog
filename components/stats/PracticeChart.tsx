@@ -105,7 +105,7 @@ export default function PracticeChart({
               onClick={() => setView("daily")}
               className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                 view === "daily"
-                  ? "bg-white text-gray-900 shadow-sm"
+                  ? "bg-white text-gray-900 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
@@ -115,7 +115,7 @@ export default function PracticeChart({
               onClick={() => setView("weekly")}
               className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                 view === "weekly"
-                  ? "bg-white text-gray-900 shadow-sm"
+                  ? "bg-white text-gray-900 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
@@ -129,7 +129,7 @@ export default function PracticeChart({
               onClick={() => setMetric("minutes")}
               className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                 metric === "minutes"
-                  ? "bg-white text-gray-900 shadow-sm"
+                  ? "bg-white text-gray-900 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
@@ -139,7 +139,7 @@ export default function PracticeChart({
               onClick={() => setMetric("sessions")}
               className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                 metric === "sessions"
-                  ? "bg-white text-gray-900 shadow-sm"
+                  ? "bg-white text-gray-900 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >

@@ -25,9 +25,9 @@ export default function ProgramPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/"

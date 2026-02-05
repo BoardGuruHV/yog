@@ -120,7 +120,7 @@ export default function JournalPage() {
 
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
       </div>
     );
@@ -131,9 +131,9 @@ export default function JournalPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-indigo-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between">
             <div>

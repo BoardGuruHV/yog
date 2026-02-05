@@ -113,7 +113,7 @@ export default function IntervalPracticePage() {
   // Completion screen
   if (mode === "complete") {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-green-600 to-emerald-700 flex flex-col items-center justify-center text-white p-8">
+      <div className="min-h-screen bg-linear-to-b from-green-600 to-emerald-700 flex flex-col items-center justify-center text-white p-8">
         <div className="text-8xl mb-6">🎉</div>
         <h1 className="text-4xl font-bold mb-4">Workout Complete!</h1>
         <p className="text-xl text-green-100 mb-8 text-center">
@@ -139,9 +139,9 @@ export default function IntervalPracticePage() {
 
   // Setup screen
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/"
@@ -209,7 +209,7 @@ export default function IntervalPracticePage() {
                       key={pose.id}
                       className="flex items-center gap-2 pl-2 pr-1 py-1 bg-orange-50 border border-orange-200 rounded-lg"
                     >
-                      <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
+                      <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center">
                         <Image
                           src={pose.svgPath}
                           alt={pose.nameEnglish}
@@ -222,7 +222,7 @@ export default function IntervalPracticePage() {
                       </span>
                       <button
                         onClick={() => handleRemovePose(pose.id)}
-                        className="p-1 hover:bg-orange-100 rounded"
+                        className="p-1 hover:bg-orange-100 rounded-sm"
                       >
                         <X className="w-4 h-4 text-gray-400" />
                       </button>
@@ -251,7 +251,7 @@ export default function IntervalPracticePage() {
                         onClick={() => handleAddPose(asana)}
                         className="flex items-center gap-2 p-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-left transition-colors"
                       >
-                        <div className="w-8 h-8 bg-white rounded flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center shrink-0">
                           <Image
                             src={asana.svgPath}
                             alt={asana.nameEnglish}
@@ -262,7 +262,7 @@ export default function IntervalPracticePage() {
                         <span className="text-sm text-gray-700 truncate">
                           {asana.nameEnglish}
                         </span>
-                        <Plus className="w-4 h-4 text-gray-400 ml-auto flex-shrink-0" />
+                        <Plus className="w-4 h-4 text-gray-400 ml-auto shrink-0" />
                       </button>
                     ))}
                 </div>
@@ -272,7 +272,7 @@ export default function IntervalPracticePage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-8 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+        <div className="mt-8 bg-linear-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
           <h3 className="font-semibold text-gray-900 mb-2">
             How Interval Training Works
           </h3>

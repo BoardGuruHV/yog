@@ -84,7 +84,7 @@ export default function BodyHeatmap({ bodyPartActivity }: BodyHeatmapProps) {
         {/* Front view */}
         <div>
           <p className="text-xs text-gray-500 text-center mb-2">Front</p>
-          <div className="relative bg-gray-50 rounded-lg aspect-[2/3]">
+          <div className="relative bg-gray-50 rounded-lg aspect-2/3">
             {/* Simple body silhouette using CSS */}
             <svg
               viewBox="0 0 100 150"
@@ -147,7 +147,7 @@ export default function BodyHeatmap({ bodyPartActivity }: BodyHeatmapProps) {
         {/* Back view */}
         <div>
           <p className="text-xs text-gray-500 text-center mb-2">Back</p>
-          <div className="relative bg-gray-50 rounded-lg aspect-[2/3]">
+          <div className="relative bg-gray-50 rounded-lg aspect-2/3">
             {/* Simple body silhouette using CSS */}
             <svg
               viewBox="0 0 100 150"

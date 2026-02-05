@@ -352,7 +352,7 @@ function QuickLink({ href, icon: Icon, label, description, comingSoon }: QuickLi
         <Icon className="w-6 h-6 text-gray-400 mb-2" />
         <h3 className="font-medium text-gray-700">{label}</h3>
         <p className="text-sm text-gray-500 mt-1">{description}</p>
-        <span className="inline-block mt-2 text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
+        <span className="inline-block mt-2 text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-sm">
           Coming Soon
         </span>
       </div>

@@ -116,7 +116,7 @@ export default function TutorialPlayer({
       {/* Main Player */}
       <div className="lg:col-span-2 space-y-6">
         {/* Progress Bar */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+        <div className="bg-white rounded-xl border border-gray-100 shadow-xs p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-500">
               Step {currentStepIndex + 1} of {steps.length}
@@ -134,9 +134,9 @@ export default function TutorialPlayer({
         </div>
 
         {/* Current Step Display */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
           {/* Header with Image and Breath */}
-          <div className="bg-gradient-to-br from-sage-50 to-white p-6 flex items-center justify-center gap-8">
+          <div className="bg-linear-to-br from-sage-50 to-white p-6 flex items-center justify-center gap-8">
             <img
               src={asanaImage}
               alt={asanaName}
@@ -256,7 +256,7 @@ export default function TutorialPlayer({
 
       {/* Steps List Sidebar */}
       <div className="lg:col-span-1">
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 sticky top-24">
+        <div className="bg-white rounded-xl border border-gray-100 shadow-xs p-4 sticky top-24">
           <h3 className="font-semibold text-gray-800 mb-4">All Steps</h3>
           <div className="space-y-2 max-h-[60vh] overflow-y-auto">
             {steps.map((step, index) => (

@@ -155,7 +155,7 @@ export default function FlexibilityTimeline({
                 <div className="flex items-start gap-3">
                   {/* Asana image */}
                   {showAsanaInfo && (
-                    <div className="relative w-12 h-12 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="relative w-12 h-12 bg-gray-100 rounded-lg overflow-hidden shrink-0">
                       <Image
                         src={entry.asana.svgPath}
                         alt={entry.asana.nameEnglish}
@@ -184,7 +184,7 @@ export default function FlexibilityTimeline({
                     </div>
 
                     {entry.bodyPart && (
-                      <span className="inline-block mt-1 px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">
+                      <span className="inline-block mt-1 px-2 py-0.5 bg-gray-100 text-gray-600 rounded-sm text-xs">
                         {getBodyPartLabel(entry.bodyPart)}
                       </span>
                     )}

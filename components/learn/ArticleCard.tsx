@@ -48,7 +48,7 @@ export default function ArticleCard({
           <img
             src={coverImage}
             alt={title}
-            className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+            className="w-16 h-16 rounded-lg object-cover shrink-0"
           />
         ) : (
           <div className={`w-16 h-16 rounded-lg flex items-center justify-center text-2xl ${categoryStyle.bg}`}>
@@ -60,7 +60,7 @@ export default function ArticleCard({
             {title}
           </h3>
           <div className="flex items-center gap-3 mt-1">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded ${categoryStyle.bg} ${categoryStyle.text}`}>
+            <span className={`text-xs font-medium px-2 py-0.5 rounded-sm ${categoryStyle.bg} ${categoryStyle.text}`}>
               {category}
             </span>
             <span className="text-xs text-gray-500 flex items-center gap-1">
@@ -143,7 +143,7 @@ export default function ArticleCard({
             {tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs"
+                className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-sm text-xs"
               >
                 {tag}
               </span>

@@ -91,14 +91,14 @@ export default function StepPreview({
           {program.asanaSequence.map((item, index) => (
             <div
               key={`${item.asanaId}-${index}`}
-              className="flex items-center gap-4 bg-white rounded-lg p-3 shadow-sm"
+              className="flex items-center gap-4 bg-white rounded-lg p-3 shadow-xs"
             >
-              <div className="flex-shrink-0 w-8 h-8 bg-sage-100 rounded-full flex items-center justify-center text-sage-700 font-medium">
+              <div className="shrink-0 w-8 h-8 bg-sage-100 rounded-full flex items-center justify-center text-sage-700 font-medium">
                 {index + 1}
               </div>
 
               {item.asana?.imagePath && (
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg overflow-hidden">
+                <div className="shrink-0 w-12 h-12 bg-gray-100 rounded-lg overflow-hidden">
                   <Image
                     src={item.asana.imagePath}
                     alt={item.asana.englishName}
@@ -121,7 +121,7 @@ export default function StepPreview({
                 </div>
               </div>
 
-              <div className="flex-shrink-0 text-sm text-gray-500">
+              <div className="shrink-0 text-sm text-gray-500">
                 {formatDuration(item.duration)}
               </div>
             </div>

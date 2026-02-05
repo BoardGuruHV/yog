@@ -107,9 +107,9 @@ export default function ComparePage() {
   const bothSelected = pose1Details && pose2Details;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-indigo-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto">
           <Link
             href="/"
@@ -178,9 +178,9 @@ export default function ComparePage() {
             />
 
             {/* Transition Tip */}
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 p-6">
+            <div className="bg-linear-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 p-6">
               <div className="flex items-start gap-4">
-                <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">
+                <div className="p-2 bg-amber-100 rounded-lg shrink-0">
                   <Info className="w-5 h-5 text-amber-600" />
                 </div>
                 <div>

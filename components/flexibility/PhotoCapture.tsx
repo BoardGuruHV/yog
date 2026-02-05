@@ -113,7 +113,7 @@ export default function PhotoCapture({
           autoPlay
           playsInline
           muted
-          className="w-full aspect-[4/3] object-cover"
+          className="w-full aspect-4/3 object-cover"
         />
         <canvas ref={canvasRef} className="hidden" />
 
@@ -129,7 +129,7 @@ export default function PhotoCapture({
         <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
           <button
             onClick={cancel}
-            className="p-3 bg-white/20 backdrop-blur rounded-full text-white hover:bg-white/30 transition-colors"
+            className="p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
@@ -147,7 +147,7 @@ export default function PhotoCapture({
   if (mode === "preview" && capturedPhoto) {
     return (
       <div className="relative bg-gray-100 rounded-xl overflow-hidden">
-        <div className="relative aspect-[4/3]">
+        <div className="relative aspect-4/3">
           <Image
             src={capturedPhoto}
             alt="Captured photo"
@@ -160,7 +160,7 @@ export default function PhotoCapture({
         <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
           <button
             onClick={retake}
-            className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur rounded-lg text-gray-700 hover:bg-white transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg text-gray-700 hover:bg-white transition-colors"
           >
             <RotateCcw className="w-5 h-5" />
             <span>Retake</span>

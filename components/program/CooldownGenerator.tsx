@@ -122,7 +122,7 @@ export default function CooldownGenerator({ compact = false }: CooldownGenerator
           <select
             value={duration}
             onChange={(e) => setDuration(Number(e.target.value))}
-            className="flex-1 text-sm border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-sage-500"
+            className="flex-1 text-sm border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-hidden focus:ring-2 focus:ring-sage-500"
           >
             <option value={3}>3 minutes</option>
             <option value={5}>5 minutes</option>
@@ -154,9 +154,9 @@ export default function CooldownGenerator({ compact = false }: CooldownGenerator
   }
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-200 p-6">
+    <div className="bg-linear-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-200 p-6">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center shrink-0">
           <Sunset className="w-6 h-6 text-indigo-600" />
         </div>
         <div className="flex-1">
@@ -177,7 +177,7 @@ export default function CooldownGenerator({ compact = false }: CooldownGenerator
             <select
               value={duration}
               onChange={(e) => setDuration(Number(e.target.value))}
-              className="flex-1 border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-1 border border-gray-200 rounded-lg px-3 py-2 focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
             >
               <option value={3}>3 minutes</option>
               <option value={5}>5 minutes</option>

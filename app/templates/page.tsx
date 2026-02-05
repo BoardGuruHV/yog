@@ -79,9 +79,9 @@ export default function TemplatesPage() {
   const regularTemplates = filteredTemplates.filter((t) => !t.featured);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-6xl mx-auto">
           <Link
             href="/"
@@ -118,7 +118,7 @@ export default function TemplatesPage() {
               placeholder="Search templates..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500"
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-sage-500"
             />
           </div>
 

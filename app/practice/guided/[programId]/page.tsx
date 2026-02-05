@@ -117,7 +117,7 @@ export default function GuidedPracticePage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 px-4">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Back Button */}
         <button
@@ -131,7 +131,7 @@ export default function GuidedPracticePage({
         {/* Program Header */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {/* Hero Section */}
-          <div className="bg-gradient-to-r from-sage-600 to-sage-700 text-white p-8">
+          <div className="bg-linear-to-r from-sage-600 to-sage-700 text-white p-8">
             <div className="flex items-center gap-2 text-sage-200 text-sm mb-2">
               <ListMusic className="w-4 h-4" />
               Guided Practice

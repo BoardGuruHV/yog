@@ -107,9 +107,9 @@ export default function PoseSelector({
 
       {selectedAsana ? (
         // Selected pose display
-        <div className="bg-white rounded-xl border-2 border-sage-200 p-4 shadow-sm">
+        <div className="bg-white rounded-xl border-2 border-sage-200 p-4 shadow-xs">
           <div className="flex items-center gap-4">
-            <div className="w-20 h-20 bg-sage-50 rounded-lg flex items-center justify-center flex-shrink-0">
+            <div className="w-20 h-20 bg-sage-50 rounded-lg flex items-center justify-center shrink-0">
               <Image
                 src={selectedAsana.svgPath}
                 alt={selectedAsana.nameEnglish}
@@ -163,7 +163,7 @@ export default function PoseSelector({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search poses..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-sage-500 focus:border-transparent text-sm"
                 autoFocus
               />
             </div>
@@ -182,7 +182,7 @@ export default function PoseSelector({
                   onClick={() => handleSelect(asana)}
                   className="w-full p-3 hover:bg-sage-50 transition-colors flex items-center gap-3 text-left border-b border-gray-50 last:border-0"
                 >
-                  <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center shrink-0">
                     <Image
                       src={asana.svgPath}
                       alt={asana.nameEnglish}

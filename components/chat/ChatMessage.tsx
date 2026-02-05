@@ -31,8 +31,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
     <div className={`flex gap-3 ${isUser ? "flex-row-reverse" : ""}`}>
       {/* Avatar */}
       <div
-        className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-          isUser ? "bg-sage-100 text-sage-600" : "bg-gradient-to-br from-sage-500 to-yoga-500 text-white"
+        className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+          isUser ? "bg-sage-100 text-sage-600" : "bg-linear-to-br from-sage-500 to-yoga-500 text-white"
         }`}
       >
         {isUser ? <User className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
@@ -43,7 +43,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
           isUser
             ? "bg-sage-600 text-white rounded-tr-sm"
-            : "bg-white border border-gray-200 text-gray-800 rounded-tl-sm shadow-sm"
+            : "bg-white border border-gray-200 text-gray-800 rounded-tl-sm shadow-xs"
         }`}
       >
         {isUser ? (

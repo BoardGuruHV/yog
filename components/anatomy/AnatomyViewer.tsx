@@ -61,7 +61,7 @@ export default function AnatomyViewer({
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex items-center justify-center min-h-[200px]">
+      <div className="bg-white rounded-xl border border-gray-100 shadow-xs p-6 flex items-center justify-center min-h-[200px]">
         <Loader2 className="w-6 h-6 text-gray-400 animate-spin" />
       </div>
     );
@@ -69,7 +69,7 @@ export default function AnatomyViewer({
 
   if (!anatomy) {
     return (
-      <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 p-6">
+      <div className="bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 p-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-emerald-100 rounded-lg">
             <Activity className="w-5 h-5 text-emerald-600" />
@@ -105,7 +105,7 @@ export default function AnatomyViewer({
           {[...anatomy.primaryMuscles, ...anatomy.secondaryMuscles].slice(0, 5).map((m) => (
             <span
               key={m}
-              className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded text-xs"
+              className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-sm text-xs"
             >
               {m}
             </span>
@@ -121,7 +121,7 @@ export default function AnatomyViewer({
   }
 
   return (
-    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 overflow-hidden">
+    <div className="bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-emerald-100/50">
         <div className="flex items-center justify-between">
@@ -138,7 +138,7 @@ export default function AnatomyViewer({
           </div>
 
           {/* View toggle */}
-          <div className="flex bg-white rounded-lg p-1 shadow-sm">
+          <div className="flex bg-white rounded-lg p-1 shadow-xs">
             <button
               onClick={() => setActiveSide("front")}
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
@@ -167,7 +167,7 @@ export default function AnatomyViewer({
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Body diagram */}
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-emerald-100/50">
+          <div className="bg-white rounded-xl p-4 shadow-xs border border-emerald-100/50">
             <BodySVG
               side={activeSide}
               highlightedMuscles={highlightedMuscles}
@@ -197,7 +197,7 @@ export default function AnatomyViewer({
                 onClose={() => setSelectedMuscle(null)}
               />
             ) : (
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-emerald-100/50">
+              <div className="bg-white rounded-xl p-4 shadow-xs border border-emerald-100/50">
                 <h4 className="font-medium text-gray-800 mb-3">Muscles Engaged</h4>
                 <AnatomyLegend
                   primaryMuscles={anatomy.primaryMuscles}

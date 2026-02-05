@@ -59,7 +59,7 @@ export default function MeditationPage() {
   if (mode === "complete" && selectedStyle) {
     return (
       <div
-        className={`min-h-screen bg-gradient-to-b ${selectedStyle.gradient} flex flex-col items-center justify-center text-white p-8`}
+        className={`min-h-screen bg-linear-to-b ${selectedStyle.gradient} flex flex-col items-center justify-center text-white p-8`}
       >
         <div className="text-center max-w-md">
           <div className="text-6xl mb-6">🧘</div>
@@ -92,9 +92,9 @@ export default function MeditationPage() {
 
   // Setup screen
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-purple-600 to-indigo-600 text-white">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/"
@@ -149,7 +149,7 @@ export default function MeditationPage() {
         {selectedStyle && (
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <div
-              className={`bg-gradient-to-r ${selectedStyle.gradient} text-white p-6`}
+              className={`bg-linear-to-r ${selectedStyle.gradient} text-white p-6`}
             >
               <h3 className="text-xl font-bold mb-2">{selectedStyle.name}</h3>
               <p className="text-white/80">{selectedStyle.description}</p>
@@ -167,7 +167,7 @@ export default function MeditationPage() {
                         key={index}
                         className="flex items-start gap-3 text-sm text-gray-600"
                       >
-                        <span className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-500 flex-shrink-0">
+                        <span className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-500 shrink-0">
                           {index + 1}
                         </span>
                         {instruction}
@@ -200,7 +200,7 @@ export default function MeditationPage() {
           disabled={!selectedStyle}
           className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed ${
             selectedStyle
-              ? `bg-gradient-to-r ${selectedStyle.gradient} text-white`
+              ? `bg-linear-to-r ${selectedStyle.gradient} text-white`
               : "bg-gray-300 text-gray-500"
           }`}
         >

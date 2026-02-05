@@ -67,7 +67,7 @@ export default function StreaksPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+      <div className="min-h-screen bg-linear-to-b from-orange-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
@@ -82,8 +82,8 @@ export default function StreaksPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
-        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+      <div className="min-h-screen bg-linear-to-b from-orange-50 to-white">
+        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-orange-500 to-red-500 text-white">
           <div className="max-w-4xl mx-auto">
             <Link
               href="/"
@@ -144,9 +144,9 @@ export default function StreaksPage() {
   const { streak, practiceDays, milestones, practicedToday } = streakData;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-orange-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/"
@@ -231,7 +231,7 @@ export default function StreaksPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href="/practice/timer"
-            className="flex-1 text-center px-6 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl"
+            className="flex-1 text-center px-6 py-4 bg-linear-to-r from-orange-500 to-red-500 text-white rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl"
           >
             Start Practice Now
           </Link>

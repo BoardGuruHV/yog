@@ -14,12 +14,12 @@ export default function AlignmentFeedback({
 }: AlignmentFeedbackProps) {
   if (isLoading) {
     return (
-      <div className="bg-white/90 backdrop-blur rounded-xl p-4 shadow-lg">
+      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full bg-gray-100 animate-pulse" />
           <div className="flex-1">
-            <div className="h-4 bg-gray-200 rounded animate-pulse w-32 mb-2" />
-            <div className="h-3 bg-gray-100 rounded animate-pulse w-48" />
+            <div className="h-4 bg-gray-200 rounded-sm animate-pulse w-32 mb-2" />
+            <div className="h-3 bg-gray-100 rounded-sm animate-pulse w-48" />
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default function AlignmentFeedback({
 
   if (!feedback) {
     return (
-      <div className="bg-white/90 backdrop-blur rounded-xl p-4 shadow-lg">
+      <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
         <div className="flex items-center gap-3 text-gray-500">
           <Target className="w-8 h-8" />
           <div>
@@ -57,7 +57,7 @@ export default function AlignmentFeedback({
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur rounded-xl p-4 shadow-lg space-y-4">
+    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg space-y-4">
       {/* Score and Status */}
       <div className="flex items-center gap-4">
         <div

@@ -141,7 +141,7 @@ export default function WeeklyReport({ report }: WeeklyReportProps) {
   return (
     <div className="space-y-6">
       {/* Report Header */}
-      <div className="bg-gradient-to-r from-sage-500 to-green-500 rounded-xl p-6 text-white">
+      <div className="bg-linear-to-r from-sage-500 to-green-500 rounded-xl p-6 text-white">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-2xl font-bold">{periodLabel} Report</h2>

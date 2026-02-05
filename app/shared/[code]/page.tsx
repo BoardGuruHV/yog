@@ -293,7 +293,7 @@ export default function SharedProgramPage() {
                     </div>
 
                     {/* Pose image */}
-                    <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden shrink-0">
                       {item.asana.svgPath && (
                         <Image
                           src={item.asana.svgPath}
@@ -330,7 +330,7 @@ export default function SharedProgramPage() {
                     </div>
 
                     {/* Duration */}
-                    <div className="text-right flex-shrink-0">
+                    <div className="text-right shrink-0">
                       <p className="font-medium text-gray-900">
                         {Math.floor(item.duration / 60)}:{String(item.duration % 60).padStart(2, "0")}
                       </p>
@@ -342,7 +342,7 @@ export default function SharedProgramPage() {
             </div>
 
             {/* Copy CTA */}
-            <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl border border-green-200 p-6 text-center">
+            <div className="bg-linear-to-r from-green-50 to-teal-50 rounded-xl border border-green-200 p-6 text-center">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Like this program?
               </h3>

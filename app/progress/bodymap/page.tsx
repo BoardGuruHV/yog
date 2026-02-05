@@ -205,7 +205,7 @@ export default function BodyMapPage() {
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className="w-4 h-4 rounded"
+                        className="w-4 h-4 rounded-sm"
                         style={{
                           backgroundColor:
                             part.intensity === 0

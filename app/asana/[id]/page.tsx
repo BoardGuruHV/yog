@@ -87,7 +87,7 @@ export default function AsanaDetailPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-4 border-sage-200 border-t-sage-600" />
       </div>
     );
@@ -95,7 +95,7 @@ export default function AsanaDetailPage({
 
   if (!asana) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">🧘</div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
@@ -135,9 +135,9 @@ export default function AsanaDetailPage({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yoga-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-yoga-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/"
@@ -156,7 +156,7 @@ export default function AsanaDetailPage({
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-sage-100 sticky top-24">
               {/* Image */}
-              <div className="h-64 bg-gradient-to-br from-sage-50 to-yoga-50 flex items-center justify-center">
+              <div className="h-64 bg-linear-to-br from-sage-50 to-yoga-50 flex items-center justify-center">
                 <Image
                   src={imageError ? "/asanas/default.svg" : asana.svgPath}
                   alt={asana.nameEnglish}
@@ -245,7 +245,7 @@ export default function AsanaDetailPage({
             )}
 
             {/* Description */}
-            <div className="bg-white rounded-xl shadow-sm border border-sage-100 p-6">
+            <div className="bg-white rounded-xl shadow-xs border border-sage-100 p-6">
               <p className="text-gray-700 leading-relaxed">{asana.description}</p>
             </div>
 
@@ -274,7 +274,7 @@ export default function AsanaDetailPage({
             />
 
             {/* Benefits */}
-            <div className="bg-white rounded-xl shadow-sm border border-sage-100 p-6">
+            <div className="bg-white rounded-xl shadow-xs border border-sage-100 p-6">
               <h2 className="flex items-center gap-2 text-lg font-semibold text-gray-800 mb-4">
                 <Sparkles className="w-5 h-5 text-yoga-500" />
                 Benefits
@@ -285,7 +285,7 @@ export default function AsanaDetailPage({
                     key={index}
                     className="flex items-start gap-2 text-gray-700"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400 mt-2 flex-shrink-0" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-sage-400 mt-2 shrink-0" />
                     {benefit}
                   </li>
                 ))}
@@ -293,7 +293,7 @@ export default function AsanaDetailPage({
             </div>
 
             {/* Target Body Parts */}
-            <div className="bg-white rounded-xl shadow-sm border border-sage-100 p-6">
+            <div className="bg-white rounded-xl shadow-xs border border-sage-100 p-6">
               <h2 className="flex items-center gap-2 text-lg font-semibold text-gray-800 mb-4">
                 <Target className="w-5 h-5 text-yoga-500" />
                 Target Areas
@@ -359,7 +359,7 @@ export default function AsanaDetailPage({
                   {asana.modifications.map((mod) => (
                     <li key={mod.id} className="flex items-start gap-3">
                       {(mod.forAge || mod.condition) && (
-                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-200 text-blue-800">
+                        <span className="px-2 py-0.5 rounded-sm text-xs font-medium bg-blue-200 text-blue-800">
                           {mod.forAge || mod.condition?.name}
                         </span>
                       )}

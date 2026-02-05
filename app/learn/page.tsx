@@ -98,9 +98,9 @@ export default function LearnPage() {
   const regularArticles = filteredArticles.filter((a) => !a.featured);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-purple-600 to-indigo-600 text-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-3 bg-white/10 rounded-xl">
@@ -125,7 +125,7 @@ export default function LearnPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search articles..."
-                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/10 backdrop-blur-xs border border-white/20 text-white placeholder-white/60 focus:outline-hidden focus:ring-2 focus:ring-white/30"
               />
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function LearnPage() {
               className={`p-4 rounded-xl text-left transition-all ${
                 selectedCategory === key
                   ? "bg-white shadow-lg ring-2 ring-purple-500"
-                  : "bg-white shadow-sm hover:shadow-md"
+                  : "bg-white shadow-xs hover:shadow-md"
               }`}
             >
               <span className="text-2xl mb-2 block">{info.icon}</span>
@@ -232,7 +232,7 @@ export default function LearnPage() {
         )}
 
         {/* Quick Links to Pose Tutorials */}
-        <section className="mt-16 bg-gradient-to-r from-sage-50 to-yoga-50 rounded-2xl p-8">
+        <section className="mt-16 bg-linear-to-r from-sage-50 to-yoga-50 rounded-2xl p-8">
           <div className="flex items-start justify-between">
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">

@@ -55,7 +55,7 @@ export default function PronunciationCard({
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex items-center justify-center">
+      <div className="bg-white rounded-xl border border-gray-100 shadow-xs p-6 flex items-center justify-center">
         <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
       </div>
     );
@@ -64,7 +64,7 @@ export default function PronunciationCard({
   if (!pronunciation) {
     // Fallback: Show basic pronunciation without database data
     return (
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 p-6">
+      <div className="bg-linear-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 p-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-indigo-100 rounded-lg">
             <Volume2 className="w-5 h-5 text-indigo-600" />
@@ -85,7 +85,7 @@ export default function PronunciationCard({
   if (compact) {
     return (
       <div className="flex items-center gap-3 p-3 bg-indigo-50 rounded-lg">
-        <Volume2 className="w-4 h-4 text-indigo-500 flex-shrink-0" />
+        <Volume2 className="w-4 h-4 text-indigo-500 shrink-0" />
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-gray-800 truncate">{nameSanskrit}</p>
           <p className="text-xs text-indigo-600">{pronunciation.phonetic}</p>
@@ -108,7 +108,7 @@ export default function PronunciationCard({
   }
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 overflow-hidden">
+    <div className="bg-linear-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-indigo-100/50">
         <div className="flex items-center gap-3 mb-2">
@@ -197,7 +197,7 @@ export default function PronunciationCard({
       {/* Tip */}
       <div className="px-6 pb-6">
         <div className="flex items-start gap-2 text-xs text-indigo-600 bg-indigo-100/50 rounded-lg p-3">
-          <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
+          <Info className="w-4 h-4 shrink-0 mt-0.5" />
           <p>
             <strong>Tip:</strong> Stressed syllables are shown in{" "}
             <span className="font-bold text-amber-700">bold amber</span>. Focus on

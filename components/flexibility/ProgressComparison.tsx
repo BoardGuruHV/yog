@@ -123,7 +123,7 @@ export default function ProgressComparison({
             </div>
           </div>
 
-          <div className="relative aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden">
+          <div className="relative aspect-3/4 bg-gray-100 rounded-lg overflow-hidden">
             {beforeEntry.photoPath && (
               <Image
                 src={beforeEntry.photoPath}
@@ -174,7 +174,7 @@ export default function ProgressComparison({
             </div>
           </div>
 
-          <div className="relative aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden">
+          <div className="relative aspect-3/4 bg-gray-100 rounded-lg overflow-hidden">
             {afterEntry.photoPath && (
               <Image
                 src={afterEntry.photoPath}

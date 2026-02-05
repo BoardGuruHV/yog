@@ -121,7 +121,7 @@ export default function ReviewForm({
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Summarize your experience"
           maxLength={100}
-          className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:border-transparent"
         />
       </div>
 
@@ -140,7 +140,7 @@ export default function ReviewForm({
           placeholder="Share your experience with this pose. What did you like? Any tips for others?"
           rows={4}
           maxLength={1000}
-          className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+          className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
         />
         <p className="text-xs text-gray-400 mt-1">
           {review.length}/1000 characters

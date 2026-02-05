@@ -59,7 +59,7 @@ export default function GoalsWidget() {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+      <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
         <div className="flex items-center justify-center h-32">
           <Loader2 className="w-6 h-6 text-sage-400 animate-spin" />
         </div>
@@ -68,7 +68,7 @@ export default function GoalsWidget() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Target className="w-5 h-5 text-sage-600" />

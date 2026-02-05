@@ -43,7 +43,7 @@ const quickActions = [
 
 export default function QuickStartWidget() {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-gray-800">Quick Start</h3>
         <Link

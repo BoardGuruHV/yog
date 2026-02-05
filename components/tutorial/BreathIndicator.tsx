@@ -106,7 +106,7 @@ export function BreathAnimation({ breathCue }: { breathCue: string | null }) {
 
   return (
     <div
-      className="w-24 h-24 rounded-full bg-gradient-to-br from-sage-200 to-sage-400 transition-transform duration-100 flex items-center justify-center"
+      className="w-24 h-24 rounded-full bg-linear-to-br from-sage-200 to-sage-400 transition-transform duration-100 flex items-center justify-center"
       style={{ transform: `scale(${scale})` }}
     >
       <div className="w-16 h-16 rounded-full bg-white/50 flex items-center justify-center">

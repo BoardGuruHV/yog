@@ -104,7 +104,7 @@ export default function MeasurementInput({
         <select
           value={bodyPart}
           onChange={(e) => onBodyPartChange(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-sage-500"
+          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-gray-700 focus:outline-hidden focus:ring-2 focus:ring-sage-500"
         >
           <option value="">Select body part...</option>
           {BODY_PARTS.map((part) => (
@@ -151,7 +151,7 @@ export default function MeasurementInput({
               onChange(val === "" ? null : parseFloat(val));
             }}
             placeholder={`Enter ${currentType?.label.toLowerCase() || "value"}`}
-            className="w-full pl-10 pr-16 py-3 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-sage-500"
+            className="w-full pl-10 pr-16 py-3 border border-gray-200 rounded-lg text-gray-700 focus:outline-hidden focus:ring-2 focus:ring-sage-500"
           />
           <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
             {currentType?.unit || "units"}

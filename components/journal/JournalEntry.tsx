@@ -89,7 +89,7 @@ export default function JournalEntry({
   const moodChange = getMoodChange();
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
       {/* Main Content */}
       <div className="p-4">
         <div className="flex items-start justify-between">
@@ -258,7 +258,7 @@ export default function JournalEntry({
                 <p className="text-xs text-gray-400">Before</p>
                 <MoodDisplay value={log.moodBefore} />
               </div>
-              <div className="flex-1 h-1 bg-gray-200 rounded relative">
+              <div className="flex-1 h-1 bg-gray-200 rounded-sm relative">
                 <div
                   className={`absolute top-0 h-1 rounded ${
                     moodChange && moodChange.text.startsWith("+")

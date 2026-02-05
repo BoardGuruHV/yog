@@ -95,7 +95,7 @@ export default function PracticeTimerPage() {
     const totalDuration = program.asanas.reduce((sum, a) => sum + a.duration, 0);
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
         <div className="max-w-2xl mx-auto px-4 py-12">
           {/* Back link */}
           <Link
@@ -107,9 +107,9 @@ export default function PracticeTimerPage() {
           </Link>
 
           {/* Program info card */}
-          <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+          <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-xs">
             {/* Header */}
-            <div className="relative h-40 bg-gradient-to-br from-sage-500 to-sage-700 flex items-center justify-center">
+            <div className="relative h-40 bg-linear-to-br from-sage-500 to-sage-700 flex items-center justify-center">
               <div className="text-center text-white px-4">
                 <h1 className="text-2xl md:text-3xl font-bold mb-2">
                   {program.name}

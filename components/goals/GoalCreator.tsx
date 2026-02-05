@@ -244,7 +244,7 @@ export default function GoalCreator({
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g., Master Crow Pose"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden"
                   required
                 />
               </div>
@@ -259,7 +259,7 @@ export default function GoalCreator({
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Add details about your goal..."
                   rows={2}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden resize-none"
                 />
               </div>
 
@@ -275,7 +275,7 @@ export default function GoalCreator({
                     onChange={(e) => setTarget(e.target.value)}
                     placeholder="10"
                     min="1"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden"
                     required
                   />
                 </div>
@@ -286,7 +286,7 @@ export default function GoalCreator({
                   <select
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden bg-white"
                   >
                     <option value="times">times</option>
                     <option value="sessions">sessions</option>
@@ -330,7 +330,7 @@ export default function GoalCreator({
                   value={deadline}
                   onChange={(e) => setDeadline(e.target.value)}
                   min={new Date().toISOString().split("T")[0]}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 outline-hidden"
                 />
               </div>
 

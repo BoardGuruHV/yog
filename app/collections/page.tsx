@@ -157,7 +157,7 @@ export default function CollectionsPage() {
 
   if (status === "loading" || loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
       </div>
     );
@@ -168,9 +168,9 @@ export default function CollectionsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
@@ -197,7 +197,7 @@ export default function CollectionsPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* New Collection Form */}
         {showNewForm && (
-          <div className="mb-8 p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
+          <div className="mb-8 p-6 bg-white rounded-xl border border-gray-100 shadow-xs">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">
               Create New Collection
             </h2>
@@ -276,7 +276,7 @@ export default function CollectionsPage() {
             {collections.map((collection) => (
               <div
                 key={collection.id}
-                className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden hover:shadow-md transition-shadow"
               >
                 {editingId === collection.id ? (
                   <div className="p-4 space-y-3">
@@ -313,13 +313,13 @@ export default function CollectionsPage() {
                   <>
                     {/* Preview Images */}
                     <Link href={`/collections/${collection.id}`}>
-                      <div className="aspect-[2/1] bg-gradient-to-br from-sage-50 to-white p-4 relative">
+                      <div className="aspect-2/1 bg-linear-to-br from-sage-50 to-white p-4 relative">
                         {collection.asanas.length > 0 ? (
                           <div className="flex items-center justify-center gap-2 h-full">
                             {collection.asanas.slice(0, 3).map((ca, idx) => (
                               <div
                                 key={ca.id}
-                                className="w-16 h-16 bg-white rounded-lg shadow-sm p-2"
+                                className="w-16 h-16 bg-white rounded-lg shadow-xs p-2"
                                 style={{
                                   transform: `rotate(${(idx - 1) * 5}deg)`,
                                 }}

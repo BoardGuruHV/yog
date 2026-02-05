@@ -44,7 +44,7 @@ export default function FocusLegend({
         <div className="grid grid-cols-2 gap-2">
           {intensityLevels.map((level) => (
             <div key={level.label} className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded ${level.color}`} />
+              <div className={`w-4 h-4 rounded-sm ${level.color}`} />
               <span className="text-xs text-gray-600">
                 {level.label} ({level.range})
               </span>
@@ -75,11 +75,11 @@ export default function FocusLegend({
           </div>
           <div className="flex justify-center gap-4 text-xs">
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded bg-blue-400" />
+              <div className="w-3 h-3 rounded-sm bg-blue-400" />
               <span className="text-gray-600">Front</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded bg-purple-400" />
+              <div className="w-3 h-3 rounded-sm bg-purple-400" />
               <span className="text-gray-600">Back</span>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function FocusLegend({
           <div className="flex-1">
             <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-red-400 via-yellow-400 to-green-500 rounded-full transition-all"
+                className="h-full bg-linear-to-r from-red-400 via-yellow-400 to-green-500 rounded-full transition-all"
                 style={{ width: `${balanceScore}%` }}
               />
             </div>

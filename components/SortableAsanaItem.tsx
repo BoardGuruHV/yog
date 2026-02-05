@@ -58,7 +58,7 @@ export default function SortableAsanaItem({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
       transition={{ delay: index * 0.05 }}
-      className={`bg-white rounded-xl shadow-sm border border-sage-100 overflow-hidden ${
+      className={`bg-white rounded-xl shadow-xs border border-sage-100 overflow-hidden ${
         isDragging ? "shadow-lg ring-2 ring-sage-300 z-50" : ""
       }`}
     >
@@ -78,7 +78,7 @@ export default function SortableAsanaItem({
         </div>
 
         {/* Asana Image */}
-        <div className="w-16 h-16 bg-gradient-to-br from-sage-50 to-yoga-50 rounded-lg flex items-center justify-center flex-shrink-0">
+        <div className="w-16 h-16 bg-linear-to-br from-sage-50 to-yoga-50 rounded-lg flex items-center justify-center shrink-0">
           <Image
             src={imageError ? "/asanas/default.svg" : asana.svgPath}
             alt={asana.nameEnglish}

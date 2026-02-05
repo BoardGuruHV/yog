@@ -39,7 +39,7 @@ export default function HealthSummaryWidget() {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+      <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
         <div className="flex items-center justify-center h-32">
           <Loader2 className="w-6 h-6 text-sage-400 animate-spin" />
         </div>
@@ -68,7 +68,7 @@ export default function HealthSummaryWidget() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Heart className="w-5 h-5 text-red-500" />
@@ -138,7 +138,7 @@ export default function HealthSummaryWidget() {
 
           {/* Safe Practice Note */}
           <div className="flex items-start gap-2 p-3 bg-green-50 rounded-lg">
-            <Shield className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+            <Shield className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
             <p className="text-xs text-green-700">
               Your library is personalized to show warnings for poses that may not be suitable
               for your conditions.

@@ -68,7 +68,7 @@ export default function StepCard({
           ? `${phaseStyle.border} ${phaseStyle.bg} shadow-md`
           : isCompleted
           ? "border-gray-100 bg-gray-50 opacity-75"
-          : "border-gray-100 bg-white hover:border-gray-200 hover:shadow-sm"
+          : "border-gray-100 bg-white hover:border-gray-200 hover:shadow-xs"
         }
       `}
     >
@@ -76,11 +76,11 @@ export default function StepCard({
         {/* Step Number / Check */}
         <div
           className={`
-            w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-semibold text-sm
+            w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-semibold text-sm
             ${isCompleted
               ? "bg-green-500 text-white"
               : isActive
-              ? `${phaseStyle.bg} ${phaseStyle.text} ring-2 ring-offset-2 ${phaseStyle.border.replace("border", "ring")}`
+              ? `${phaseStyle.bg} ${phaseStyle.text} ring-2 ring-offset-2 ${phaseStyle.border.replace("border", "ring-3")}`
               : "bg-gray-100 text-gray-500"
             }
           `}
@@ -92,7 +92,7 @@ export default function StepCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span
-              className={`px-2 py-0.5 rounded text-xs font-medium ${phaseStyle.bg} ${phaseStyle.text}`}
+              className={`px-2 py-0.5 rounded-sm text-xs font-medium ${phaseStyle.bg} ${phaseStyle.text}`}
             >
               {PHASE_LABELS[step.phase] || step.phase}
             </span>
@@ -115,7 +115,7 @@ export default function StepCard({
 
         {/* Breath Cue */}
         {step.breathCue && (
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <BreathIndicator
               breathCue={step.breathCue as "inhale" | "exhale" | "hold"}
               isActive={isActive}

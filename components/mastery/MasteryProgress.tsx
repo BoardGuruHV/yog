@@ -155,7 +155,7 @@ export default function MasteryProgress({ stats }: MasteryProgressProps) {
             );
           })}
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-gray-200 rounded" />
+            <div className="w-4 h-4 bg-gray-200 rounded-sm" />
             <span className="text-xs text-gray-500">
               Not Started ({stats.notStartedCount})
             </span>

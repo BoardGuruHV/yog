@@ -79,7 +79,7 @@ export default function LearnAsanaPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
       </div>
     );
@@ -87,7 +87,7 @@ export default function LearnAsanaPage({
 
   if (notFound) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">📚</div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
@@ -105,9 +105,9 @@ export default function LearnAsanaPage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-indigo-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto">
           <Link
             href={`/asana/${asanaId}`}
@@ -142,7 +142,7 @@ export default function LearnAsanaPage({
             onComplete={handleComplete}
           />
         ) : (
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 text-center">
+          <div className="bg-white rounded-xl border border-gray-100 shadow-xs p-8 text-center">
             <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <AlertCircle className="w-8 h-8 text-amber-500" />
             </div>

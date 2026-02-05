@@ -76,7 +76,7 @@ export default function StatsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="min-h-screen bg-linear-to-b from-blue-50 to-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
@@ -91,8 +91,8 @@ export default function StatsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+      <div className="min-h-screen bg-linear-to-b from-blue-50 to-white">
+        <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-blue-500 to-indigo-600 text-white">
           <div className="max-w-6xl mx-auto">
             <Link
               href="/"
@@ -155,9 +155,9 @@ export default function StatsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-blue-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-blue-500 to-indigo-600 text-white">
         <div className="max-w-6xl mx-auto">
           <Link
             href="/"
@@ -228,7 +228,7 @@ export default function StatsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href="/journal"
-            className="flex-1 text-center px-6 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl"
+            className="flex-1 text-center px-6 py-4 bg-linear-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl"
           >
             View Practice Journal
           </Link>

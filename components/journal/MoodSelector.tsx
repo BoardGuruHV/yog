@@ -103,7 +103,7 @@ export function EnergyBar({ value }: { value: number | null }) {
       {[1, 2, 3, 4, 5].map((level) => (
         <div
           key={level}
-          className={`w-2 h-4 rounded-sm ${
+          className={`w-2 h-4 rounded-xs ${
             level <= value ? colors[value - 1] : "bg-gray-200"
           }`}
         />

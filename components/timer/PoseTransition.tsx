@@ -36,7 +36,7 @@ export default function PoseTransition({
   }, [onTransitionComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-gradient-to-br from-sage-600 to-sage-800 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-linear-to-br from-sage-600 to-sage-800 flex items-center justify-center">
       <div className="text-center text-white max-w-4xl mx-auto px-4">
         <p className="text-lg uppercase tracking-wider opacity-80 mb-6">
           Get Ready for Next Pose

@@ -208,7 +208,7 @@ export function LoginForm() {
             onClick={() => handleTabChange(tab.id)}
             className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium transition-all ${
               activeTab === tab.id
-                ? 'bg-white text-green-700 shadow-sm'
+                ? 'bg-white text-green-700 shadow-xs'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -248,7 +248,7 @@ export function LoginForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+              className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 ${
                 errors.email ? 'border-red-300 bg-red-50' : 'border-gray-200'
               }`}
             />
@@ -275,7 +275,7 @@ export function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 ${
                   errors.password ? 'border-red-300 bg-red-50' : 'border-gray-200'
                 }`}
               />
@@ -319,7 +319,7 @@ export function LoginForm() {
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="Your Company"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500"
                   />
                 </div>
               </div>
@@ -337,7 +337,7 @@ export function LoginForm() {
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
                     placeholder="e.g. Yoga Instructor"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500"
                   />
                 </div>
               </div>
@@ -356,7 +356,7 @@ export function LoginForm() {
                   onChange={(e) => setUseCase(e.target.value)}
                   placeholder="Tell us briefly about your intended use..."
                   rows={2}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 resize-none"
                 />
               </div>
             </div>
@@ -368,7 +368,7 @@ export function LoginForm() {
                   type="checkbox"
                   checked={acceptedTerms}
                   onChange={(e) => setAcceptedTerms(e.target.checked)}
-                  className="mt-1 h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                  className="mt-1 h-4 w-4 rounded-sm border-gray-300 text-green-600 focus:ring-green-500"
                 />
                 <span className="text-sm text-gray-600">
                   I accept the{' '}
@@ -393,7 +393,7 @@ export function LoginForm() {
                   type="checkbox"
                   checked={acceptedNda}
                   onChange={(e) => setAcceptedNda(e.target.checked)}
-                  className="mt-1 h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                  className="mt-1 h-4 w-4 rounded-sm border-gray-300 text-green-600 focus:ring-green-500"
                 />
                 <span className="text-sm text-gray-600">
                   I accept the{' '}
@@ -438,9 +438,9 @@ export function LoginForm() {
             }`}
           >
             {submitStatus === 'success' ? (
-              <Check className="h-5 w-5 flex-shrink-0" />
+              <Check className="h-5 w-5 shrink-0" />
             ) : (
-              <AlertCircle className="h-5 w-5 flex-shrink-0" />
+              <AlertCircle className="h-5 w-5 shrink-0" />
             )}
             <p className="text-sm">{statusMessage}</p>
           </motion.div>

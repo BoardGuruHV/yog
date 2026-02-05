@@ -137,7 +137,7 @@ export default function MasteryGrid({
                     : (parseInt(e.target.value, 10) as FilterLevel)
                 )
               }
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sage-500"
+              className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-hidden focus:ring-2 focus:ring-sage-500"
             >
               <option value="all">All Levels</option>
               <option value="5">Mastered</option>
@@ -151,7 +151,7 @@ export default function MasteryGrid({
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sage-500"
+              className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-hidden focus:ring-2 focus:ring-sage-500"
             >
               <option value="all">All Categories</option>
               {categories.map((cat) => (
@@ -166,7 +166,7 @@ export default function MasteryGrid({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sage-500"
+            className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-hidden focus:ring-2 focus:ring-sage-500"
           >
             <option value="level">Sort by Level</option>
             <option value="practices">Sort by Practices</option>

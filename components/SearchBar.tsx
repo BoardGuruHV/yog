@@ -45,7 +45,7 @@ export default function SearchBar({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
-        className="block w-full pl-10 pr-10 py-2.5 border border-sage-200 rounded-xl bg-white focus:ring-2 focus:ring-sage-400 focus:border-transparent outline-none transition-all text-gray-700 placeholder-gray-400"
+        className="block w-full pl-10 pr-10 py-2.5 border border-sage-200 rounded-xl bg-white focus:ring-2 focus:ring-sage-400 focus:border-transparent outline-hidden transition-all text-gray-700 placeholder-gray-400"
       />
       {query && (
         <button

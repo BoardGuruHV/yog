@@ -217,7 +217,7 @@ export default function QuizPlayPage() {
   // Results state
   if (state === "results" && results && quiz) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-12 px-4">
+      <div className="min-h-screen bg-linear-to-b from-indigo-50 to-white py-12 px-4">
         <ResultsView
           quizTitle={quiz.title}
           score={results.score}
@@ -236,7 +236,7 @@ export default function QuizPlayPage() {
   // Ready state (before starting)
   if (state === "ready" && quiz) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
+      <div className="min-h-screen bg-linear-to-b from-indigo-50 to-white">
         <div className="max-w-2xl mx-auto px-4 py-12">
           {/* Back link */}
           <Link
@@ -250,7 +250,7 @@ export default function QuizPlayPage() {
           {/* Quiz info card */}
           <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
             {/* Header */}
-            <div className="relative h-40 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+            <div className="relative h-40 bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
               <Brain className="w-16 h-16 text-white/30" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <h1 className="text-2xl md:text-3xl font-bold text-white text-center px-4">
@@ -320,7 +320,7 @@ export default function QuizPlayPage() {
     const hasAnswered = !!answers[currentQuestion.id];
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
+      <div className="min-h-screen bg-linear-to-b from-indigo-50 to-white">
         {/* Header */}
         <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-100">
           <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">

@@ -279,7 +279,7 @@ ${report.insights.map(insight => `- ${insight.title}: ${insight.description}`).j
                 key={option.value}
                 onClick={() => setPeriod(option.value)}
                 className={`
-                  flex-shrink-0 px-4 py-2 rounded-lg font-medium transition-colors
+                  shrink-0 px-4 py-2 rounded-lg font-medium transition-colors
                   ${
                     period === option.value
                       ? "bg-sage-500 text-white"

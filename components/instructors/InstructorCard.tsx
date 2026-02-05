@@ -40,7 +40,7 @@ export default function InstructorCard({
       }`}
     >
       {/* Photo section */}
-      <div className="relative h-48 bg-gradient-to-br from-green-100 to-teal-100">
+      <div className="relative h-48 bg-linear-to-br from-green-100 to-teal-100">
         {photoUrl ? (
           <Image
             src={photoUrl}

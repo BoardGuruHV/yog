@@ -69,7 +69,7 @@ export default function IntervalSettings({
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6">
+      <div className="bg-linear-to-r from-orange-500 to-red-500 text-white p-6">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
             <Zap className="w-6 h-6" />
@@ -212,7 +212,7 @@ export default function IntervalSettings({
         {/* Start Button */}
         <button
           onClick={onStart}
-          className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl font-semibold text-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl"
+          className="w-full flex items-center justify-center gap-2 py-4 bg-linear-to-r from-orange-500 to-red-500 text-white rounded-xl font-semibold text-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl"
         >
           <Play className="w-5 h-5" />
           Start Interval Training

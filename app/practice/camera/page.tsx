@@ -28,7 +28,7 @@ export default function CameraPracticePage() {
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 px-4">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -54,7 +54,7 @@ export default function CameraPracticePage() {
             <select
               value={selectedPose || ""}
               onChange={(e) => setSelectedPose(e.target.value || null)}
-              className="w-full md:w-auto min-w-64 appearance-none bg-white border border-gray-300 rounded-xl px-4 py-3 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+              className="w-full md:w-auto min-w-64 appearance-none bg-white border border-gray-300 rounded-xl px-4 py-3 pr-10 text-gray-700 focus:outline-hidden focus:ring-2 focus:ring-sage-500 focus:border-transparent"
             >
               <option value="">General posture check</option>
               {poseOptions.map((pose) => (
@@ -89,7 +89,7 @@ export default function CameraPracticePage() {
             <div className="bg-blue-50 rounded-xl p-6 space-y-3">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-blue-600 text-sm font-medium">1</span>
                   </div>
                   <div>
@@ -101,7 +101,7 @@ export default function CameraPracticePage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-blue-600 text-sm font-medium">2</span>
                   </div>
                   <div>
@@ -113,7 +113,7 @@ export default function CameraPracticePage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-blue-600 text-sm font-medium">3</span>
                   </div>
                   <div>
@@ -125,7 +125,7 @@ export default function CameraPracticePage() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-blue-600 text-sm font-medium">4</span>
                   </div>
                   <div>

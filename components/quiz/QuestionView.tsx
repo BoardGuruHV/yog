@@ -114,7 +114,7 @@ export default function QuestionView({
             >
               {/* Option letter */}
               <span
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 ${
                   showResult && optionValue === correctAnswer
                     ? "bg-green-500 text-white"
                     : showResult && isSelected && optionValue !== correctAnswer
@@ -132,10 +132,10 @@ export default function QuestionView({
 
               {/* Result icon */}
               {showResult && optionValue === correctAnswer && (
-                <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                <CheckCircle className="w-6 h-6 text-green-500 shrink-0" />
               )}
               {showResult && isSelected && optionValue !== correctAnswer && (
-                <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
+                <XCircle className="w-6 h-6 text-red-500 shrink-0" />
               )}
             </button>
           );
@@ -148,7 +148,7 @@ export default function QuestionView({
           <div className={`p-4 rounded-xl ${isCorrect ? "bg-green-50" : "bg-amber-50"}`}>
             <div className="flex items-start gap-3">
               <HelpCircle
-                className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+                className={`w-5 h-5 shrink-0 mt-0.5 ${
                   isCorrect ? "text-green-600" : "text-amber-600"
                 }`}
               />

@@ -62,7 +62,7 @@ export default function AsanaCard({ asana, showAddButton = true, healthWarning, 
     <Link href={`/asana/${asana.id}`}>
       <div className="asana-card bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer group border border-sage-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
         {/* Image Container */}
-        <div className="relative h-48 bg-gradient-to-br from-sage-50 to-yoga-50 flex items-center justify-center overflow-hidden">
+        <div className="relative h-48 bg-linear-to-br from-sage-50 to-yoga-50 flex items-center justify-center overflow-hidden">
           <Image
             src={imageError ? "/asanas/default.svg" : asana.svgPath}
             alt={asana.nameEnglish}
@@ -156,13 +156,13 @@ export default function AsanaCard({ asana, showAddButton = true, healthWarning, 
             {asana.targetBodyParts.slice(0, 3).map((part) => (
               <span
                 key={part}
-                className="px-2 py-0.5 bg-sage-50 text-sage-600 rounded text-xs"
+                className="px-2 py-0.5 bg-sage-50 text-sage-600 rounded-sm text-xs"
               >
                 {part}
               </span>
             ))}
             {asana.targetBodyParts.length > 3 && (
-              <span className="px-2 py-0.5 bg-gray-50 text-gray-400 rounded text-xs">
+              <span className="px-2 py-0.5 bg-gray-50 text-gray-400 rounded-sm text-xs">
                 +{asana.targetBodyParts.length - 3}
               </span>
             )}

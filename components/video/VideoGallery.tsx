@@ -128,7 +128,7 @@ export default function VideoGallery({ asanaId, asanaName }: VideoGalleryProps) 
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sage-500"
+                className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-hidden focus:ring-2 focus:ring-sage-500"
               >
                 {VIDEO_TYPES.map((type) => (
                   <option key={type.value} value={type.value}>

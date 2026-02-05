@@ -167,10 +167,10 @@ export default function PoseRecommendations({
               <button
                 key={rec.asana.id}
                 onClick={() => handleAddPose(rec.asana)}
-                className="w-full flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-200 hover:border-sage-300 hover:shadow-sm transition-all text-left"
+                className="w-full flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-200 hover:border-sage-300 hover:shadow-xs transition-all text-left"
               >
                 {rec.asana.svgPath && (
-                  <div className="w-10 h-10 bg-gray-50 rounded-lg p-1 flex-shrink-0">
+                  <div className="w-10 h-10 bg-gray-50 rounded-lg p-1 shrink-0">
                     <Image
                       src={rec.asana.svgPath}
                       alt={rec.asana.nameEnglish}
@@ -190,7 +190,7 @@ export default function PoseRecommendations({
                     </p>
                   )}
                 </div>
-                <Plus className="w-4 h-4 text-sage-600 flex-shrink-0" />
+                <Plus className="w-4 h-4 text-sage-600 shrink-0" />
               </button>
             ))}
           </div>
@@ -200,7 +200,7 @@ export default function PoseRecommendations({
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-sage-100 p-6">
+    <div className="bg-white rounded-xl shadow-xs border border-sage-100 p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
           <div className="flex items-center gap-2">
@@ -245,13 +245,13 @@ export default function PoseRecommendations({
               className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-sage-50 transition-colors group"
             >
               {/* Rank */}
-              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-sm font-medium text-gray-600 shadow-sm">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-sm font-medium text-gray-600 shadow-xs">
                 {index + 1}
               </div>
 
               {/* Image */}
               {rec.asana.svgPath && (
-                <div className="w-14 h-14 bg-white rounded-xl p-2 flex-shrink-0">
+                <div className="w-14 h-14 bg-white rounded-xl p-2 shrink-0">
                   <Image
                     src={rec.asana.svgPath}
                     alt={rec.asana.nameEnglish}

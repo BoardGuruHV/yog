@@ -141,7 +141,7 @@ export default function GoalCard({
 
   return (
     <div
-      className={`relative bg-white rounded-2xl border shadow-sm p-5 transition-all ${
+      className={`relative bg-white rounded-2xl border shadow-xs p-5 transition-all ${
         goal.completed ? "border-green-200 bg-green-50/30" : "border-gray-100"
       }`}
     >
@@ -209,8 +209,8 @@ export default function GoalCard({
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               goal.completed
-                ? "bg-gradient-to-r from-green-400 to-green-500"
-                : "bg-gradient-to-r from-sage-400 to-sage-600"
+                ? "bg-linear-to-r from-green-400 to-green-500"
+                : "bg-linear-to-r from-sage-400 to-sage-600"
             }`}
             style={{ width: `${goal.percentComplete}%` }}
           />

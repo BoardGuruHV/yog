@@ -116,7 +116,7 @@ export default function InstructorsPage() {
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </Link>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-linear-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center">
                 <Users className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -142,12 +142,12 @@ export default function InstructorsPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search instructors..."
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded-sm"
                 >
                   <X className="w-4 h-4 text-gray-400" />
                 </button>
@@ -158,7 +158,7 @@ export default function InstructorsPage() {
             <select
               value={selectedSpecialty}
               onChange={(e) => setSelectedSpecialty(e.target.value)}
-              className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+              className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 bg-white"
             >
               <option value="">All Specialties</option>
               {specialties.map((specialty) => (
@@ -281,7 +281,7 @@ export default function InstructorsPage() {
         )}
 
         {/* Become an instructor CTA */}
-        <div className="mt-12 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200 p-6 text-center">
+        <div className="mt-12 bg-linear-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200 p-6 text-center">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
             Are you a yoga instructor?
           </h3>

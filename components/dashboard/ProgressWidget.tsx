@@ -37,7 +37,7 @@ export default function ProgressWidget() {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+      <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
         <div className="flex items-center justify-center h-48">
           <Loader2 className="w-6 h-6 text-sage-400 animate-spin" />
         </div>
@@ -60,7 +60,7 @@ export default function ProgressWidget() {
   const maxMinutes = Math.max(...data.weeklyMinutes, 30); // Minimum scale of 30 min
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <BarChart3 className="w-5 h-5 text-sage-600" />
@@ -144,7 +144,7 @@ export default function ProgressWidget() {
         </div>
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-sage-400 to-sage-600 rounded-full transition-all"
+            className="h-full bg-linear-to-r from-sage-400 to-sage-600 rounded-full transition-all"
             style={{ width: `${Math.min(data.percentComplete, 100)}%` }}
           />
         </div>

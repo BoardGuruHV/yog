@@ -46,7 +46,7 @@ export default function ProgramTimeline() {
             >
               {/* Asana Card */}
               <div className="flex flex-col items-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-sage-50 to-yoga-50 rounded-xl flex items-center justify-center shadow-sm border border-sage-100">
+                <div className="w-20 h-20 bg-linear-to-br from-sage-50 to-yoga-50 rounded-xl flex items-center justify-center shadow-xs border border-sage-100">
                   <Image
                     src={imageErrors[programAsana.id] ? "/asanas/default.svg" : asana.svgPath}
                     alt={asana.nameEnglish}
@@ -66,7 +66,7 @@ export default function ProgramTimeline() {
 
               {/* Arrow between cards */}
               {index < state.asanas.length - 1 && (
-                <ArrowRight className="w-5 h-5 text-sage-300 mx-2 flex-shrink-0" />
+                <ArrowRight className="w-5 h-5 text-sage-300 mx-2 shrink-0" />
               )}
             </motion.div>
           );

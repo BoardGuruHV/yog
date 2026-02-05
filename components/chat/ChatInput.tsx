@@ -31,7 +31,7 @@ export default function ChatInput() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Ask about yoga poses, techniques..."
-          className="flex-1 resize-none border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400 max-h-32"
+          className="flex-1 resize-none border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-hidden focus:border-sage-400 focus:ring-1 focus:ring-sage-400 max-h-32"
           rows={1}
           disabled={state.isLoading}
         />

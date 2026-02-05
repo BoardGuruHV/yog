@@ -110,7 +110,7 @@ export default function CollectionDetailPage() {
 
   if (status === "loading" || loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
       </div>
     );
@@ -121,9 +121,9 @@ export default function CollectionDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-7xl mx-auto">
           <Link
             href="/collections"
@@ -185,11 +185,11 @@ export default function CollectionDetailPage() {
             {collection.asanas.map((ca) => (
               <div
                 key={ca.id}
-                className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow"
+                className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden group hover:shadow-md transition-shadow"
               >
                 {/* Image */}
                 <Link href={`/asana/${ca.asana.id}`}>
-                  <div className="aspect-square bg-gradient-to-br from-sage-50 to-white p-4 relative">
+                  <div className="aspect-square bg-linear-to-br from-sage-50 to-white p-4 relative">
                     <img
                       src={ca.asana.svgPath}
                       alt={ca.asana.nameEnglish}

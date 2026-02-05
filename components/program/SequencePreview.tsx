@@ -49,7 +49,7 @@ export default function SequencePreview({
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-sage-500 to-sage-600 text-white p-4">
+      <div className="bg-linear-to-r from-sage-500 to-sage-600 text-white p-4">
         <div className="flex items-start justify-between">
           <div>
             <h3 className="font-semibold text-lg">{title}</h3>
@@ -91,7 +91,7 @@ export default function SequencePreview({
                   {index + 1}
                 </span>
 
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shrink-0">
                   {item.asana.svgPath ? (
                     <Image
                       src={item.asana.svgPath}
@@ -111,7 +111,7 @@ export default function SequencePreview({
                   <p className="text-xs text-gray-500">{item.purpose}</p>
                 </div>
 
-                <div className="text-right flex-shrink-0">
+                <div className="text-right shrink-0">
                   <p className="text-sm font-medium text-gray-700">
                     {formatDuration(item.duration)}
                   </p>

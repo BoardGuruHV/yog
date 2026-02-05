@@ -91,7 +91,7 @@ export default function ReminderCard({
 
   return (
     <div
-      className={`bg-white rounded-xl border shadow-sm p-4 transition-all ${
+      className={`bg-white rounded-xl border shadow-xs p-4 transition-all ${
         reminder.enabled ? "border-gray-100" : "border-gray-100 opacity-60"
       }`}
     >

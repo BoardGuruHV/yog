@@ -39,9 +39,9 @@ export default function ComparisonView({
   };
 
   const renderPoseCard = (pose: AsanaDetail, side: "left" | "right") => (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-xs overflow-hidden">
       {/* Image */}
-      <div className="h-48 bg-gradient-to-br from-sage-50 to-yoga-50 flex items-center justify-center relative">
+      <div className="h-48 bg-linear-to-br from-sage-50 to-yoga-50 flex items-center justify-center relative">
         <Image
           src={pose.svgPath}
           alt={pose.nameEnglish}
@@ -51,7 +51,7 @@ export default function ComparisonView({
         />
         <Link
           href={`/asana/${pose.id}`}
-          className="absolute top-3 right-3 p-2 bg-white/80 rounded-lg hover:bg-white transition-colors shadow-sm"
+          className="absolute top-3 right-3 p-2 bg-white/80 rounded-lg hover:bg-white transition-colors shadow-xs"
           title="View details"
         >
           <ExternalLink className="w-4 h-4 text-gray-600" />

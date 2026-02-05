@@ -60,7 +60,7 @@ export default function LoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center">
+        <div className="min-h-screen bg-linear-to-b from-green-50 to-white flex items-center justify-center">
           <Loader2 className="w-8 h-8 text-green-600 animate-spin" />
         </div>
       }

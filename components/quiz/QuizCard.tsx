@@ -71,7 +71,7 @@ export default function QuizCard({
       className="block bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-sage-200 hover:shadow-lg transition-all group"
     >
       {/* Header */}
-      <div className="relative h-32 bg-gradient-to-br from-sage-400 to-sage-600 flex items-center justify-center">
+      <div className="relative h-32 bg-linear-to-br from-sage-400 to-sage-600 flex items-center justify-center">
         {imageUrl ? (
           <img
             src={imageUrl}

@@ -90,12 +90,12 @@ export default function ProgramCard({
       className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all cursor-pointer group"
     >
       {/* Preview Images */}
-      <div className="relative h-32 bg-gradient-to-br from-green-50 to-teal-50 p-3">
+      <div className="relative h-32 bg-linear-to-br from-green-50 to-teal-50 p-3">
         <div className="flex justify-center items-center h-full gap-2">
           {program.previewAsanas.slice(0, 4).map((asana, index) => (
             <div
               key={asana.id}
-              className="w-14 h-14 bg-white rounded-lg shadow-sm flex items-center justify-center overflow-hidden"
+              className="w-14 h-14 bg-white rounded-lg shadow-xs flex items-center justify-center overflow-hidden"
               style={{
                 transform: `rotate(${(index - 1.5) * 3}deg)`,
               }}
@@ -114,7 +114,7 @@ export default function ProgramCard({
             </div>
           ))}
           {program.poseCount > 4 && (
-            <div className="w-14 h-14 bg-white/80 rounded-lg shadow-sm flex items-center justify-center text-sm font-medium text-gray-500">
+            <div className="w-14 h-14 bg-white/80 rounded-lg shadow-xs flex items-center justify-center text-sm font-medium text-gray-500">
               +{program.poseCount - 4}
             </div>
           )}
@@ -128,7 +128,7 @@ export default function ProgramCard({
             copied
               ? "bg-green-100 text-green-600"
               : "bg-white/90 text-gray-600 hover:bg-white hover:text-green-600"
-          } shadow-sm`}
+          } shadow-xs`}
         >
           {copied ? (
             <Check className="w-4 h-4" />

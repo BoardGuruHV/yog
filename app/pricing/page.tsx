@@ -127,7 +127,7 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-16 px-4">
+    <div className="min-h-screen bg-linear-to-b from-indigo-50 to-white py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -230,9 +230,9 @@ export default function PricingPage() {
                       }`}
                     >
                       {feature.included ? (
-                        <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <Check className="w-5 h-5 text-green-500 shrink-0" />
                       ) : (
-                        <X className="w-5 h-5 text-gray-300 flex-shrink-0" />
+                        <X className="w-5 h-5 text-gray-300 shrink-0" />
                       )}
                       <span>{feature.name}</span>
                     </div>

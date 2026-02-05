@@ -17,7 +17,7 @@ interface PoseViewer3DProps {
 // Placeholder component while 3D viewer is being developed
 function Viewer3DPlaceholder({ asanaName }: { asanaName: string }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full bg-gradient-to-b from-gray-50 to-gray-100 p-8">
+    <div className="flex flex-col items-center justify-center h-full bg-linear-to-b from-gray-50 to-gray-100 p-8">
       <div className="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
         <Box className="w-12 h-12 text-indigo-400" />
       </div>
@@ -99,7 +99,7 @@ export default function PoseViewer3D({
       {/* Info */}
       <div className="p-4 border-t border-gray-100 bg-blue-50">
         <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+          <Info className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" />
           <p className="text-xs text-blue-700">
             3D pose models are being developed. Soon you&apos;ll be able to rotate and explore poses from any angle.
           </p>

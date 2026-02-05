@@ -180,7 +180,7 @@ export default function PracticeTimer({
     return (
       <div
         ref={containerRef}
-        className="fixed inset-0 z-40 bg-gradient-to-br from-sage-500 to-sage-700 flex items-center justify-center"
+        className="fixed inset-0 z-40 bg-linear-to-br from-sage-500 to-sage-700 flex items-center justify-center"
       >
         <div className="text-center text-white max-w-md mx-auto px-4">
           <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -231,7 +231,7 @@ export default function PracticeTimer({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-40 bg-gradient-to-br from-sage-600 to-sage-800"
+      className="fixed inset-0 z-40 bg-linear-to-br from-sage-600 to-sage-800"
     >
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 p-4 flex items-center justify-between text-white/80">
@@ -363,7 +363,7 @@ export default function PracticeTimer({
 
       {/* Next pose preview */}
       {nextPose && (
-        <div className="absolute bottom-4 right-4 bg-white/10 rounded-xl p-3 backdrop-blur-sm hidden md:block">
+        <div className="absolute bottom-4 right-4 bg-white/10 rounded-xl p-3 backdrop-blur-xs hidden md:block">
           <p className="text-white/60 text-xs uppercase tracking-wider mb-2">
             Up Next
           </p>

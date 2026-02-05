@@ -222,7 +222,7 @@ export default function SubscriptionPage() {
       )}
 
       {/* Current Plan */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm mb-8">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs mb-8">
         <div className="p-6 border-b border-gray-100">
           <h1 className="text-2xl font-bold text-gray-900">Subscription</h1>
           <p className="text-gray-500">Manage your subscription and billing</p>
@@ -329,7 +329,7 @@ export default function SubscriptionPage() {
       </div>
 
       {/* Usage Stats */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm mb-8">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs mb-8">
         <div className="p-6 border-b border-gray-100">
           <h2 className="text-lg font-semibold text-gray-900">Usage</h2>
           <p className="text-sm text-gray-500">Your current usage and limits</p>
@@ -407,7 +407,7 @@ export default function SubscriptionPage() {
       </div>
 
       {/* Feature Access */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-xs">
         <div className="p-6 border-b border-gray-100">
           <h2 className="text-lg font-semibold text-gray-900">Features</h2>
           <p className="text-sm text-gray-500">Features included in your plan</p>

@@ -147,7 +147,7 @@ export default function ArticleDetailPage() {
 
       <article className="min-h-screen bg-white">
         {/* Header */}
-        <header className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <header className="bg-linear-to-r from-purple-600 to-indigo-600 text-white py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-purple-200 text-sm mb-6">

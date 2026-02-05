@@ -105,7 +105,7 @@ export default function HealthOnboardingPage() {
 
   if (status === "loading" || isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
       </div>
     );
@@ -117,7 +117,7 @@ export default function HealthOnboardingPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-sage-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-8 h-8 text-green-600" />
@@ -134,7 +134,7 @@ export default function HealthOnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white py-8 px-4">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Skip button */}
         <div className="flex justify-end mb-4">
@@ -161,7 +161,7 @@ export default function HealthOnboardingPage() {
 
         {/* Step 1: Introduction */}
         {step === 1 && (
-          <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-8">
+          <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-8">
             <div className="text-center mb-8">
               <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-sage-600" />
@@ -177,7 +177,7 @@ export default function HealthOnboardingPage() {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3 p-4 bg-sage-50 rounded-lg">
-                <Shield className="w-5 h-5 text-sage-600 flex-shrink-0 mt-0.5" />
+                <Shield className="w-5 h-5 text-sage-600 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-medium text-gray-800">
                     Safe Practice Recommendations
@@ -190,7 +190,7 @@ export default function HealthOnboardingPage() {
               </div>
 
               <div className="flex items-start gap-3 p-4 bg-sage-50 rounded-lg">
-                <AlertCircle className="w-5 h-5 text-sage-600 flex-shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-sage-600 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-medium text-gray-800">
                     Visual Warnings
@@ -203,7 +203,7 @@ export default function HealthOnboardingPage() {
               </div>
 
               <div className="flex items-start gap-3 p-4 bg-sage-50 rounded-lg">
-                <Info className="w-5 h-5 text-sage-600 flex-shrink-0 mt-0.5" />
+                <Info className="w-5 h-5 text-sage-600 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-medium text-gray-800">
                     Your Privacy Matters
@@ -228,7 +228,7 @@ export default function HealthOnboardingPage() {
 
         {/* Step 2: Condition Selection */}
         {step === 2 && (
-          <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-8">
+          <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-8">
             <div className="mb-6">
               <button
                 onClick={() => setStep(1)}
@@ -248,7 +248,7 @@ export default function HealthOnboardingPage() {
 
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3 text-red-700">
-                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 shrink-0" />
                 <p>{error}</p>
               </div>
             )}

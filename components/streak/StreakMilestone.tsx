@@ -66,7 +66,7 @@ export default function StreakMilestone({
 
       {/* Next Milestone Progress */}
       {nextMilestone && (
-        <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl">
+        <div className="mb-6 p-4 bg-linear-to-r from-purple-50 to-indigo-50 rounded-xl">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-700">
               Next: {milestoneInfo[nextMilestone]?.name}
@@ -77,7 +77,7 @@ export default function StreakMilestone({
           </div>
           <div className="h-3 bg-white rounded-full overflow-hidden">
             <div
-              className={`h-full bg-gradient-to-r ${
+              className={`h-full bg-linear-to-r ${
                 milestoneInfo[nextMilestone]?.color || "from-purple-500 to-indigo-500"
               } rounded-full transition-all duration-500`}
               style={{
@@ -118,7 +118,7 @@ export default function StreakMilestone({
                     w-12 h-12 rounded-full flex items-center justify-center text-2xl
                     ${
                       milestone.achieved
-                        ? `bg-gradient-to-r ${info?.color} text-white`
+                        ? `bg-linear-to-r ${info?.color} text-white`
                         : "bg-gray-200"
                     }
                   `}

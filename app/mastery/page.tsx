@@ -176,7 +176,7 @@ export default function MasteryPage() {
 
             {/* Unpracticed Poses CTA */}
             {masteryData.stats.notStartedCount > 0 && (
-              <section className="bg-gradient-to-r from-sage-50 to-green-50 rounded-xl border border-sage-200 p-6">
+              <section className="bg-linear-to-r from-sage-50 to-green-50 rounded-xl border border-sage-200 p-6">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">

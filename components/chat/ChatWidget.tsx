@@ -38,7 +38,7 @@ export default function ChatWidget() {
       {state.isOpen && (
         <div className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl border border-sage-100 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-sage-600 to-sage-700 text-white px-4 py-3 flex items-center justify-between">
+          <div className="bg-linear-to-r from-sage-600 to-sage-700 text-white px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5" />
               <div>

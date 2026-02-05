@@ -24,7 +24,7 @@ export default function MuscleDetail({
     <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-4 relative">
       <button
         onClick={onClose}
-        className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 rounded"
+        className="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 rounded-sm"
       >
         <X className="w-4 h-4" />
       </button>
@@ -32,7 +32,7 @@ export default function MuscleDetail({
       <div className="flex items-start gap-3">
         {colors && (
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+            className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
             style={{ backgroundColor: colors.fill, border: `2px solid ${colors.stroke}` }}
           >
             <Info className="w-5 h-5" style={{ color: colors.stroke }} />

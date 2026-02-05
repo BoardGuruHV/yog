@@ -109,7 +109,7 @@ export default function AchievementGrid({
               onClick={() => setFilter(f)}
               className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
                 filter === f
-                  ? "bg-white text-gray-900 shadow-sm"
+                  ? "bg-white text-gray-900 shadow-xs"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >

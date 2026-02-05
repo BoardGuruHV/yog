@@ -126,7 +126,7 @@ export default function PersonalNote({ asanaId, asanaName }: PersonalNoteProps) 
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <div className="bg-white rounded-xl border border-gray-100 shadow-xs p-6">
         <div className="flex items-center justify-center py-4">
           <Loader2 className="w-5 h-5 text-sage-600 animate-spin" />
         </div>
@@ -135,7 +135,7 @@ export default function PersonalNote({ asanaId, asanaName }: PersonalNoteProps) 
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-100">
         <h3 className="font-medium text-gray-800 flex items-center gap-2">

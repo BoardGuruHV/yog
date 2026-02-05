@@ -63,7 +63,7 @@ export default function RestDayCard({
   return (
     <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
       {/* Header with gradient */}
-      <div className={`bg-gradient-to-br ${gradientClass} p-6 text-white`}>
+      <div className={`bg-linear-to-br ${gradientClass} p-6 text-white`}>
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -128,7 +128,7 @@ export default function RestDayCard({
       {analysis.needsRest && analysis.restReasons.length > 0 && (
         <div className="p-4 bg-amber-50 border-b border-amber-100">
           <div className="flex items-start gap-2">
-            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <div>
               <p className="font-medium text-amber-800 text-sm">
                 Signs you need recovery
@@ -154,7 +154,7 @@ export default function RestDayCard({
               {recommendation.avoidAreas.map((area) => (
                 <span
                   key={area}
-                  className="px-2 py-0.5 bg-white rounded text-xs text-gray-700 capitalize"
+                  className="px-2 py-0.5 bg-white rounded-sm text-xs text-gray-700 capitalize"
                 >
                   {area}
                 </span>
@@ -172,7 +172,7 @@ export default function RestDayCard({
               {recommendation.focusAreas.map((area) => (
                 <span
                   key={area}
-                  className="px-2 py-0.5 bg-white rounded text-xs text-gray-700 capitalize"
+                  className="px-2 py-0.5 bg-white rounded-sm text-xs text-gray-700 capitalize"
                 >
                   {area}
                 </span>

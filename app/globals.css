@@ -1,28 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --background: #fdf8f6;
-  --foreground: #1a1a1a;
+@theme {
+  --color-yoga-50: #fdf8f6;
+  --color-yoga-100: #f9ebe5;
+  --color-yoga-200: #f4d5c7;
+  --color-yoga-300: #e9b8a0;
+  --color-yoga-400: #dc9474;
+  --color-yoga-500: #cf7652;
+  --color-yoga-600: #b85d3e;
+  --color-yoga-700: #994b33;
+  --color-yoga-800: #7d3f2e;
+  --color-yoga-900: #673729;
+  --color-yoga-950: #371a13;
+
+  --color-sage-50: #f6f7f4;
+  --color-sage-100: #e3e7dd;
+  --color-sage-200: #c7cfbc;
+  --color-sage-300: #a3b192;
+  --color-sage-400: #819470;
+  --color-sage-500: #657856;
+  --color-sage-600: #4f5e44;
+  --color-sage-700: #404b38;
+  --color-sage-800: #353e30;
+  --color-sage-900: #2e352a;
+  --color-sage-950: #171c15;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #171c15;
-    --foreground: #f5f5f5;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+@utility text-balance {
+  text-wrap: balance;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  :root {
+    --background: #fdf8f6;
+    --foreground: #1a1a1a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #171c15;
+      --foreground: #f5f5f5;
+    }
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 }
 

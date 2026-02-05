@@ -99,7 +99,7 @@ export default function GiftRedeemPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-50 to-white">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-indigo-50 to-white">
         <Loader2 className="w-8 h-8 text-indigo-500 animate-spin" />
       </div>
     );
@@ -107,7 +107,7 @@ export default function GiftRedeemPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-50 to-white p-4">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-indigo-50 to-white p-4">
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 max-w-md w-full text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <Check className="w-8 h-8 text-green-600" />
@@ -132,7 +132,7 @@ export default function GiftRedeemPage() {
 
   if (error && !gift) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-50 to-white p-4">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-indigo-50 to-white p-4">
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 max-w-md w-full text-center">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
@@ -155,10 +155,10 @@ export default function GiftRedeemPage() {
   const isAlreadyRedeemed = gift.status === 'REDEEMED';
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-indigo-50 to-white p-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-indigo-50 to-white p-4">
       <div className="bg-white rounded-2xl shadow-lg border border-gray-200 max-w-lg w-full overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white text-center">
+        <div className="bg-linear-to-r from-indigo-500 to-purple-600 p-6 text-white text-center">
           <Gift className="w-12 h-12 mx-auto mb-3" />
           <h1 className="text-2xl font-bold">You&apos;ve Got a Gift!</h1>
           <p className="opacity-90 mt-1">From {gift.senderName}</p>
@@ -186,7 +186,7 @@ export default function GiftRedeemPage() {
 
             {gift.message && (
               <div className="flex items-start gap-2 pt-4 border-t border-gray-200">
-                <MessageSquare className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                <MessageSquare className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
                 <p className="text-gray-600 italic">&ldquo;{gift.message}&rdquo;</p>
               </div>
             )}

@@ -195,23 +195,23 @@ export default function StreakCalendar({ practiceDays }: StreakCalendarProps) {
       {/* Legend */}
       <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-green-300" />
+          <div className="w-3 h-3 rounded-sm bg-green-300" />
           <span>&lt;15m</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-green-400" />
+          <div className="w-3 h-3 rounded-sm bg-green-400" />
           <span>15-30m</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-green-500" />
+          <div className="w-3 h-3 rounded-sm bg-green-500" />
           <span>30-60m</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-green-600" />
+          <div className="w-3 h-3 rounded-sm bg-green-600" />
           <span>60m+</span>
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-3 h-3 rounded bg-blue-100" />
+          <div className="w-3 h-3 rounded-sm bg-blue-100" />
           <Snowflake className="w-3 h-3 text-blue-500" />
           <span>Frozen</span>
         </div>

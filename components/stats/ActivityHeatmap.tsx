@@ -177,7 +177,7 @@ export default function ActivityHeatmap({ data }: ActivityHeatmapProps) {
                     return (
                       <div
                         key={dayIndex}
-                        className={`w-[10px] h-[10px] rounded-sm ${getColor(
+                        className={`w-[10px] h-[10px] rounded-xs ${getColor(
                           minutes
                         )} ${isToday ? "ring-1 ring-gray-400" : ""} cursor-pointer transition-colors hover:ring-1 hover:ring-gray-300`}
                         title={`${day.date.toLocaleDateString("en-US", {
@@ -197,12 +197,12 @@ export default function ActivityHeatmap({ data }: ActivityHeatmapProps) {
           <div className="flex items-center justify-end gap-2 mt-4 text-xs text-gray-500">
             <span>Less</span>
             <div className="flex gap-0.5">
-              <div className="w-[10px] h-[10px] rounded-sm bg-gray-100" />
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-200" />
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-300" />
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-400" />
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-500" />
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-600" />
+              <div className="w-[10px] h-[10px] rounded-xs bg-gray-100" />
+              <div className="w-[10px] h-[10px] rounded-xs bg-green-200" />
+              <div className="w-[10px] h-[10px] rounded-xs bg-green-300" />
+              <div className="w-[10px] h-[10px] rounded-xs bg-green-400" />
+              <div className="w-[10px] h-[10px] rounded-xs bg-green-500" />
+              <div className="w-[10px] h-[10px] rounded-xs bg-green-600" />
             </div>
             <span>More</span>
           </div>

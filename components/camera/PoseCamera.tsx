@@ -253,7 +253,7 @@ export default function PoseCamera({
 
         {/* Selected Pose Badge */}
         {referencePose && isCameraActive && (
-          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-lg px-3 py-2 shadow-lg">
+          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
             <p className="text-sm font-medium text-gray-700">
               Checking: {referencePose.name}
             </p>

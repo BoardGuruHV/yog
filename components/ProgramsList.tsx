@@ -87,8 +87,8 @@ export default function ProgramsList({ onCreateNew, onEdit }: ProgramsListProps 
       <div className="space-y-4">
         {[1, 2, 3].map((i) => (
           <div key={i} className="bg-white rounded-xl p-6 animate-pulse">
-            <div className="h-6 bg-gray-200 rounded w-1/3 mb-2" />
-            <div className="h-4 bg-gray-200 rounded w-1/4" />
+            <div className="h-6 bg-gray-200 rounded-sm w-1/3 mb-2" />
+            <div className="h-4 bg-gray-200 rounded-sm w-1/4" />
           </div>
         ))}
       </div>
@@ -132,7 +132,7 @@ export default function ProgramsList({ onCreateNew, onEdit }: ProgramsListProps 
           {programs.map((program) => (
             <div
               key={program.id}
-              className="bg-white rounded-xl shadow-sm border border-sage-100 p-6 hover:shadow-md transition-shadow"
+              className="bg-white rounded-xl shadow-xs border border-sage-100 p-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">

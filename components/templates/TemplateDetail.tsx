@@ -103,14 +103,14 @@ export default function TemplateDetail({ template, onClose }: TemplateDetailProp
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/50 backdrop-blur-xs"
         onClick={onClose}
       />
 
       {/* Modal */}
       <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className={`bg-gradient-to-r ${gradientColors} text-white p-6`}>
+        <div className={`bg-linear-to-r ${gradientColors} text-white p-6`}>
           <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-lg transition-colors"
@@ -187,7 +187,7 @@ export default function TemplateDetail({ template, onClose }: TemplateDetailProp
                     {index + 1}
                   </span>
 
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shrink-0">
                     {item.asana?.svgPath ? (
                       <Image
                         src={item.asana.svgPath}
@@ -211,7 +211,7 @@ export default function TemplateDetail({ template, onClose }: TemplateDetailProp
                     )}
                   </div>
 
-                  <div className="text-right flex-shrink-0">
+                  <div className="text-right shrink-0">
                     <p className="text-sm font-medium text-gray-700">
                       {formatDuration(item.duration)}
                     </p>

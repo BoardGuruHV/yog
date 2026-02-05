@@ -136,7 +136,7 @@ export default function CommunityPage() {
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </Link>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-linear-to-br from-green-400 to-teal-500 rounded-xl flex items-center justify-center">
                 <Users className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -262,7 +262,7 @@ export default function CommunityPage() {
         )}
 
         {/* Info section */}
-        <div className="mt-12 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl border border-green-200 p-6">
+        <div className="mt-12 bg-linear-to-r from-green-50 to-teal-50 rounded-xl border border-green-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
             Share Your Own Programs
           </h3>

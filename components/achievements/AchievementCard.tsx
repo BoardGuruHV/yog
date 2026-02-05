@@ -94,10 +94,10 @@ export default function AchievementCard({
 
   return (
     <div
-      className={`relative bg-gradient-to-br ${getRarityColor(rarity)} border rounded-xl p-4 transition-all ${
+      className={`relative bg-linear-to-br ${getRarityColor(rarity)} border rounded-xl p-4 transition-all ${
         isUnlocked
           ? "shadow-md"
-          : "opacity-75 grayscale-[30%]"
+          : "opacity-75 grayscale-30"
       }`}
     >
       {/* Unlocked indicator */}
@@ -111,7 +111,7 @@ export default function AchievementCard({
         {/* Icon */}
         <div
           className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${
-            isUnlocked ? "bg-white shadow-sm" : "bg-gray-200"
+            isUnlocked ? "bg-white shadow-xs" : "bg-gray-200"
           }`}
         >
           {icon}

@@ -187,7 +187,7 @@ export default function IntervalTimer({
   // Complete screen
   if (phase === "complete") {
     return (
-      <div className="fixed inset-0 bg-gradient-to-b from-green-600 to-emerald-700 flex flex-col items-center justify-center text-white p-8">
+      <div className="fixed inset-0 bg-linear-to-b from-green-600 to-emerald-700 flex flex-col items-center justify-center text-white p-8">
         <div className="text-8xl mb-6">🎉</div>
         <h1 className="text-4xl font-bold mb-4">Great Work!</h1>
         <p className="text-xl text-green-100 mb-8 text-center">
@@ -223,7 +223,7 @@ export default function IntervalTimer({
 
   return (
     <div
-      className={`fixed inset-0 bg-gradient-to-b ${getBackground()} flex flex-col text-white transition-colors duration-500`}
+      className={`fixed inset-0 bg-linear-to-b ${getBackground()} flex flex-col text-white transition-colors duration-500`}
     >
       {/* Top Bar */}
       <div className="flex items-center justify-between p-4">

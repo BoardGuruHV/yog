@@ -121,14 +121,14 @@ export default function ProgramBuilder({ onSaved }: ProgramBuilderProps) {
               value={state.name}
               onChange={(e) => updateName(e.target.value)}
               placeholder="Program Name"
-              className="text-2xl font-bold text-gray-800 bg-transparent border-none outline-none w-full placeholder-gray-300"
+              className="text-2xl font-bold text-gray-800 bg-transparent border-none outline-hidden w-full placeholder-gray-300"
             />
             <textarea
               value={state.description}
               onChange={(e) => updateDescription(e.target.value)}
               placeholder="Add a description for your program..."
               rows={2}
-              className="w-full text-gray-600 bg-transparent border-none outline-none resize-none placeholder-gray-300"
+              className="w-full text-gray-600 bg-transparent border-none outline-hidden resize-none placeholder-gray-300"
             />
           </div>
 

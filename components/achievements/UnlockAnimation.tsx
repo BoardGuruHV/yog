@@ -114,7 +114,7 @@ export default function UnlockAnimation({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300 ${
           isExiting ? "opacity-0" : "opacity-100"
         }`}
         onClick={handleClose}
@@ -129,7 +129,7 @@ export default function UnlockAnimation({
         }`}
       >
         <div
-          className={`bg-gradient-to-br ${getRarityBg(currentAchievement.rarity)} rounded-2xl p-6 shadow-2xl ${getRarityGlow(currentAchievement.rarity)}`}
+          className={`bg-linear-to-br ${getRarityBg(currentAchievement.rarity)} rounded-2xl p-6 shadow-2xl ${getRarityGlow(currentAchievement.rarity)}`}
         >
           {/* Close button */}
           <button

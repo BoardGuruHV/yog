@@ -10,7 +10,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="fixed inset-0 z-[100] bg-white">
+    <div className="fixed inset-0 z-100 bg-white">
       {children}
     </div>
   );

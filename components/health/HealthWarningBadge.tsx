@@ -273,11 +273,11 @@ export function HealthWarningCard({
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-3">
           {hasAvoid ? (
-            <AlertOctagon className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+            <AlertOctagon className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
           ) : hasCaution ? (
-            <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
           ) : (
-            <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
           )}
           <div>
             <h4 className={`font-medium ${textColor}`}>
@@ -309,7 +309,7 @@ export function HealthWarningCard({
         {onDismiss && (
           <button
             onClick={onDismiss}
-            className={`p-1 hover:bg-white/50 rounded ${textColor}`}
+            className={`p-1 hover:bg-white/50 rounded-sm ${textColor}`}
           >
             <X className="w-4 h-4" />
           </button>

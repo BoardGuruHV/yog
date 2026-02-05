@@ -99,7 +99,7 @@ export default function InstallPrompt() {
       </button>
 
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-gradient-to-br from-sage-500 to-sage-600 rounded-xl flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 bg-linear-to-br from-sage-500 to-sage-600 rounded-xl flex items-center justify-center shrink-0">
           <Smartphone className="w-6 h-6 text-white" />
         </div>
 

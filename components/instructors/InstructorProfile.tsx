@@ -91,7 +91,7 @@ export default function InstructorProfile({
       {/* Cover & Photo */}
       <div className="relative">
         {/* Cover Image */}
-        <div className="h-48 md:h-64 bg-gradient-to-br from-green-400 to-teal-500 rounded-xl overflow-hidden">
+        <div className="h-48 md:h-64 bg-linear-to-br from-green-400 to-teal-500 rounded-xl overflow-hidden">
           {coverUrl && (
             <Image
               src={coverUrl}
@@ -114,7 +114,7 @@ export default function InstructorProfile({
                 className="object-cover w-full h-full"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-green-100 to-teal-100 flex items-center justify-center">
+              <div className="w-full h-full bg-linear-to-br from-green-100 to-teal-100 flex items-center justify-center">
                 <span className="text-4xl font-bold text-green-600">
                   {name.charAt(0)}
                 </span>
@@ -252,12 +252,12 @@ export default function InstructorProfile({
                 className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-all group"
               >
                 {/* Preview Images */}
-                <div className="relative h-28 bg-gradient-to-br from-green-50 to-teal-50 p-3">
+                <div className="relative h-28 bg-linear-to-br from-green-50 to-teal-50 p-3">
                   <div className="flex justify-center items-center h-full gap-2">
                     {program.previewAsanas.slice(0, 4).map((asana, index) => (
                       <div
                         key={asana.id}
-                        className="w-12 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center overflow-hidden"
+                        className="w-12 h-12 bg-white rounded-lg shadow-xs flex items-center justify-center overflow-hidden"
                         style={{
                           transform: `rotate(${(index - 1.5) * 3}deg)`,
                         }}
@@ -276,7 +276,7 @@ export default function InstructorProfile({
                       </div>
                     ))}
                     {program.poseCount > 4 && (
-                      <div className="w-12 h-12 bg-white/80 rounded-lg shadow-sm flex items-center justify-center text-xs font-medium text-gray-500">
+                      <div className="w-12 h-12 bg-white/80 rounded-lg shadow-xs flex items-center justify-center text-xs font-medium text-gray-500">
                         +{program.poseCount - 4}
                       </div>
                     )}

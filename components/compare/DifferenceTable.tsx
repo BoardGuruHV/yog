@@ -97,7 +97,7 @@ export default function DifferenceTable({
   return (
     <div className="space-y-6">
       {/* Basic Attributes Comparison */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
         <div className="bg-gray-50 px-6 py-3 border-b border-gray-100">
           <h3 className="font-semibold text-gray-800">Basic Comparison</h3>
         </div>
@@ -155,7 +155,7 @@ export default function DifferenceTable({
       </div>
 
       {/* Benefits Comparison */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
         <div className="bg-gray-50 px-6 py-3 border-b border-gray-100">
           <h3 className="flex items-center gap-2 font-semibold text-gray-800">
             <Sparkles className="w-4 h-4 text-amber-500" />
@@ -224,7 +224,7 @@ export default function DifferenceTable({
       </div>
 
       {/* Target Body Parts */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
         <div className="bg-gray-50 px-6 py-3 border-b border-gray-100">
           <h3 className="flex items-center gap-2 font-semibold text-gray-800">
             <Target className="w-4 h-4 text-indigo-500" />
@@ -293,7 +293,7 @@ export default function DifferenceTable({
 
       {/* Muscle Engagement */}
       {(anatomy1 || anatomy2) && (
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
           <div className="bg-gray-50 px-6 py-3 border-b border-gray-100">
             <h3 className="flex items-center gap-2 font-semibold text-gray-800">
               <Activity className="w-4 h-4 text-red-500" />

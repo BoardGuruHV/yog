@@ -97,9 +97,9 @@ export default function RecoveryPage() {
   if (!data) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-sage-50 to-white">
       {/* Header */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sage-600 to-sage-700 text-white">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-sage-600 to-sage-700 text-white">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/dashboard"
@@ -122,7 +122,7 @@ export default function RecoveryPage() {
         {/* Auth notice */}
         {!data.isAuthenticated && (
           <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl flex items-start gap-3">
-            <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
             <div>
               <p className="text-blue-800 font-medium">Demo Mode</p>
               <p className="text-blue-700 text-sm mt-1">

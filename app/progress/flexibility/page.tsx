@@ -273,7 +273,7 @@ export default function FlexibilityProgressPage() {
               <select
                 value={filterAsana}
                 onChange={(e) => setFilterAsana(e.target.value)}
-                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sage-500"
+                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-hidden focus:ring-2 focus:ring-sage-500"
               >
                 <option value="all">All Poses</option>
                 {practicedAsanaIds.map((id) => {
@@ -291,7 +291,7 @@ export default function FlexibilityProgressPage() {
               <select
                 value={filterBodyPart}
                 onChange={(e) => setFilterBodyPart(e.target.value)}
-                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sage-500"
+                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-hidden focus:ring-2 focus:ring-sage-500"
               >
                 <option value="all">All Body Parts</option>
                 {bodyParts.map((part) => (
@@ -492,7 +492,7 @@ export default function FlexibilityProgressPage() {
                       const asana = asanas.find((a) => a.id === e.target.value);
                       setSelectedAsana(asana || null);
                     }}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-sage-500"
                     required
                   >
                     <option value="">Choose a pose...</option>
@@ -536,7 +536,7 @@ export default function FlexibilityProgressPage() {
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="How did this feel? Any observations?"
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-500 resize-none"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-sage-500 resize-none"
                 />
               </div>
 

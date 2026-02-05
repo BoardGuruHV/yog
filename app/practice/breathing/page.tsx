@@ -36,7 +36,7 @@ export default function BreathingPracticePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 px-4">
+    <div className="min-h-screen bg-linear-to-b from-blue-50 to-white py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -172,7 +172,7 @@ export default function BreathingPracticePage() {
                 <div className="mt-4 bg-blue-50 rounded-xl p-6 space-y-3">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
                         <span className="text-blue-600 text-sm font-medium">1</span>
                       </div>
                       <div>
@@ -186,7 +186,7 @@ export default function BreathingPracticePage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
                         <span className="text-blue-600 text-sm font-medium">2</span>
                       </div>
                       <div>
@@ -200,7 +200,7 @@ export default function BreathingPracticePage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
                         <span className="text-blue-600 text-sm font-medium">3</span>
                       </div>
                       <div>
@@ -214,7 +214,7 @@ export default function BreathingPracticePage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
                         <span className="text-blue-600 text-sm font-medium">4</span>
                       </div>
                       <div>

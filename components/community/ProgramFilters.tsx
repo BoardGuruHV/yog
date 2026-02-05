@@ -61,12 +61,12 @@ export default function ProgramFilters({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search programs..."
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:border-transparent"
           />
           {search && (
             <button
               onClick={() => onSearchChange("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded-sm"
             >
               <X className="w-4 h-4 text-gray-400" />
             </button>
@@ -77,7 +77,7 @@ export default function ProgramFilters({
         <select
           value={sort}
           onChange={(e) => onSortChange(e.target.value)}
-          className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
+          className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
         >
           {sortOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -116,7 +116,7 @@ export default function ProgramFilters({
                 <select
                   value={minDuration}
                   onChange={(e) => onMinDurationChange(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-sm"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 bg-white text-sm"
                 >
                   <option value="">Min</option>
                   {durationOptions.slice(1).map((option) => (
@@ -129,7 +129,7 @@ export default function ProgramFilters({
                 <select
                   value={maxDuration}
                   onChange={(e) => onMaxDurationChange(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white text-sm"
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-green-500 bg-white text-sm"
                 >
                   <option value="">Max</option>
                   {durationOptions.slice(1).map((option) => (

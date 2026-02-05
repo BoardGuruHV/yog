@@ -35,7 +35,7 @@ export default function StreakWidget() {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+      <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
         <div className="flex items-center justify-center h-32">
           <Loader2 className="w-6 h-6 text-sage-400 animate-spin" />
         </div>
@@ -58,7 +58,7 @@ export default function StreakWidget() {
   const reorderedLabels = [...dayLabels.slice(today), ...dayLabels.slice(0, today)];
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-sage-100 p-6 h-full">
+    <div className="bg-white rounded-2xl shadow-xs border border-sage-100 p-6 h-full">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-gray-800">Practice Streak</h3>
         <div className={`p-2 rounded-full ${data.practiceToday ? "bg-orange-100" : "bg-gray-100"}`}>

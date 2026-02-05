@@ -143,7 +143,7 @@ export default function MeditationTimer({
   if (isStarting) {
     return (
       <div
-        className={`fixed inset-0 bg-gradient-to-b ${style.gradient} flex flex-col items-center justify-center text-white`}
+        className={`fixed inset-0 bg-linear-to-b ${style.gradient} flex flex-col items-center justify-center text-white`}
       >
         <div className="text-center animate-pulse">
           <Icon className="w-16 h-16 mx-auto mb-4 opacity-70" />
@@ -158,7 +158,7 @@ export default function MeditationTimer({
   if (timeLeft === 0) {
     return (
       <div
-        className={`fixed inset-0 bg-gradient-to-b ${style.gradient} flex flex-col items-center justify-center text-white p-8`}
+        className={`fixed inset-0 bg-linear-to-b ${style.gradient} flex flex-col items-center justify-center text-white p-8`}
       >
         <div className="text-center">
           <div className="text-6xl mb-6">🙏</div>
@@ -182,7 +182,7 @@ export default function MeditationTimer({
 
   return (
     <div
-      className={`fixed inset-0 bg-gradient-to-b ${style.gradient} flex flex-col text-white`}
+      className={`fixed inset-0 bg-linear-to-b ${style.gradient} flex flex-col text-white`}
     >
       {/* Top Bar */}
       <div className="flex items-center justify-between p-4">

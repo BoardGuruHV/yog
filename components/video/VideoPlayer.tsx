@@ -127,7 +127,7 @@ export default function VideoPlayer({
             </div>
           </div>
           {title && (
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black/80 to-transparent">
               <p className="text-white font-medium">{title}</p>
             </div>
           )}

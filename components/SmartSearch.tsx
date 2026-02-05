@@ -217,7 +217,7 @@ export default function SmartSearch({
           onFocus={() => query.length >= 2 && setIsOpen(true)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="w-full pl-12 pr-12 py-3 bg-white border border-sage-200 rounded-xl shadow-sm focus:border-sage-400 focus:ring-2 focus:ring-sage-100 outline-none transition-all text-gray-800 placeholder-gray-400"
+          className="w-full pl-12 pr-12 py-3 bg-white border border-sage-200 rounded-xl shadow-xs focus:border-sage-400 focus:ring-2 focus:ring-sage-100 outline-hidden transition-all text-gray-800 placeholder-gray-400"
         />
         {query && (
           <button
@@ -258,7 +258,7 @@ export default function SmartSearch({
                 } ${index > 0 ? "border-t border-gray-100" : ""}`}
               >
                 {/* Pose Image */}
-                <div className="w-14 h-14 bg-gray-100 rounded-lg p-1 flex-shrink-0">
+                <div className="w-14 h-14 bg-gray-100 rounded-lg p-1 shrink-0">
                   <Image
                     src={result.asana.svgPath}
                     alt={result.asana.nameEnglish}
