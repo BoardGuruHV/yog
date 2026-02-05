@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import BodyPart from "./BodyPart";
 import FocusLegend from "./FocusLegend";
-import { getIntensityColor } from "@/lib/bodymap/analyzer";
+import { getIntensityColor } from "@/lib/bodymap/utils";
 
 interface TopPose {
   id: string;
