@@ -3,14 +3,9 @@
  * Allow users to purchase gift subscriptions for others
  */
 
-import Stripe from 'stripe'
 import { prisma } from '@/lib/db'
-import { env } from '@/lib/env'
 import { nanoid } from 'nanoid'
-
-const stripe = new Stripe(env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-12-15.clover',
-})
+import { getStripe, isStripeConfigured } from '@/lib/stripe'
 
 /**
  * Gift subscription pricing (in cents)
@@ -109,7 +104,7 @@ export async function createGiftCheckout(
   })
 
   // Create Stripe checkout session
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     mode: 'payment',
     customer_email: purchaserEmail,
     line_items: [

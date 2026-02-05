@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, use } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,9 +39,9 @@ const PoseViewer3D = dynamic(() => import("@/components/3d/PoseViewer3D"), {
 export default function AsanaDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
+  const { id } = use(params);
   const { data: session } = useSession();
   const [asana, setAsana] = useState<Asana | null>(null);
   const [loading, setLoading] = useState(true);

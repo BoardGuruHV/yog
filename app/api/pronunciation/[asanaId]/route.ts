@@ -3,10 +3,10 @@ import prisma from "@/lib/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { asanaId: string } }
+  { params }: { params: Promise<{ asanaId: string }> }
 ) {
   try {
-    const { asanaId } = params;
+    const { asanaId } = await params;
 
     // First check if asana exists
     const asana = await prisma.asana.findUnique({

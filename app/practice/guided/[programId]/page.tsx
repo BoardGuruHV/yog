@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, ArrowLeft, Play, Clock, ListMusic } from "lucide-react";
 import Image from "next/image";
@@ -44,8 +44,9 @@ interface Program {
 export default function GuidedPracticePage({
   params,
 }: {
-  params: { programId: string };
+  params: Promise<{ programId: string }>;
 }) {
+  const { programId } = use(params);
   const router = useRouter();
   const [program, setProgram] = useState<Program | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +56,7 @@ export default function GuidedPracticePage({
   useEffect(() => {
     async function fetchProgram() {
       try {
-        const response = await fetch(`/api/programs/${params.programId}`);
+        const response = await fetch(`/api/programs/${programId}`);
         if (!response.ok) {
           throw new Error("Program not found");
         }
@@ -69,7 +70,7 @@ export default function GuidedPracticePage({
     }
 
     fetchProgram();
-  }, [params.programId]);
+  }, [programId]);
 
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60);

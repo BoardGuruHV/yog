@@ -3,10 +3,10 @@ import prisma from "@/lib/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { asanaId: string } }
+  { params }: { params: Promise<{ asanaId: string }> }
 ) {
   try {
-    const { asanaId } = params;
+    const { asanaId } = await params;
 
     // Get the tutorial with steps and asana info
     const tutorial = await prisma.asanaTutorial.findUnique({

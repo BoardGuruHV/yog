@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -36,9 +36,9 @@ interface Tutorial {
 export default function LearnAsanaPage({
   params,
 }: {
-  params: { asanaId: string };
+  params: Promise<{ asanaId: string }>;
 }) {
-  const { asanaId } = params;
+  const { asanaId } = use(params);
   const router = useRouter();
   const [tutorial, setTutorial] = useState<Tutorial | null>(null);
   const [asana, setAsana] = useState<Asana | null>(null);

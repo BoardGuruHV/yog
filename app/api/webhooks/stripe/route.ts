@@ -5,15 +5,11 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { handleWebhookEvent } from '@/lib/stripe'
+import { handleWebhookEvent, getStripe } from '@/lib/stripe'
 import { env } from '@/lib/env'
 
 // Disable body parsing - we need the raw body for signature verification
 export const runtime = 'nodejs'
-
-const stripe = new Stripe(env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-12-15.clover',
-})
 
 /**
  * POST /api/webhooks/stripe
@@ -37,7 +33,7 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = getStripe().webhooks.constructEvent(
       body,
       signature,
       env.STRIPE_WEBHOOK_SECRET

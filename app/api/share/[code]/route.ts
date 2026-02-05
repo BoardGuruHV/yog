@@ -5,10 +5,10 @@ import prisma from "@/lib/db";
 // GET /api/share/[code] - Get shared program by code
 export async function GET(
   request: Request,
-  { params }: { params: { code: string } }
+  { params }: { params: Promise<{ code: string }> }
 ) {
   try {
-    const { code } = params;
+    const { code } = await params;
 
     const sharedProgram = await prisma.sharedProgram.findUnique({
       where: { shareCode: code },
@@ -93,7 +93,7 @@ export async function GET(
 // POST /api/share/[code] - Copy shared program to user's library
 export async function POST(
   request: Request,
-  { params }: { params: { code: string } }
+  { params }: { params: Promise<{ code: string }> }
 ) {
   try {
     const session = await auth();
@@ -102,7 +102,7 @@ export async function POST(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { code } = params;
+    const { code } = await params;
 
     const sharedProgram = await prisma.sharedProgram.findUnique({
       where: { shareCode: code },

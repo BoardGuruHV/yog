@@ -24,7 +24,18 @@ import { logger } from '@/lib/logger'
 // Configuration
 // ============================================
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy-loaded Resend instance
+let _resend: Resend | null = null
+
+function getResend(): Resend {
+  if (!_resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('RESEND_API_KEY is not configured')
+    }
+    _resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return _resend
+}
 
 const FROM_EMAIL = process.env.EMAIL_FROM || 'Yoga Platform <noreply@yourdomain.com>'
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@yourdomain.com'
@@ -97,7 +108,7 @@ export async function sendMagicLinkEmail(
   const { to, magicLink, expiresInMinutes = 15 } = params
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Your ${APP_NAME} Login Link`,
@@ -161,7 +172,7 @@ export async function sendFreePassRequestConfirmationEmail(
   const { to, requestId } = params
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Free Pass Request Received - ${APP_NAME}`,
@@ -225,7 +236,7 @@ export async function sendFreePassAdminNotificationEmail(
   try {
     const adminUrl = `${APP_URL}/admin/free-pass`
 
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `New Free Pass Request${companyName ? ` from ${companyName}` : ''} - ${APP_NAME}`,
@@ -297,7 +308,7 @@ export async function sendFreePassApprovalEmail(
   })
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Your Free Pass is Approved! - ${APP_NAME}`,
@@ -371,7 +382,7 @@ export async function sendFreePassRejectionEmail(
   const { to, reason } = params
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Free Pass Request Update - ${APP_NAME}`,
@@ -436,7 +447,7 @@ export async function sendWelcomeEmail(
   const { to, name } = params
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Welcome to ${APP_NAME}!`,
@@ -503,7 +514,7 @@ export async function sendStreakWarningEmail(
   const { to, currentStreak, name } = params
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Don't lose your ${currentStreak}-day streak! - ${APP_NAME}`,
@@ -571,7 +582,7 @@ export async function sendAchievementEmail(
   const { to, achievementName, achievementDescription, name } = params
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to,
       subject: `Achievement Unlocked: ${achievementName}! - ${APP_NAME}`,
