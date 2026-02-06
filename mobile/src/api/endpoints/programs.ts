@@ -1,5 +1,5 @@
 import apiClient from "../client";
-import { ApiResponse, Program, ProgramAsana } from "@/types";
+import { ApiResponse, Program } from "@/types";
 
 export interface ProgramsResponse {
   programs: Program[];

@@ -14,11 +14,11 @@ import { StreakBadge } from "@/components/streak";
 import { GoalProgress } from "@/components/goals";
 
 export function HomeScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { user } = useAuthStore();
   const { streak, fetchStreak } = useStreakStore();
   const { activeGoals, fetchGoals } = useGoalStore();
-  const { subscription, fetchSubscription, isPremium } = useSubscriptionStore();
+  const { fetchSubscription, isPremium } = useSubscriptionStore();
 
   useEffect(() => {
     fetchStreak();

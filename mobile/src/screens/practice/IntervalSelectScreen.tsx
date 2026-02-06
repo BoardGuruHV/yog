@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { Card, Button, Input } from "@/components/common";
+import { Card, Button } from "@/components/common";
 import { IntervalConfig } from "@/types";
 import { PracticeStackScreenProps } from "@/navigation/types";
 

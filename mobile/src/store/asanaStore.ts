@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Asana, FilterState, Category } from "@/types";
+import { Asana, FilterState } from "@/types";
 import { getAsanas, getAsanaById, buildFilterParams } from "@/api/endpoints/asanas";
 
 interface AsanaStore {

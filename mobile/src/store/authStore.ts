@@ -11,7 +11,7 @@ interface AuthStore extends AuthState {
   setUser: (user: User | null) => void;
 }
 
-export const useAuthStore = create<AuthStore>((set, get) => {
+export const useAuthStore = create<AuthStore>((set) => {
   // Listen for logout events from API client
   authEventEmitter.on("logout", () => {
     set({

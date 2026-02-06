@@ -1,7 +1,7 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type { CompositeScreenProps, NavigatorScreenParams } from "@react-navigation/native";
-import { Asana, Program, Goal, ProgramAsana, IntervalConfig } from "@/types";
+import { Asana, Program, IntervalConfig } from "@/types";
 
 // Root Stack
 export type RootStackParamList = {

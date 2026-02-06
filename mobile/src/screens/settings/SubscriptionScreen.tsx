@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, ScrollView, Linking } from "react-native";
 import { format } from "date-fns";
 import { useSubscriptionStore } from "@/store";
 import { Card, Button, Badge } from "@/components/common";
-import { TIER_LIMITS } from "@/types";
 
 export function SubscriptionScreen() {
   const { subscription, fetchSubscription, isPremium, getTier } =
@@ -14,7 +13,6 @@ export function SubscriptionScreen() {
   }, []);
 
   const tier = getTier();
-  const limits = TIER_LIMITS[tier];
 
   const features = [
     {

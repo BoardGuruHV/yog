@@ -12,7 +12,7 @@ export function PracticeCompleteScreen({
 }: PracticeStackScreenProps<"PracticeComplete">) {
   const { durationSeconds, programId, type } = route.params;
   const { streak, logPractice, fetchStreak } = useStreakStore();
-  const [isLogging, setIsLogging] = useState(false);
+  const [, setIsLogging] = useState(false);
   const [logged, setLogged] = useState(false);
 
   useEffect(() => {

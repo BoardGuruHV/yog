@@ -8,7 +8,7 @@ import {
   Alert,
 } from "react-native";
 import { useSubscriptionStore } from "@/store";
-import { offlineStorage, formatBytes } from "@/services/offline/storage";
+import { offlineStorage } from "@/services/offline/storage";
 import { syncService } from "@/services/offline/syncService";
 import { Card, Button, Badge } from "@/components/common";
 

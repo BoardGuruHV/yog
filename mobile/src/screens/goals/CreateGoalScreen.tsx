@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { format, addDays, addWeeks, addMonths } from "date-fns";
+import { format, addWeeks, addMonths } from "date-fns";
 import { useGoalStore } from "@/store";
 import { Card, Button } from "@/components/common";
 import { Goal } from "@/types";

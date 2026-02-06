@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Goal } from "@/types";
 import { format, differenceInDays, isPast } from "date-fns";
 import { Card, Badge } from "@/components/common";

@@ -1,5 +1,5 @@
 import apiClient from "../client";
-import { ApiResponse, Subscription, SubscriptionTier } from "@/types";
+import { ApiResponse, Subscription } from "@/types";
 
 export async function getSubscription(): Promise<ApiResponse<Subscription>> {
   try {

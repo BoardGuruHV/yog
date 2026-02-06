@@ -6,7 +6,7 @@ import { AsanaList } from "@/components/asana";
 import { Asana } from "@/types";
 
 export function FavoritesScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { favorites, isLoading, fetchFavorites } = useFavoriteStore();
 
   useEffect(() => {

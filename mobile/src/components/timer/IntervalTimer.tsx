@@ -35,7 +35,7 @@ export function IntervalTimer({
   useEffect(() => {
     const engine = new IntervalTimerEngine(config, {
       onTick: (state) => setTimerState(state),
-      onPhaseChange: (phase) => {
+      onPhaseChange: (_phase) => {
         soundPlayer.playTransitionBell();
       },
       onExerciseChange: () => {},

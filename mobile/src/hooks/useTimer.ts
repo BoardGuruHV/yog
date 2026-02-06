@@ -46,7 +46,7 @@ export function useTimer({
   useEffect(() => {
     const callbacks: TimerCallbacks = {
       onTick: (newState) => setState(newState),
-      onPoseChange: (index, isLast) => {
+      onPoseChange: (_index, _isLast) => {
         setIsTransitioning(false);
         if (playAudio) {
           soundPlayer.playTransitionBell();

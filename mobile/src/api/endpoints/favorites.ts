@@ -1,5 +1,5 @@
 import apiClient from "../client";
-import { ApiResponse, Favorite, Asana } from "@/types";
+import { ApiResponse, Favorite } from "@/types";
 
 export interface FavoritesResponse {
   favorites: Favorite[];

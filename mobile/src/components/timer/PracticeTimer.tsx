@@ -13,7 +13,6 @@ import {
 } from "@/services/timer/engine";
 import { soundPlayer } from "@/services/audio/soundPlayer";
 import { AsanaSvg, AsanaSvgPlaceholder } from "@/components/asana";
-import { Button } from "@/components/common";
 
 interface PracticeTimerProps {
   asanas: ProgramAsana[];
@@ -41,7 +40,7 @@ export function PracticeTimer({
   useEffect(() => {
     const engine = new PracticeTimerEngine(asanas, {
       onTick: (state) => setTimerState(state),
-      onPoseChange: (index, isLast) => {
+      onPoseChange: (_index, _isLast) => {
         setShowTransition(false);
         soundPlayer.playTransitionBell();
       },
@@ -80,10 +79,6 @@ export function PracticeTimer({
 
   const handleSkipPrevious = () => {
     engineRef.current?.skipToPrevious();
-  };
-
-  const handleReset = () => {
-    engineRef.current?.reset();
   };
 
   if (timerState.status === "completed") {

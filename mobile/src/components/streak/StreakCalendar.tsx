@@ -7,8 +7,6 @@ import {
   eachDayOfInterval,
   isSameDay,
   getDay,
-  subMonths,
-  addMonths,
 } from "date-fns";
 import { PracticeLog } from "@/types";
 

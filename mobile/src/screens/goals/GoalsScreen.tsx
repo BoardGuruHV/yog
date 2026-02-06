@@ -9,14 +9,14 @@ import {
 } from "react-native";
 import { useGoalStore } from "@/store";
 import { GoalCard } from "@/components/goals";
-import { Button, EmptyState } from "@/components/common";
+import { EmptyState } from "@/components/common";
 import { Goal } from "@/types";
 import { ProgressStackScreenProps } from "@/navigation/types";
 
 type TabType = "active" | "completed";
 
 export function GoalsScreen({ navigation }: ProgressStackScreenProps<"Goals">) {
-  const { activeGoals, completedGoals, isLoading, fetchGoals } = useGoalStore();
+  const { activeGoals, completedGoals, fetchGoals } = useGoalStore();
   const [activeTab, setActiveTab] = useState<TabType>("active");
   const [isRefreshing, setIsRefreshing] = useState(false);
 
