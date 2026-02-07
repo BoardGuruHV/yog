@@ -1,7 +1,12 @@
-import { create } from "zustand";
-import { Streak, PracticeLog } from "@/types";
-import { getStreak, logPractice, getPracticeHistory, LogPracticeRequest } from "@/api/endpoints/streak";
-import { offlineStorage } from "@/services/offline/storage";
+import { create } from 'zustand';
+import { Streak, PracticeLog } from '@/types';
+import {
+  getStreak,
+  logPractice,
+  getPracticeHistory,
+  LogPracticeRequest,
+} from '@/api/endpoints/streak';
+import { offlineStorage } from '@/services/offline/storage';
 
 interface StreakStore {
   streak: Streak | null;
@@ -40,7 +45,7 @@ export const useStreakStore = create<StreakStore>((set, get) => ({
         set({ streak: cached, isLoading: false });
       } else {
         set({
-          error: response.error?.message || "Failed to fetch streak",
+          error: response.error?.message || 'Failed to fetch streak',
           isLoading: false,
         });
       }
@@ -66,7 +71,7 @@ export const useStreakStore = create<StreakStore>((set, get) => ({
     }
 
     // Queue for offline sync
-    await offlineStorage.addToSyncQueue("create", "practice", data);
+    await offlineStorage.addToSyncQueue('create', 'practice', data);
     return false;
   },
 }));

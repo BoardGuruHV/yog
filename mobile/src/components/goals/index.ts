@@ -1,1 +1,1 @@
-export { GoalCard, GoalProgress } from "./GoalCard";
+export { GoalCard, GoalProgress } from './GoalCard';

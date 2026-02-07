@@ -1,8 +1,8 @@
 // Sync Service - Handles syncing offline data when back online
 
-import { offlineStorage } from "./storage";
-import { logPractice } from "@/api/endpoints/streak";
-import { addFavorite, removeFavorite } from "@/api/endpoints/favorites";
+import { offlineStorage } from './storage';
+import { logPractice } from '@/api/endpoints/streak';
+import { addFavorite, removeFavorite } from '@/api/endpoints/favorites';
 
 class SyncService {
   private isSyncing: boolean = false;
@@ -10,7 +10,9 @@ class SyncService {
 
   // Start listening for network changes
   startNetworkListener(): void {
-    if (this.unsubscribeNetwork) return;
+    if (this.unsubscribeNetwork) {
+      return;
+    }
 
     this.unsubscribeNetwork = offlineStorage.subscribeToNetworkChanges(
       async (isOnline) => {
@@ -36,12 +38,12 @@ class SyncService {
     errors: string[];
   }> {
     if (this.isSyncing) {
-      return { success: 0, failed: 0, errors: ["Sync already in progress"] };
+      return { success: 0, failed: 0, errors: ['Sync already in progress'] };
     }
 
     const isOnline = await offlineStorage.isOnline();
     if (!isOnline) {
-      return { success: 0, failed: 0, errors: ["No network connection"] };
+      return { success: 0, failed: 0, errors: ['No network connection'] };
     }
 
     this.isSyncing = true;
@@ -67,7 +69,7 @@ class SyncService {
       } catch (error) {
         failed++;
         errors.push(
-          `${item.type}: ${error instanceof Error ? error.message : "Unknown error"}`
+          `${item.type}: ${error instanceof Error ? error.message : 'Unknown error'}`
         );
       }
     }
@@ -82,23 +84,23 @@ class SyncService {
 
   // Process individual queue item
   private async processQueueItem(item: {
-    action: "create" | "update" | "delete";
-    type: "practice" | "favorite" | "program";
+    action: 'create' | 'update' | 'delete';
+    type: 'practice' | 'favorite' | 'program';
     data: unknown;
   }): Promise<{ success: boolean; error?: string }> {
     switch (item.type) {
-      case "practice":
+      case 'practice':
         return this.syncPractice(item.action, item.data);
 
-      case "favorite":
+      case 'favorite':
         return this.syncFavorite(item.action, item.data);
 
-      case "program":
+      case 'program':
         // Programs are typically read-only for sync
         return { success: true };
 
       default:
-        return { success: false, error: "Unknown item type" };
+        return { success: false, error: 'Unknown item type' };
     }
   }
 
@@ -107,7 +109,7 @@ class SyncService {
     action: string,
     data: unknown
   ): Promise<{ success: boolean; error?: string }> {
-    if (action !== "create") {
+    if (action !== 'create') {
       return { success: true }; // Only support creating practice logs
     }
 
@@ -125,7 +127,7 @@ class SyncService {
 
     return {
       success: false,
-      error: response.error?.message || "Failed to sync practice",
+      error: response.error?.message || 'Failed to sync practice',
     };
   }
 
@@ -136,25 +138,25 @@ class SyncService {
   ): Promise<{ success: boolean; error?: string }> {
     const favoriteData = data as { asanaId: string };
 
-    if (action === "create") {
+    if (action === 'create') {
       const response = await addFavorite(favoriteData.asanaId);
       if (response.success) {
         return { success: true };
       }
       return {
         success: false,
-        error: response.error?.message || "Failed to add favorite",
+        error: response.error?.message || 'Failed to add favorite',
       };
     }
 
-    if (action === "delete") {
+    if (action === 'delete') {
       const response = await removeFavorite(favoriteData.asanaId);
       if (response.success) {
         return { success: true };
       }
       return {
         success: false,
-        error: response.error?.message || "Failed to remove favorite",
+        error: response.error?.message || 'Failed to remove favorite',
       };
     }
 

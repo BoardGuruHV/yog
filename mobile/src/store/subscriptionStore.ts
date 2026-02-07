@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { Subscription, SubscriptionTier, Feature, TIER_LIMITS } from "@/types";
-import { getSubscription } from "@/api/endpoints/subscription";
+import { create } from 'zustand';
+import { Subscription, SubscriptionTier, Feature, TIER_LIMITS } from '@/types';
+import { getSubscription } from '@/api/endpoints/subscription';
 
 interface SubscriptionStore {
   subscription: Subscription | null;
@@ -32,8 +32,8 @@ export const useSubscriptionStore = create<SubscriptionStore>((set, get) => ({
       // Default to FREE tier on error
       set({
         subscription: {
-          tier: "FREE",
-          status: "ACTIVE",
+          tier: 'FREE',
+          status: 'ACTIVE',
           currentPeriodEnd: null,
           cancelAtPeriodEnd: false,
         },
@@ -46,16 +46,16 @@ export const useSubscriptionStore = create<SubscriptionStore>((set, get) => ({
     const tier = get().getTier();
     const limits = TIER_LIMITS[tier];
     const value = limits[feature];
-    return typeof value === "boolean" ? value : value > 0;
+    return typeof value === 'boolean' ? value : value > 0;
   },
 
   getTier: () => {
     const { subscription } = get();
-    return subscription?.tier || "FREE";
+    return subscription?.tier || 'FREE';
   },
 
   isPremium: () => {
     const tier = get().getTier();
-    return tier === "PREMIUM" || tier === "PRO";
+    return tier === 'PREMIUM' || tier === 'PRO';
   },
 }));

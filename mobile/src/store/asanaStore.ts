@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { Asana, FilterState } from "@/types";
-import { getAsanas, getAsanaById, buildFilterParams } from "@/api/endpoints/asanas";
+import { create } from 'zustand';
+import { Asana, FilterState } from '@/types';
+import { getAsanas, getAsanaById, buildFilterParams } from '@/api/endpoints/asanas';
 
 interface AsanaStore {
   asanas: Asana[];
@@ -22,7 +22,7 @@ const initialFilters: FilterState = {
   categories: [],
   difficulty: [],
   bodyParts: [],
-  search: "",
+  search: '',
 };
 
 export const useAsanaStore = create<AsanaStore>((set, get) => ({
@@ -37,7 +37,9 @@ export const useAsanaStore = create<AsanaStore>((set, get) => ({
   fetchAsanas: async (reset = false) => {
     const { filters, asanas } = get();
 
-    if (get().isLoading) return;
+    if (get().isLoading) {
+      return;
+    }
 
     set({ isLoading: true, error: null });
 
@@ -60,7 +62,7 @@ export const useAsanaStore = create<AsanaStore>((set, get) => ({
       });
     } else {
       set({
-        error: response.error?.message || "Failed to fetch asanas",
+        error: response.error?.message || 'Failed to fetch asanas',
         isLoading: false,
       });
     }

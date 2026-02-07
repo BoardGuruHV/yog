@@ -1,22 +1,20 @@
-import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
-import * as Keychain from "react-native-keychain";
-import { ApiResponse } from "@/types";
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+import * as Keychain from 'react-native-keychain';
+import { ApiResponse } from '@/types';
 
 // API base URL - should be configured for your environment
-const API_BASE_URL = __DEV__
-  ? "http://localhost:3000/api"
-  : "https://yog.app/api";
+const API_BASE_URL = __DEV__ ? 'http://localhost:3000/api' : 'https://yog.app/api';
 
 // Token storage keys
-const ACCESS_TOKEN_KEY = "yog_access_token";
-const REFRESH_TOKEN_KEY = "yog_refresh_token";
+const ACCESS_TOKEN_KEY = 'yog_access_token';
+const REFRESH_TOKEN_KEY = 'yog_refresh_token';
 
 // Create axios instance
 const apiClient: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
@@ -47,10 +45,10 @@ export async function setTokens(
   accessToken: string,
   refreshToken: string
 ): Promise<void> {
-  await Keychain.setGenericPassword("token", accessToken, {
+  await Keychain.setGenericPassword('token', accessToken, {
     service: ACCESS_TOKEN_KEY,
   });
-  await Keychain.setGenericPassword("token", refreshToken, {
+  await Keychain.setGenericPassword('token', refreshToken, {
     service: REFRESH_TOKEN_KEY,
   });
 }
@@ -114,7 +112,7 @@ apiClient.interceptors.response.use(
       try {
         const refreshToken = await getRefreshToken();
         if (!refreshToken) {
-          throw new Error("No refresh token");
+          throw new Error('No refresh token');
         }
 
         // Try to refresh the token
@@ -125,20 +123,19 @@ apiClient.interceptors.response.use(
         });
 
         if (response.data.success && response.data.data) {
-          const { accessToken, refreshToken: newRefreshToken } =
-            response.data.data;
+          const { accessToken, refreshToken: newRefreshToken } = response.data.data;
           await setTokens(accessToken, newRefreshToken);
 
           processQueue();
           return apiClient(originalRequest);
         } else {
-          throw new Error("Token refresh failed");
+          throw new Error('Token refresh failed');
         }
       } catch (refreshError) {
         processQueue(refreshError);
         await clearTokens();
         // Emit event for auth store to handle logout
-        authEventEmitter.emit("logout");
+        authEventEmitter.emit('logout');
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
@@ -163,7 +160,9 @@ const authEventEmitter = {
     this.listeners.set(event, handlers);
     return () => {
       const idx = handlers.indexOf(handler);
-      if (idx > -1) handlers.splice(idx, 1);
+      if (idx > -1) {
+        handlers.splice(idx, 1);
+      }
     };
   },
 };

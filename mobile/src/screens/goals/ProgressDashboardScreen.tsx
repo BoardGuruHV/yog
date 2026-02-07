@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,18 +6,17 @@ import {
   ScrollView,
   TouchableOpacity,
   RefreshControl,
-} from "react-native";
-import { useStreakStore, useGoalStore } from "@/store";
-import { Card } from "@/components/common";
-import { StreakBadge, StreakStats } from "@/components/streak";
-import { GoalCard } from "@/components/goals";
-import { ProgressStackScreenProps } from "@/navigation/types";
+} from 'react-native';
+import { useStreakStore, useGoalStore } from '@/store';
+import { Card } from '@/components/common';
+import { StreakBadge, StreakStats } from '@/components/streak';
+import { GoalCard } from '@/components/goals';
+import { ProgressStackScreenProps } from '@/navigation/types';
 
 export function ProgressDashboardScreen({
   navigation,
-}: ProgressStackScreenProps<"ProgressDashboard">) {
-  const { streak, practiceHistory, fetchStreak, fetchPracticeHistory } =
-    useStreakStore();
+}: ProgressStackScreenProps<'ProgressDashboard'>) {
+  const { streak, practiceHistory, fetchStreak, fetchPracticeHistory } = useStreakStore();
   const { activeGoals, completedGoals, fetchGoals } = useGoalStore();
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
@@ -25,6 +24,7 @@ export function ProgressDashboardScreen({
     fetchStreak();
     fetchPracticeHistory();
     fetchGoals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRefresh = async () => {
@@ -46,7 +46,7 @@ export function ProgressDashboardScreen({
       }
     >
       {/* Streak Section */}
-      <TouchableOpacity onPress={() => navigation.navigate("Streaks")}>
+      <TouchableOpacity onPress={() => navigation.navigate('Streaks')}>
         <Card variant="elevated" padding="lg" style={styles.streakCard}>
           <View style={styles.streakHeader}>
             <Text style={styles.sectionTitle}>Your Streak</Text>
@@ -63,7 +63,7 @@ export function ProgressDashboardScreen({
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Active Goals</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Goals")}>
+          <TouchableOpacity onPress={() => navigation.navigate('Goals')}>
             <Text style={styles.viewAll}>View All ›</Text>
           </TouchableOpacity>
         </View>
@@ -71,7 +71,7 @@ export function ProgressDashboardScreen({
         {activeGoals.length === 0 ? (
           <Card variant="outlined" padding="md" style={styles.emptyCard}>
             <Text style={styles.emptyText}>No active goals</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("CreateGoal")}>
+            <TouchableOpacity onPress={() => navigation.navigate('CreateGoal')}>
               <Text style={styles.createGoalLink}>Create your first goal</Text>
             </TouchableOpacity>
           </Card>
@@ -82,9 +82,7 @@ export function ProgressDashboardScreen({
               <GoalCard
                 key={goal.id}
                 goal={goal}
-                onPress={() =>
-                  navigation.navigate("GoalDetail", { goalId: goal.id })
-                }
+                onPress={() => navigation.navigate('GoalDetail', { goalId: goal.id })}
               />
             ))
         )}
@@ -96,14 +94,16 @@ export function ProgressDashboardScreen({
         <View style={styles.quickStats}>
           <View style={styles.quickStat}>
             <Text style={styles.quickStatValue}>
-              {practiceHistory.filter((p) => {
-                const date = new Date(p.completedAt);
-                const now = new Date();
-                return (
-                  date.getMonth() === now.getMonth() &&
-                  date.getFullYear() === now.getFullYear()
-                );
-              }).length}
+              {
+                practiceHistory.filter((p) => {
+                  const date = new Date(p.completedAt);
+                  const now = new Date();
+                  return (
+                    date.getMonth() === now.getMonth() &&
+                    date.getFullYear() === now.getFullYear()
+                  );
+                }).length
+              }
             </Text>
             <Text style={styles.quickStatLabel}>Sessions</Text>
           </View>
@@ -128,14 +128,16 @@ export function ProgressDashboardScreen({
           <View style={styles.quickStatDivider} />
           <View style={styles.quickStat}>
             <Text style={styles.quickStatValue}>
-              {completedGoals.filter((g) => {
-                const date = new Date(g.updatedAt);
-                const now = new Date();
-                return (
-                  date.getMonth() === now.getMonth() &&
-                  date.getFullYear() === now.getFullYear()
-                );
-              }).length}
+              {
+                completedGoals.filter((g) => {
+                  const date = new Date(g.updatedAt);
+                  const now = new Date();
+                  return (
+                    date.getMonth() === now.getMonth() &&
+                    date.getFullYear() === now.getFullYear()
+                  );
+                }).length
+              }
             </Text>
             <Text style={styles.quickStatLabel}>Goals Met</Text>
           </View>
@@ -145,16 +147,14 @@ export function ProgressDashboardScreen({
       {/* Favorites Link */}
       <TouchableOpacity
         style={styles.favoritesLink}
-        onPress={() => navigation.navigate("Favorites")}
+        onPress={() => navigation.navigate('Favorites')}
       >
         <Card variant="elevated" padding="md">
           <View style={styles.linkContent}>
             <Text style={styles.linkIcon}>❤️</Text>
             <View style={styles.linkInfo}>
               <Text style={styles.linkTitle}>Favorite Poses</Text>
-              <Text style={styles.linkDescription}>
-                Quick access to your saved poses
-              </Text>
+              <Text style={styles.linkDescription}>Quick access to your saved poses</Text>
             </View>
             <Text style={styles.chevron}>›</Text>
           </View>
@@ -167,7 +167,7 @@ export function ProgressDashboardScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 16,
@@ -177,79 +177,79 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   streakHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 16,
   },
   streakContent: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 16,
   },
   section: {
     marginBottom: 24,
   },
   sectionHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   viewAll: {
     fontSize: 14,
-    color: "#6366f1",
-    fontWeight: "500",
+    color: '#6366f1',
+    fontWeight: '500',
   },
   emptyCard: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingVertical: 24,
   },
   emptyText: {
     fontSize: 15,
-    color: "#64748b",
+    color: '#64748b',
     marginBottom: 8,
   },
   createGoalLink: {
     fontSize: 15,
-    color: "#6366f1",
-    fontWeight: "500",
+    color: '#6366f1',
+    fontWeight: '500',
   },
   statsCard: {
     marginBottom: 16,
   },
   quickStats: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 16,
   },
   quickStat: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   quickStatValue: {
     fontSize: 28,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   quickStatLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
   quickStatDivider: {
     width: 1,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: '#e2e8f0',
   },
   favoritesLink: {
     marginTop: 8,
   },
   linkContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   linkIcon: {
     fontSize: 28,
@@ -260,17 +260,17 @@ const styles = StyleSheet.create({
   },
   linkTitle: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "#1e293b",
+    fontWeight: '500',
+    color: '#1e293b',
   },
   linkDescription: {
     fontSize: 13,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 2,
   },
   chevron: {
     fontSize: 24,
-    color: "#94a3b8",
+    color: '#94a3b8',
   },
 });
 

@@ -1,14 +1,8 @@
-import React from "react";
-import {
-  FlatList,
-  View,
-  StyleSheet,
-  RefreshControl,
-  ListRenderItem,
-} from "react-native";
-import { Asana } from "@/types";
-import { AsanaCard } from "./AsanaCard";
-import { Loading, EmptyState } from "@/components/common";
+import React from 'react';
+import { FlatList, View, StyleSheet, RefreshControl, ListRenderItem } from 'react-native';
+import { Asana } from '@/types';
+import { AsanaCard } from './AsanaCard';
+import { Loading, EmptyState } from '@/components/common';
 
 interface AsanaListProps {
   asanas: Asana[];
@@ -34,8 +28,8 @@ export function AsanaList({
   hasMore = false,
   numColumns = 2,
   showFavorites = true,
-  emptyTitle = "No poses found",
-  emptyDescription = "Try adjusting your filters or search terms",
+  emptyTitle = 'No poses found',
+  emptyDescription = 'Try adjusting your filters or search terms',
 }: AsanaListProps) {
   const renderItem: ListRenderItem<Asana> = ({ item, index }) => {
     const isLastInRow = (index + 1) % numColumns === 0;
@@ -58,7 +52,9 @@ export function AsanaList({
   };
 
   const renderFooter = () => {
-    if (!hasMore || !isLoading) return null;
+    if (!hasMore || !isLoading) {
+      return null;
+    }
     return (
       <View style={styles.footer}>
         <Loading size="small" />
@@ -83,10 +79,7 @@ export function AsanaList({
       keyExtractor={keyExtractor}
       numColumns={numColumns}
       key={numColumns} // Force re-render when columns change
-      contentContainerStyle={[
-        styles.list,
-        asanas.length === 0 && styles.emptyList,
-      ]}
+      contentContainerStyle={[styles.list, asanas.length === 0 && styles.emptyList]}
       showsVerticalScrollIndicator={false}
       refreshControl={
         onRefresh ? (
@@ -117,10 +110,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   halfWidth: {
-    width: "48%",
+    width: '48%',
   },
   marginRight: {
-    marginRight: "4%",
+    marginRight: '4%',
   },
   footer: {
     paddingVertical: 20,

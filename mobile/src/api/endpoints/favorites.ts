@@ -1,5 +1,5 @@
-import apiClient from "../client";
-import { ApiResponse, Favorite } from "@/types";
+import apiClient from '../client';
+import { ApiResponse, Favorite } from '@/types';
 
 export interface FavoritesResponse {
   favorites: Favorite[];
@@ -7,46 +7,46 @@ export interface FavoritesResponse {
 
 export async function getFavorites(): Promise<ApiResponse<FavoritesResponse>> {
   try {
-    const response = await apiClient.get<ApiResponse<FavoritesResponse>>("/favorites");
+    const response = await apiClient.get<ApiResponse<FavoritesResponse>>('/favorites');
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as {
         response?: { data?: ApiResponse<FavoritesResponse> };
       };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
 
 export async function addFavorite(asanaId: string): Promise<ApiResponse<Favorite>> {
   try {
-    const response = await apiClient.post<ApiResponse<Favorite>>("/favorites", {
+    const response = await apiClient.post<ApiResponse<Favorite>>('/favorites', {
       asanaId,
     });
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<Favorite> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
@@ -60,20 +60,20 @@ export async function removeFavorite(
     );
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as {
         response?: { data?: ApiResponse<{ success: boolean }> };
       };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }

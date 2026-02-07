@@ -1,14 +1,14 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Card } from "@/components/common";
-import { PracticeStackScreenProps } from "@/navigation/types";
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Card } from '@/components/common';
+import { PracticeStackScreenProps } from '@/navigation/types';
 
 export function PracticeHomeScreen({
   navigation,
-}: PracticeStackScreenProps<"PracticeHome">) {
+}: PracticeStackScreenProps<'PracticeHome'>) {
   return (
-    <SafeAreaView style={styles.container} edges={["bottom"]}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.subtitle}>Choose your practice mode</Text>
 
@@ -17,10 +17,10 @@ export function PracticeHomeScreen({
           variant="elevated"
           padding="lg"
           style={styles.modeCard}
-          onPress={() => navigation.navigate("ProgramSelect")}
+          onPress={() => navigation.navigate('ProgramSelect')}
         >
           <View style={styles.modeHeader}>
-            <View style={[styles.modeIcon, { backgroundColor: "#dbeafe" }]}>
+            <View style={[styles.modeIcon, { backgroundColor: '#dbeafe' }]}>
               <Text style={styles.modeEmoji}>📋</Text>
             </View>
             <View style={styles.modeInfo}>
@@ -42,10 +42,10 @@ export function PracticeHomeScreen({
           variant="elevated"
           padding="lg"
           style={styles.modeCard}
-          onPress={() => navigation.navigate("MeditationSelect")}
+          onPress={() => navigation.navigate('MeditationSelect')}
         >
           <View style={styles.modeHeader}>
-            <View style={[styles.modeIcon, { backgroundColor: "#f3e8ff" }]}>
+            <View style={[styles.modeIcon, { backgroundColor: '#f3e8ff' }]}>
               <Text style={styles.modeEmoji}>🧘‍♀️</Text>
             </View>
             <View style={styles.modeInfo}>
@@ -67,17 +67,15 @@ export function PracticeHomeScreen({
           variant="elevated"
           padding="lg"
           style={styles.modeCard}
-          onPress={() => navigation.navigate("IntervalSelect")}
+          onPress={() => navigation.navigate('IntervalSelect')}
         >
           <View style={styles.modeHeader}>
-            <View style={[styles.modeIcon, { backgroundColor: "#fef3c7" }]}>
+            <View style={[styles.modeIcon, { backgroundColor: '#fef3c7' }]}>
               <Text style={styles.modeEmoji}>⏱️</Text>
             </View>
             <View style={styles.modeInfo}>
               <Text style={styles.modeTitle}>Interval Training</Text>
-              <Text style={styles.modeDescription}>
-                HIIT-style work/rest intervals
-              </Text>
+              <Text style={styles.modeDescription}>HIIT-style work/rest intervals</Text>
             </View>
           </View>
           <View style={styles.modeFeatures}>
@@ -94,10 +92,10 @@ export function PracticeHomeScreen({
             <TouchableOpacity
               style={styles.quickOption}
               onPress={() =>
-                navigation.navigate("MeditationTimer", {
+                navigation.navigate('MeditationTimer', {
                   durationMinutes: 5,
                   bellIntervalMinutes: 0,
-                  ambientSound: "none",
+                  ambientSound: 'none',
                 })
               }
             >
@@ -108,10 +106,10 @@ export function PracticeHomeScreen({
             <TouchableOpacity
               style={styles.quickOption}
               onPress={() =>
-                navigation.navigate("MeditationTimer", {
+                navigation.navigate('MeditationTimer', {
                   durationMinutes: 10,
                   bellIntervalMinutes: 5,
-                  ambientSound: "none",
+                  ambientSound: 'none',
                 })
               }
             >
@@ -122,10 +120,10 @@ export function PracticeHomeScreen({
             <TouchableOpacity
               style={styles.quickOption}
               onPress={() =>
-                navigation.navigate("MeditationTimer", {
+                navigation.navigate('MeditationTimer', {
                   durationMinutes: 20,
                   bellIntervalMinutes: 10,
-                  ambientSound: "rain",
+                  ambientSound: 'rain',
                 })
               }
             >
@@ -142,30 +140,30 @@ export function PracticeHomeScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 16,
   },
   subtitle: {
     fontSize: 16,
-    color: "#64748b",
+    color: '#64748b',
     marginBottom: 16,
   },
   modeCard: {
     marginBottom: 16,
   },
   modeHeader: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 16,
   },
   modeIcon: {
     width: 56,
     height: 56,
     borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 16,
   },
   modeEmoji: {
@@ -176,22 +174,22 @@ const styles = StyleSheet.create({
   },
   modeTitle: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   modeDescription: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 2,
   },
   modeFeatures: {
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
     borderRadius: 12,
     padding: 12,
   },
   feature: {
     fontSize: 14,
-    color: "#475569",
+    color: '#475569',
     marginBottom: 4,
   },
   quickStart: {
@@ -199,21 +197,21 @@ const styles = StyleSheet.create({
   },
   quickStartTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginBottom: 12,
   },
   quickStartOptions: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 12,
   },
   quickOption: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 16,
     padding: 16,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
@@ -221,12 +219,12 @@ const styles = StyleSheet.create({
   },
   quickOptionTime: {
     fontSize: 24,
-    fontWeight: "700",
-    color: "#6366f1",
+    fontWeight: '700',
+    color: '#6366f1',
   },
   quickOptionLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
 });

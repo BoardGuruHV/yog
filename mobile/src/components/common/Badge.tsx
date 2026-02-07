@@ -1,18 +1,18 @@
-import React from "react";
-import { View, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
 interface BadgeProps {
   label: string;
-  variant?: "default" | "success" | "warning" | "error" | "info";
-  size?: "sm" | "md";
+  variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'sm' | 'md';
   style?: ViewStyle;
   textStyle?: TextStyle;
 }
 
 export function Badge({
   label,
-  variant = "default",
-  size = "md",
+  variant = 'default',
+  size = 'md',
   style,
   textStyle,
 }: BadgeProps) {
@@ -64,24 +64,24 @@ export function CategoryBadge({
 const styles = StyleSheet.create({
   base: {
     borderRadius: 100,
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
   },
 
   // Variants
   defaultContainer: {
-    backgroundColor: "#f1f5f9",
+    backgroundColor: '#f1f5f9',
   },
   successContainer: {
-    backgroundColor: "#dcfce7",
+    backgroundColor: '#dcfce7',
   },
   warningContainer: {
-    backgroundColor: "#fef3c7",
+    backgroundColor: '#fef3c7',
   },
   errorContainer: {
-    backgroundColor: "#fee2e2",
+    backgroundColor: '#fee2e2',
   },
   infoContainer: {
-    backgroundColor: "#dbeafe",
+    backgroundColor: '#dbeafe',
   },
 
   // Sizes
@@ -96,22 +96,22 @@ const styles = StyleSheet.create({
 
   // Text
   baseText: {
-    fontWeight: "500",
+    fontWeight: '500',
   },
   defaultText: {
-    color: "#475569",
+    color: '#475569',
   },
   successText: {
-    color: "#166534",
+    color: '#166534',
   },
   warningText: {
-    color: "#92400e",
+    color: '#92400e',
   },
   errorText: {
-    color: "#b91c1c",
+    color: '#b91c1c',
   },
   infoText: {
-    color: "#1d4ed8",
+    color: '#1d4ed8',
   },
 
   smText: {

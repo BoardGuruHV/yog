@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Alert,
-} from "react-native";
-import { format, differenceInDays } from "date-fns";
-import { useGoalStore } from "@/store";
-import { Card, Button, Badge, Loading } from "@/components/common";
-import { Goal } from "@/types";
-import { ProgressStackScreenProps } from "@/navigation/types";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import { format, differenceInDays } from 'date-fns';
+import { useGoalStore } from '@/store';
+import { Card, Button, Badge, Loading } from '@/components/common';
+import { Goal } from '@/types';
+import { ProgressStackScreenProps } from '@/navigation/types';
 
 export function GoalDetailScreen({
   route,
   navigation,
-}: ProgressStackScreenProps<"GoalDetail">) {
+}: ProgressStackScreenProps<'GoalDetail'>) {
   const { goalId } = route.params;
   const { fetchGoalById, deleteGoal, selectedGoal } = useGoalStore();
   const [isLoading, setIsLoading] = useState(true);
@@ -24,27 +18,24 @@ export function GoalDetailScreen({
   useEffect(() => {
     setIsLoading(true);
     fetchGoalById(goalId).finally(() => setIsLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [goalId]);
 
   const goal = selectedGoal;
 
   const handleDelete = () => {
-    Alert.alert(
-      "Delete Goal",
-      "Are you sure you want to delete this goal?",
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Delete",
-          style: "destructive",
-          onPress: async () => {
-            setIsDeleting(true);
-            await deleteGoal(goalId);
-            navigation.goBack();
-          },
+    Alert.alert('Delete Goal', 'Are you sure you want to delete this goal?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: async () => {
+          setIsDeleting(true);
+          await deleteGoal(goalId);
+          navigation.goBack();
         },
-      ]
-    );
+      },
+    ]);
   };
 
   if (isLoading) {
@@ -61,31 +52,28 @@ export function GoalDetailScreen({
 
   const progress = Math.min((goal.current / goal.target) * 100, 100);
   const daysLeft = differenceInDays(new Date(goal.endDate), new Date());
-  const totalDays = differenceInDays(
-    new Date(goal.endDate),
-    new Date(goal.startDate)
-  );
+  const totalDays = differenceInDays(new Date(goal.endDate), new Date(goal.startDate));
   const daysPassed = totalDays - daysLeft;
 
-  const getGoalTypeLabel = (type: Goal["type"]) => {
+  const getGoalTypeLabel = (type: Goal['type']) => {
     switch (type) {
-      case "practice_days":
-        return "Practice Days";
-      case "duration_minutes":
-        return "Minutes Practiced";
-      case "poses_completed":
-        return "Poses Completed";
+      case 'practice_days':
+        return 'Practice Days';
+      case 'duration_minutes':
+        return 'Minutes Practiced';
+      case 'poses_completed':
+        return 'Poses Completed';
     }
   };
 
-  const getGoalTypeIcon = (type: Goal["type"]) => {
+  const getGoalTypeIcon = (type: Goal['type']) => {
     switch (type) {
-      case "practice_days":
-        return "📅";
-      case "duration_minutes":
-        return "⏱️";
-      case "poses_completed":
-        return "🧘";
+      case 'practice_days':
+        return '📅';
+      case 'duration_minutes':
+        return '⏱️';
+      case 'poses_completed':
+        return '🧘';
     }
   };
 
@@ -121,9 +109,7 @@ export function GoalDetailScreen({
           />
         </View>
 
-        <Text style={styles.progressPercent}>
-          {Math.round(progress)}% complete
-        </Text>
+        <Text style={styles.progressPercent}>{Math.round(progress)}% complete</Text>
       </Card>
 
       {/* Timeline */}
@@ -134,7 +120,7 @@ export function GoalDetailScreen({
           <View style={styles.timelineItem}>
             <Text style={styles.timelineLabel}>Start</Text>
             <Text style={styles.timelineValue}>
-              {format(new Date(goal.startDate), "MMM d, yyyy")}
+              {format(new Date(goal.startDate), 'MMM d, yyyy')}
             </Text>
           </View>
           <View style={styles.timelineDivider}>
@@ -150,7 +136,7 @@ export function GoalDetailScreen({
           <View style={styles.timelineItem}>
             <Text style={styles.timelineLabel}>End</Text>
             <Text style={styles.timelineValue}>
-              {format(new Date(goal.endDate), "MMM d, yyyy")}
+              {format(new Date(goal.endDate), 'MMM d, yyyy')}
             </Text>
           </View>
         </View>
@@ -172,15 +158,15 @@ export function GoalDetailScreen({
         <Card variant="outlined" padding="md" style={styles.section}>
           <Text style={styles.sectionTitle}>To Reach Your Goal</Text>
           <Text style={styles.paceText}>
-            You need{" "}
+            You need{' '}
             <Text style={styles.paceHighlight}>
               {Math.ceil((goal.target - goal.current) / daysLeft)}
-            </Text>{" "}
-            {goal.type === "practice_days"
-              ? "practice sessions"
-              : goal.type === "duration_minutes"
-              ? "minutes"
-              : "poses"}{" "}
+            </Text>{' '}
+            {goal.type === 'practice_days'
+              ? 'practice sessions'
+              : goal.type === 'duration_minutes'
+                ? 'minutes'
+                : 'poses'}{' '}
             per day
           </Text>
         </Card>
@@ -204,7 +190,7 @@ export function GoalDetailScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 16,
@@ -212,15 +198,15 @@ const styles = StyleSheet.create({
   },
   errorContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   errorText: {
     fontSize: 16,
-    color: "#64748b",
+    color: '#64748b',
   },
   header: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 24,
   },
   icon: {
@@ -229,48 +215,48 @@ const styles = StyleSheet.create({
   },
   typeLabel: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginBottom: 8,
   },
   progressCard: {
     marginBottom: 16,
   },
   progressHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'center',
     marginBottom: 16,
   },
   currentValue: {
     fontSize: 48,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   targetValue: {
     fontSize: 24,
-    fontWeight: "500",
-    color: "#94a3b8",
+    fontWeight: '500',
+    color: '#94a3b8',
     marginLeft: 4,
   },
   progressBar: {
     height: 12,
-    backgroundColor: "#f1f5f9",
+    backgroundColor: '#f1f5f9',
     borderRadius: 6,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   progressFill: {
-    height: "100%",
-    backgroundColor: "#6366f1",
+    height: '100%',
+    backgroundColor: '#6366f1',
     borderRadius: 6,
   },
   progressCompleted: {
-    backgroundColor: "#22c55e",
+    backgroundColor: '#22c55e',
   },
   progressPercent: {
     fontSize: 14,
-    color: "#64748b",
-    textAlign: "center",
+    color: '#64748b',
+    textAlign: 'center',
     marginTop: 8,
   },
   section: {
@@ -278,26 +264,26 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginBottom: 16,
   },
   timeline: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   timelineItem: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   timelineLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginBottom: 4,
   },
   timelineValue: {
     fontSize: 14,
-    fontWeight: "500",
-    color: "#1e293b",
+    fontWeight: '500',
+    color: '#1e293b',
   },
   timelineDivider: {
     flex: 1,
@@ -305,53 +291,53 @@ const styles = StyleSheet.create({
   },
   timelineProgress: {
     height: 4,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: '#e2e8f0',
     borderRadius: 2,
   },
   timelineProgressFill: {
-    height: "100%",
-    backgroundColor: "#6366f1",
+    height: '100%',
+    backgroundColor: '#6366f1',
     borderRadius: 2,
   },
   daysInfo: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 16,
     paddingTop: 16,
     borderTopWidth: 1,
-    borderTopColor: "#f1f5f9",
+    borderTopColor: '#f1f5f9',
   },
   daysItem: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   daysValue: {
     fontSize: 24,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   daysLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
   paceText: {
     fontSize: 15,
-    color: "#475569",
+    color: '#475569',
     lineHeight: 24,
   },
   paceHighlight: {
     fontSize: 18,
-    fontWeight: "700",
-    color: "#6366f1",
+    fontWeight: '700',
+    color: '#6366f1',
   },
   actions: {
     marginTop: 16,
   },
   deleteButton: {
-    borderColor: "#ef4444",
+    borderColor: '#ef4444',
   },
   deleteButtonText: {
-    color: "#ef4444",
+    color: '#ef4444',
   },
 });
 

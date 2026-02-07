@@ -1,7 +1,14 @@
-import { create } from "zustand";
-import { User, AuthState } from "@/types";
-import { login, register, logout, getProfile, LoginRequest, RegisterRequest } from "@/api/endpoints/auth";
-import { getAccessToken, authEventEmitter } from "@/api/client";
+import { create } from 'zustand';
+import { User, AuthState } from '@/types';
+import {
+  login,
+  register,
+  logout,
+  getProfile,
+  LoginRequest,
+  RegisterRequest,
+} from '@/api/endpoints/auth';
+import { getAccessToken, authEventEmitter } from '@/api/client';
 
 interface AuthStore extends AuthState {
   login: (data: LoginRequest) => Promise<{ success: boolean; error?: string }>;
@@ -13,7 +20,7 @@ interface AuthStore extends AuthState {
 
 export const useAuthStore = create<AuthStore>((set) => {
   // Listen for logout events from API client
-  authEventEmitter.on("logout", () => {
+  authEventEmitter.on('logout', () => {
     set({
       user: null,
       accessToken: null,
@@ -47,7 +54,7 @@ export const useAuthStore = create<AuthStore>((set) => {
       set({ isLoading: false });
       return {
         success: false,
-        error: response.error?.message || "Login failed",
+        error: response.error?.message || 'Login failed',
       };
     },
 
@@ -69,7 +76,7 @@ export const useAuthStore = create<AuthStore>((set) => {
       set({ isLoading: false });
       return {
         success: false,
-        error: response.error?.message || "Registration failed",
+        error: response.error?.message || 'Registration failed',
       };
     },
 

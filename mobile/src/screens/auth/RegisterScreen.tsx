@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,51 +7,51 @@ import {
   Platform,
   ScrollView,
   TouchableOpacity,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuthStore } from "@/store";
-import { Button, Input, Card } from "@/components/common";
-import { AuthStackScreenProps } from "@/navigation/types";
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAuthStore } from '@/store';
+import { Button, Input, Card } from '@/components/common';
+import { AuthStackScreenProps } from '@/navigation/types';
 
-export function RegisterScreen({ navigation }: AuthStackScreenProps<"Register">) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+export function RegisterScreen({ navigation }: AuthStackScreenProps<'Register'>) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const { register, isLoading } = useAuthStore();
 
   const handleRegister = async () => {
-    setError("");
+    setError('');
 
     if (!email || !password) {
-      setError("Please fill in all required fields");
+      setError('Please fill in all required fields');
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError('Passwords do not match');
       return;
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters");
+      setError('Password must be at least 8 characters');
       return;
     }
 
     const result = await register({ email, password, name: name || undefined });
 
     if (!result.success) {
-      setError(result.error || "Registration failed");
+      setError(result.error || 'Registration failed');
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardView}
       >
         <ScrollView
@@ -61,9 +61,7 @@ export function RegisterScreen({ navigation }: AuthStackScreenProps<"Register">)
           <View style={styles.header}>
             <Text style={styles.logo}>🧘</Text>
             <Text style={styles.title}>Create Account</Text>
-            <Text style={styles.subtitle}>
-              Start your yoga journey today
-            </Text>
+            <Text style={styles.subtitle}>Start your yoga journey today</Text>
           </View>
 
           <Card variant="elevated" padding="lg" style={styles.formCard}>
@@ -97,11 +95,7 @@ export function RegisterScreen({ navigation }: AuthStackScreenProps<"Register">)
               value={password}
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
-              rightIcon={
-                <Text style={styles.eyeIcon}>
-                  {showPassword ? "👁️" : "👁️‍🗨️"}
-                </Text>
-              }
+              rightIcon={<Text style={styles.eyeIcon}>{showPassword ? '👁️' : '👁️‍🗨️'}</Text>}
               onRightIconPress={() => setShowPassword(!showPassword)}
             />
 
@@ -123,14 +117,13 @@ export function RegisterScreen({ navigation }: AuthStackScreenProps<"Register">)
 
           <View style={styles.footer}>
             <Text style={styles.footerText}>Already have an account?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text style={styles.signInLink}>Sign in</Text>
             </TouchableOpacity>
           </View>
 
           <Text style={styles.terms}>
-            By creating an account, you agree to our Terms of Service and
-            Privacy Policy
+            By creating an account, you agree to our Terms of Service and Privacy Policy
           </Text>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -141,7 +134,7 @@ export function RegisterScreen({ navigation }: AuthStackScreenProps<"Register">)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   keyboardView: {
     flex: 1,
@@ -151,7 +144,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   header: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 32,
     marginTop: 20,
   },
@@ -161,27 +154,27 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: "#64748b",
+    color: '#64748b',
   },
   formCard: {
     marginBottom: 24,
   },
   errorContainer: {
-    backgroundColor: "#fef2f2",
+    backgroundColor: '#fef2f2',
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
   },
   errorText: {
-    color: "#b91c1c",
+    color: '#b91c1c',
     fontSize: 14,
-    textAlign: "center",
+    textAlign: 'center',
   },
   eyeIcon: {
     fontSize: 18,
@@ -190,25 +183,25 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   footer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 4,
     marginBottom: 16,
   },
   footerText: {
-    color: "#64748b",
+    color: '#64748b',
     fontSize: 14,
   },
   signInLink: {
-    color: "#6366f1",
+    color: '#6366f1',
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   terms: {
     fontSize: 12,
-    color: "#94a3b8",
-    textAlign: "center",
+    color: '#94a3b8',
+    textAlign: 'center',
     lineHeight: 18,
   },
 });

@@ -1,8 +1,8 @@
 // Interval Training Timer - HIIT-style work/rest intervals
 
 export interface IntervalTimerState {
-  status: "idle" | "playing" | "paused" | "completed";
-  phase: "work" | "rest";
+  status: 'idle' | 'playing' | 'paused' | 'completed';
+  phase: 'work' | 'rest';
   currentRound: number;
   totalRounds: number;
   currentExerciseIndex: number;
@@ -13,7 +13,7 @@ export interface IntervalTimerState {
 
 export interface IntervalTimerCallbacks {
   onTick: (state: IntervalTimerState) => void;
-  onPhaseChange: (phase: "work" | "rest", round: number) => void;
+  onPhaseChange: (phase: 'work' | 'rest', round: number) => void;
   onExerciseChange: (exerciseIndex: number) => void;
   onRoundComplete: (round: number) => void;
   onComplete: () => void;
@@ -39,13 +39,11 @@ export class IntervalTimerEngine {
     const totalRounds = config.rounds;
     const exercisesPerRound = config.exercises.length;
     const totalDuration =
-      totalRounds *
-      exercisesPerRound *
-      (config.workDuration + config.restDuration);
+      totalRounds * exercisesPerRound * (config.workDuration + config.restDuration);
 
     this.state = {
-      status: "idle",
-      phase: "work",
+      status: 'idle',
+      phase: 'work',
       currentRound: 1,
       totalRounds,
       currentExerciseIndex: 0,
@@ -64,17 +62,21 @@ export class IntervalTimerEngine {
   }
 
   start(): void {
-    if (this.state.status === "playing") return;
+    if (this.state.status === 'playing') {
+      return;
+    }
 
-    this.state.status = "playing";
+    this.state.status = 'playing';
     this.intervalId = setInterval(() => this.tick(), 1000);
     this.callbacks.onTick(this.getState());
   }
 
   pause(): void {
-    if (this.state.status !== "playing") return;
+    if (this.state.status !== 'playing') {
+      return;
+    }
 
-    this.state.status = "paused";
+    this.state.status = 'paused';
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
@@ -83,14 +85,16 @@ export class IntervalTimerEngine {
   }
 
   resume(): void {
-    if (this.state.status !== "paused") return;
+    if (this.state.status !== 'paused') {
+      return;
+    }
     this.start();
   }
 
   toggle(): void {
-    if (this.state.status === "playing") {
+    if (this.state.status === 'playing') {
       this.pause();
-    } else if (this.state.status === "paused" || this.state.status === "idle") {
+    } else if (this.state.status === 'paused' || this.state.status === 'idle') {
       this.start();
     }
   }
@@ -111,8 +115,8 @@ export class IntervalTimerEngine {
       (this.config.workDuration + this.config.restDuration);
 
     this.state = {
-      status: "idle",
-      phase: "work",
+      status: 'idle',
+      phase: 'work',
       currentRound: 1,
       totalRounds: this.config.rounds,
       currentExerciseIndex: 0,
@@ -132,7 +136,9 @@ export class IntervalTimerEngine {
   }
 
   private tick(): void {
-    if (this.state.status !== "playing") return;
+    if (this.state.status !== 'playing') {
+      return;
+    }
 
     this.state.phaseTimeRemaining--;
     this.state.totalTimeRemaining--;
@@ -147,11 +153,11 @@ export class IntervalTimerEngine {
   }
 
   private advancePhase(): void {
-    if (this.state.phase === "work") {
+    if (this.state.phase === 'work') {
       // Switch to rest
-      this.state.phase = "rest";
+      this.state.phase = 'rest';
       this.state.phaseTimeRemaining = this.config.restDuration;
-      this.callbacks.onPhaseChange("rest", this.state.currentRound);
+      this.callbacks.onPhaseChange('rest', this.state.currentRound);
     } else {
       // Rest complete - move to next exercise or round
       this.state.currentExerciseIndex++;
@@ -170,9 +176,9 @@ export class IntervalTimerEngine {
       }
 
       // Start next work phase
-      this.state.phase = "work";
+      this.state.phase = 'work';
       this.state.phaseTimeRemaining = this.config.workDuration;
-      this.callbacks.onPhaseChange("work", this.state.currentRound);
+      this.callbacks.onPhaseChange('work', this.state.currentRound);
       this.callbacks.onExerciseChange(this.state.currentExerciseIndex);
     }
 
@@ -185,7 +191,7 @@ export class IntervalTimerEngine {
       this.intervalId = null;
     }
 
-    this.state.status = "completed";
+    this.state.status = 'completed';
     this.state.phaseTimeRemaining = 0;
     this.state.totalTimeRemaining = 0;
 

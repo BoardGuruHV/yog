@@ -1,18 +1,12 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Alert,
-} from "react-native";
-import { useAuthStore } from "@/store";
-import { updateProfile } from "@/api/endpoints/auth";
-import { Card, Button, Input } from "@/components/common";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import { useAuthStore } from '@/store';
+import { updateProfile } from '@/api/endpoints/auth';
+import { Card, Button, Input } from '@/components/common';
 
 export function EditProfileScreen() {
   const { user, setUser } = useAuthStore();
-  const [name, setName] = useState(user?.name || "");
+  const [name, setName] = useState(user?.name || '');
   const [isSaving, setIsSaving] = useState(false);
 
   const handleSave = async () => {
@@ -24,9 +18,9 @@ export function EditProfileScreen() {
 
     if (response.success && response.data) {
       setUser(response.data);
-      Alert.alert("Success", "Profile updated successfully");
+      Alert.alert('Success', 'Profile updated successfully');
     } else {
-      Alert.alert("Error", response.error?.message || "Failed to update profile");
+      Alert.alert('Error', response.error?.message || 'Failed to update profile');
     }
   };
 
@@ -36,7 +30,7 @@ export function EditProfileScreen() {
       <View style={styles.avatarSection}>
         <View style={styles.avatar}>
           <Text style={styles.avatarText}>
-            {name?.charAt(0) || user?.email?.charAt(0) || "?"}
+            {name?.charAt(0) || user?.email?.charAt(0) || '?'}
           </Text>
         </View>
         <Text style={styles.avatarHint}>
@@ -77,32 +71,32 @@ export function EditProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 16,
   },
   avatarSection: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 24,
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: "#6366f1",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#6366f1',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 12,
   },
   avatarText: {
     fontSize: 40,
-    fontWeight: "600",
-    color: "#fff",
+    fontWeight: '600',
+    color: '#fff',
   },
   avatarHint: {
     fontSize: 13,
-    color: "#64748b",
+    color: '#64748b',
   },
   formCard: {
     marginBottom: 24,
@@ -112,20 +106,20 @@ const styles = StyleSheet.create({
   },
   emailLabel: {
     fontSize: 14,
-    fontWeight: "500",
-    color: "#334155",
+    fontWeight: '500',
+    color: '#334155',
     marginBottom: 6,
   },
   emailValue: {
     fontSize: 16,
-    color: "#64748b",
-    backgroundColor: "#f8fafc",
+    color: '#64748b',
+    backgroundColor: '#f8fafc',
     padding: 12,
     borderRadius: 8,
   },
   emailHint: {
     fontSize: 12,
-    color: "#94a3b8",
+    color: '#94a3b8',
     marginTop: 4,
   },
   saveButton: {

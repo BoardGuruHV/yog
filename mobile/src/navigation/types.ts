@@ -1,7 +1,10 @@
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import type { CompositeScreenProps, NavigatorScreenParams } from "@react-navigation/native";
-import { Asana, Program, IntervalConfig } from "@/types";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import type {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
+import { Asana, Program, IntervalConfig } from '@/types';
 
 // Root Stack
 export type RootStackParamList = {
@@ -39,14 +42,14 @@ export type PracticeStackParamList = {
   MeditationTimer: {
     durationMinutes: number;
     bellIntervalMinutes: number;
-    ambientSound: "none" | "rain" | "ocean" | "forest";
+    ambientSound: 'none' | 'rain' | 'ocean' | 'forest';
   };
   IntervalSelect: undefined;
   IntervalTimer: { config: IntervalConfig };
   PracticeComplete: {
     durationSeconds: number;
     programId?: string;
-    type: "practice" | "meditation" | "interval";
+    type: 'practice' | 'meditation' | 'interval';
   };
 };
 
@@ -78,34 +81,33 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> =
     RootStackScreenProps<keyof RootStackParamList>
   >;
 
-export type MainTabScreenProps<T extends keyof MainTabParamList> =
-  CompositeScreenProps<
-    BottomTabScreenProps<MainTabParamList, T>,
-    RootStackScreenProps<keyof RootStackParamList>
-  >;
+export type MainTabScreenProps<T extends keyof MainTabParamList> = CompositeScreenProps<
+  BottomTabScreenProps<MainTabParamList, T>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
 
 export type ExploreStackScreenProps<T extends keyof ExploreStackParamList> =
   CompositeScreenProps<
     NativeStackScreenProps<ExploreStackParamList, T>,
-    MainTabScreenProps<"ExploreTab">
+    MainTabScreenProps<'ExploreTab'>
   >;
 
 export type PracticeStackScreenProps<T extends keyof PracticeStackParamList> =
   CompositeScreenProps<
     NativeStackScreenProps<PracticeStackParamList, T>,
-    MainTabScreenProps<"PracticeTab">
+    MainTabScreenProps<'PracticeTab'>
   >;
 
 export type ProgressStackScreenProps<T extends keyof ProgressStackParamList> =
   CompositeScreenProps<
     NativeStackScreenProps<ProgressStackParamList, T>,
-    MainTabScreenProps<"ProgressTab">
+    MainTabScreenProps<'ProgressTab'>
   >;
 
 export type ProfileStackScreenProps<T extends keyof ProfileStackParamList> =
   CompositeScreenProps<
     NativeStackScreenProps<ProfileStackParamList, T>,
-    MainTabScreenProps<"ProfileTab">
+    MainTabScreenProps<'ProfileTab'>
   >;
 
 // Declare global navigation types

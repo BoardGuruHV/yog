@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, RefreshControl } from "react-native";
-import { getPrograms } from "@/api/endpoints/programs";
-import { Program } from "@/types";
-import { Card, Loading, EmptyState, Badge } from "@/components/common";
-import { PracticeStackScreenProps } from "@/navigation/types";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
+import { getPrograms } from '@/api/endpoints/programs';
+import { Program } from '@/types';
+import { Card, Loading, EmptyState, Badge } from '@/components/common';
+import { PracticeStackScreenProps } from '@/navigation/types';
 
 export function ProgramSelectScreen({
   navigation,
-}: PracticeStackScreenProps<"ProgramSelect">) {
+}: PracticeStackScreenProps<'ProgramSelect'>) {
   const [programs, setPrograms] = useState<Program[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -31,7 +31,7 @@ export function ProgramSelectScreen({
   };
 
   const handleProgramSelect = (program: Program) => {
-    navigation.navigate("PracticeTimer", { program });
+    navigation.navigate('PracticeTimer', { program });
   };
 
   const formatDuration = (seconds: number) => {
@@ -53,11 +53,7 @@ export function ProgramSelectScreen({
     >
       <View style={styles.programHeader}>
         <Text style={styles.programName}>{item.name}</Text>
-        <Badge
-          label={formatDuration(item.totalDuration)}
-          variant="info"
-          size="sm"
-        />
+        <Badge label={formatDuration(item.totalDuration)} variant="info" size="sm" />
       </View>
 
       {item.description && (
@@ -68,7 +64,7 @@ export function ProgramSelectScreen({
 
       <View style={styles.programMeta}>
         <Text style={styles.poseCount}>
-          {item.asanas.length} pose{item.asanas.length !== 1 ? "s" : ""}
+          {item.asanas.length} pose{item.asanas.length !== 1 ? 's' : ''}
         </Text>
         <Text style={styles.chevron}>›</Text>
       </View>
@@ -113,7 +109,7 @@ export function ProgramSelectScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   list: {
     padding: 16,
@@ -122,39 +118,39 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   programHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 8,
   },
   programName: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     flex: 1,
     marginRight: 12,
   },
   programDescription: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
     lineHeight: 20,
     marginBottom: 12,
   },
   programMeta: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: "#f1f5f9",
+    borderTopColor: '#f1f5f9',
   },
   poseCount: {
     fontSize: 14,
-    color: "#94a3b8",
+    color: '#94a3b8',
   },
   chevron: {
     fontSize: 24,
-    color: "#94a3b8",
+    color: '#94a3b8',
   },
 });
 

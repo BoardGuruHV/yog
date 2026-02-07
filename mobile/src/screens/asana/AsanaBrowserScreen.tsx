@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
-import { View, StyleSheet } from "react-native";
-import { useAsanaStore, useFavoriteStore } from "@/store";
-import { AsanaList, AsanaFilter } from "@/components/asana";
-import { ExploreStackScreenProps } from "@/navigation/types";
+import React, { useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { useAsanaStore, useFavoriteStore } from '@/store';
+import { AsanaList, AsanaFilter } from '@/components/asana';
+import { ExploreStackScreenProps } from '@/navigation/types';
 
 export function AsanaBrowserScreen({
   navigation,
-}: ExploreStackScreenProps<"AsanaBrowser">) {
-  const {
-    asanas,
-    filters,
-    isLoading,
-    hasMore,
-    fetchAsanas,
-    setFilters,
-    resetFilters,
-  } = useAsanaStore();
+}: ExploreStackScreenProps<'AsanaBrowser'>) {
+  const { asanas, filters, isLoading, hasMore, fetchAsanas, setFilters, resetFilters } =
+    useAsanaStore();
   const { fetchFavorites } = useFavoriteStore();
 
   useEffect(() => {
     fetchAsanas(true);
     fetchFavorites();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRefresh = () => {
@@ -33,8 +27,8 @@ export function AsanaBrowserScreen({
     }
   };
 
-  const handleAsanaPress = (asana: typeof asanas[0]) => {
-    navigation.navigate("AsanaDetail", { asanaId: asana.id, asana });
+  const handleAsanaPress = (asana: (typeof asanas)[0]) => {
+    navigation.navigate('AsanaDetail', { asanaId: asana.id, asana });
   };
 
   return (
@@ -59,7 +53,7 @@ export function AsanaBrowserScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
 });
 

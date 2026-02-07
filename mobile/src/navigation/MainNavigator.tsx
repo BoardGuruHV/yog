@@ -1,13 +1,13 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, StyleSheet } from "react-native";
-import { MainTabParamList } from "./types";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Text, StyleSheet } from 'react-native';
+import { MainTabParamList } from './types';
 
-import { HomeScreen } from "@/screens/HomeScreen";
-import { ExploreNavigator } from "./stacks/ExploreNavigator";
-import { PracticeNavigator } from "./stacks/PracticeNavigator";
-import { ProgressNavigator } from "./stacks/ProgressNavigator";
-import { ProfileNavigator } from "./stacks/ProfileNavigator";
+import { HomeScreen } from '@/screens/HomeScreen';
+import { ExploreNavigator } from './stacks/ExploreNavigator';
+import { PracticeNavigator } from './stacks/PracticeNavigator';
+import { ProgressNavigator } from './stacks/ProgressNavigator';
+import { ProfileNavigator } from './stacks/ProfileNavigator';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -17,8 +17,8 @@ export function MainNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: styles.tabBar,
-        tabBarActiveTintColor: "#6366f1",
-        tabBarInactiveTintColor: "#94a3b8",
+        tabBarActiveTintColor: '#6366f1',
+        tabBarInactiveTintColor: '#94a3b8',
         tabBarLabelStyle: styles.tabBarLabel,
       }}
     >
@@ -26,7 +26,7 @@ export function MainNavigator() {
         name="HomeTab"
         component={HomeScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => <Text style={[styles.icon, { color }]}>🏠</Text>,
         }}
       />
@@ -34,7 +34,7 @@ export function MainNavigator() {
         name="ExploreTab"
         component={ExploreNavigator}
         options={{
-          tabBarLabel: "Explore",
+          tabBarLabel: 'Explore',
           tabBarIcon: ({ color }) => <Text style={[styles.icon, { color }]}>🔍</Text>,
         }}
       />
@@ -42,7 +42,7 @@ export function MainNavigator() {
         name="PracticeTab"
         component={PracticeNavigator}
         options={{
-          tabBarLabel: "Practice",
+          tabBarLabel: 'Practice',
           tabBarIcon: ({ color }) => <Text style={[styles.icon, { color }]}>🧘</Text>,
         }}
       />
@@ -50,7 +50,7 @@ export function MainNavigator() {
         name="ProgressTab"
         component={ProgressNavigator}
         options={{
-          tabBarLabel: "Progress",
+          tabBarLabel: 'Progress',
           tabBarIcon: ({ color }) => <Text style={[styles.icon, { color }]}>📊</Text>,
         }}
       />
@@ -58,7 +58,7 @@ export function MainNavigator() {
         name="ProfileTab"
         component={ProfileNavigator}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => <Text style={[styles.icon, { color }]}>👤</Text>,
         }}
       />
@@ -68,16 +68,16 @@ export function MainNavigator() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderTopWidth: 1,
-    borderTopColor: "#f1f5f9",
+    borderTopColor: '#f1f5f9',
     paddingTop: 8,
     paddingBottom: 8,
     height: 70,
   },
   tabBarLabel: {
     fontSize: 11,
-    fontWeight: "500",
+    fontWeight: '500',
     marginTop: 4,
   },
   icon: {

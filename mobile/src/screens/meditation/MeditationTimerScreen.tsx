@@ -1,18 +1,18 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { MeditationTimer } from "@/components/timer";
-import { PracticeStackScreenProps } from "@/navigation/types";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { MeditationTimer } from '@/components/timer';
+import { PracticeStackScreenProps } from '@/navigation/types';
 
 export function MeditationTimerScreen({
   route,
   navigation,
-}: PracticeStackScreenProps<"MeditationTimer">) {
+}: PracticeStackScreenProps<'MeditationTimer'>) {
   const { durationMinutes, bellIntervalMinutes, ambientSound } = route.params;
 
   const handleComplete = (totalSeconds: number) => {
-    navigation.replace("PracticeComplete", {
+    navigation.replace('PracticeComplete', {
       durationSeconds: totalSeconds,
-      type: "meditation",
+      type: 'meditation',
     });
   };
 

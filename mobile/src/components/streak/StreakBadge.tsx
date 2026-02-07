@@ -1,34 +1,44 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Streak } from "@/types";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Streak } from '@/types';
 
 interface StreakBadgeProps {
   streak: Streak | null;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   showLabel?: boolean;
 }
 
-export function StreakBadge({
-  streak,
-  size = "md",
-  showLabel = true,
-}: StreakBadgeProps) {
+export function StreakBadge({ streak, size = 'md', showLabel = true }: StreakBadgeProps) {
   const currentStreak = streak?.currentStreak || 0;
 
   // Determine badge style based on streak length
   const getBadgeStyle = () => {
-    if (currentStreak >= 365) return styles.legendaryBadge;
-    if (currentStreak >= 100) return styles.masterBadge;
-    if (currentStreak >= 30) return styles.expertBadge;
-    if (currentStreak >= 7) return styles.consistentBadge;
+    if (currentStreak >= 365) {
+      return styles.legendaryBadge;
+    }
+    if (currentStreak >= 100) {
+      return styles.masterBadge;
+    }
+    if (currentStreak >= 30) {
+      return styles.expertBadge;
+    }
+    if (currentStreak >= 7) {
+      return styles.consistentBadge;
+    }
     return styles.defaultBadge;
   };
 
   const getFireEmoji = () => {
-    if (currentStreak >= 365) return "🔥🔥🔥";
-    if (currentStreak >= 100) return "🔥🔥";
-    if (currentStreak >= 7) return "🔥";
-    return "✨";
+    if (currentStreak >= 365) {
+      return '🔥🔥🔥';
+    }
+    if (currentStreak >= 100) {
+      return '🔥🔥';
+    }
+    if (currentStreak >= 7) {
+      return '🔥';
+    }
+    return '✨';
   };
 
   const sizeStyles = {
@@ -55,7 +65,7 @@ export function StreakBadge({
       <Text style={[styles.number, sizeStyles[size].number]}>{currentStreak}</Text>
       {showLabel && (
         <Text style={[styles.label, sizeStyles[size].label]}>
-          day{currentStreak !== 1 ? "s" : ""}
+          day{currentStreak !== 1 ? 's' : ''}
         </Text>
       )}
     </View>
@@ -67,7 +77,9 @@ interface StreakStatsProps {
 }
 
 export function StreakStats({ streak }: StreakStatsProps) {
-  if (!streak) return null;
+  if (!streak) {
+    return null;
+  }
 
   return (
     <View style={styles.statsContainer}>
@@ -91,35 +103,35 @@ export function StreakStats({ streak }: StreakStatsProps) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 16,
   },
   defaultBadge: {
-    backgroundColor: "#f1f5f9",
+    backgroundColor: '#f1f5f9',
   },
   consistentBadge: {
-    backgroundColor: "#fef3c7",
+    backgroundColor: '#fef3c7',
   },
   expertBadge: {
-    backgroundColor: "#fed7aa",
+    backgroundColor: '#fed7aa',
   },
   masterBadge: {
-    backgroundColor: "#fecaca",
+    backgroundColor: '#fecaca',
   },
   legendaryBadge: {
-    backgroundColor: "#fde68a",
+    backgroundColor: '#fde68a',
   },
   emoji: {
     marginBottom: 4,
   },
   number: {
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   label: {
-    color: "#64748b",
-    fontWeight: "500",
+    color: '#64748b',
+    fontWeight: '500',
   },
 
   // Size variants
@@ -158,31 +170,31 @@ const styles = StyleSheet.create({
 
   // Stats
   statsContainer: {
-    flexDirection: "row",
-    backgroundColor: "#f8fafc",
+    flexDirection: 'row',
+    backgroundColor: '#f8fafc',
     borderRadius: 16,
     padding: 16,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   statItem: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 16,
   },
   statValue: {
     fontSize: 24,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   statLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
   statDivider: {
     width: 1,
     height: 40,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: '#e2e8f0',
   },
 });
 

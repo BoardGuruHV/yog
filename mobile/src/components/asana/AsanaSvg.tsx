@@ -1,6 +1,6 @@
-import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { SvgUri, SvgXml } from "react-native-svg";
+import React from 'react';
+import { View, StyleSheet, ViewStyle } from 'react-native';
+import { SvgUri, SvgXml } from 'react-native-svg';
 
 interface AsanaSvgProps {
   svgPath: string;
@@ -9,21 +9,16 @@ interface AsanaSvgProps {
   style?: ViewStyle;
 }
 
-export function AsanaSvg({
-  svgPath,
-  width = 200,
-  height = 200,
-  style,
-}: AsanaSvgProps) {
+export function AsanaSvg({ svgPath, width = 200, height = 200, style }: AsanaSvgProps) {
   // Check if it's a URL or inline SVG
   const isUrl =
-    svgPath.startsWith("http://") ||
-    svgPath.startsWith("https://") ||
-    svgPath.startsWith("/");
+    svgPath.startsWith('http://') ||
+    svgPath.startsWith('https://') ||
+    svgPath.startsWith('/');
 
   // For relative paths, construct full URL
-  const fullUrl = svgPath.startsWith("/")
-    ? `${__DEV__ ? "http://localhost:3000" : "https://yog.app"}${svgPath}`
+  const fullUrl = svgPath.startsWith('/')
+    ? `${__DEV__ ? 'http://localhost:3000' : 'https://yog.app'}${svgPath}`
     : svgPath;
 
   return (
@@ -42,7 +37,7 @@ export function AsanaSvgPlaceholder({
   width = 200,
   height = 200,
   style,
-}: Omit<AsanaSvgProps, "svgPath">) {
+}: Omit<AsanaSvgProps, 'svgPath'>) {
   const placeholderSvg = `
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" fill="#f1f5f9" rx="8"/>
@@ -64,9 +59,9 @@ export function AsanaSvgPlaceholder({
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
 });
 

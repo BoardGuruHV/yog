@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, RefreshControl } from "react-native";
-import { useStreakStore } from "@/store";
-import { Card } from "@/components/common";
-import { StreakBadge, StreakStats, StreakCalendar } from "@/components/streak";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import { useStreakStore } from '@/store';
+import { Card } from '@/components/common';
+import { StreakBadge, StreakStats, StreakCalendar } from '@/components/streak';
 
 export function StreaksScreen() {
-  const { streak, practiceHistory, fetchStreak, fetchPracticeHistory } =
-    useStreakStore();
+  const { streak, practiceHistory, fetchStreak, fetchPracticeHistory } = useStreakStore();
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     fetchStreak();
     fetchPracticeHistory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRefresh = async () => {
@@ -99,11 +99,9 @@ interface MilestoneItemProps {
 function MilestoneItem({ days, label, emoji, achieved }: MilestoneItemProps) {
   return (
     <View style={[styles.milestone, achieved && styles.milestoneAchieved]}>
-      <Text style={styles.milestoneEmoji}>{achieved ? emoji : "🔒"}</Text>
+      <Text style={styles.milestoneEmoji}>{achieved ? emoji : '🔒'}</Text>
       <View style={styles.milestoneInfo}>
-        <Text
-          style={[styles.milestoneLabel, achieved && styles.milestoneLabelAchieved]}
-        >
+        <Text style={[styles.milestoneLabel, achieved && styles.milestoneLabelAchieved]}>
           {label}
         </Text>
         <Text style={styles.milestoneDays}>{days} days</Text>
@@ -116,7 +114,7 @@ function MilestoneItem({ days, label, emoji, achieved }: MilestoneItemProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 16,
@@ -127,13 +125,13 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginBottom: 16,
-    textAlign: "center",
+    textAlign: 'center',
   },
   streakDisplay: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 16,
   },
   calendarCard: {
@@ -146,14 +144,14 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   milestone: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 12,
     borderRadius: 12,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   milestoneAchieved: {
-    backgroundColor: "#dcfce7",
+    backgroundColor: '#dcfce7',
   },
   milestoneEmoji: {
     fontSize: 24,
@@ -164,34 +162,34 @@ const styles = StyleSheet.create({
   },
   milestoneLabel: {
     fontSize: 15,
-    fontWeight: "500",
-    color: "#64748b",
+    fontWeight: '500',
+    color: '#64748b',
   },
   milestoneLabelAchieved: {
-    color: "#166534",
+    color: '#166534',
   },
   milestoneDays: {
     fontSize: 12,
-    color: "#94a3b8",
+    color: '#94a3b8',
     marginTop: 2,
   },
   checkmark: {
     fontSize: 18,
-    color: "#22c55e",
-    fontWeight: "700",
+    color: '#22c55e',
+    fontWeight: '700',
   },
   tips: {
     padding: 16,
   },
   tipsTitle: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#64748b",
+    fontWeight: '600',
+    color: '#64748b',
     marginBottom: 12,
   },
   tip: {
     fontSize: 14,
-    color: "#94a3b8",
+    color: '#94a3b8',
     marginBottom: 6,
   },
 });

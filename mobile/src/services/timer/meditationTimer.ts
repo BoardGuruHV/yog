@@ -1,7 +1,7 @@
 // Meditation Timer - Simple countdown timer with interval bells
 
 export interface MeditationTimerState {
-  status: "idle" | "playing" | "paused" | "completed";
+  status: 'idle' | 'playing' | 'paused' | 'completed';
   timeRemaining: number;
   timeElapsed: number;
   totalDuration: number;
@@ -28,7 +28,7 @@ export class MeditationTimerEngine {
     this.bellIntervalSeconds = bellIntervalMinutes * 60;
 
     this.state = {
-      status: "idle",
+      status: 'idle',
       timeRemaining: durationSeconds,
       timeElapsed: 0,
       totalDuration: durationSeconds,
@@ -40,17 +40,21 @@ export class MeditationTimerEngine {
   }
 
   start(): void {
-    if (this.state.status === "playing") return;
+    if (this.state.status === 'playing') {
+      return;
+    }
 
-    this.state.status = "playing";
+    this.state.status = 'playing';
     this.intervalId = setInterval(() => this.tick(), 1000);
     this.callbacks.onTick(this.getState());
   }
 
   pause(): void {
-    if (this.state.status !== "playing") return;
+    if (this.state.status !== 'playing') {
+      return;
+    }
 
-    this.state.status = "paused";
+    this.state.status = 'paused';
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
@@ -59,14 +63,16 @@ export class MeditationTimerEngine {
   }
 
   resume(): void {
-    if (this.state.status !== "paused") return;
+    if (this.state.status !== 'paused') {
+      return;
+    }
     this.start();
   }
 
   toggle(): void {
-    if (this.state.status === "playing") {
+    if (this.state.status === 'playing') {
       this.pause();
-    } else if (this.state.status === "paused" || this.state.status === "idle") {
+    } else if (this.state.status === 'paused' || this.state.status === 'idle') {
       this.start();
     }
   }
@@ -84,7 +90,7 @@ export class MeditationTimerEngine {
     }
 
     this.state = {
-      status: "idle",
+      status: 'idle',
       timeRemaining: this.state.totalDuration,
       timeElapsed: 0,
       totalDuration: this.state.totalDuration,
@@ -101,7 +107,9 @@ export class MeditationTimerEngine {
   }
 
   private tick(): void {
-    if (this.state.status !== "playing") return;
+    if (this.state.status !== 'playing') {
+      return;
+    }
 
     this.state.timeRemaining--;
     this.state.timeElapsed++;
@@ -130,7 +138,7 @@ export class MeditationTimerEngine {
       this.intervalId = null;
     }
 
-    this.state.status = "completed";
+    this.state.status = 'completed';
     this.state.timeRemaining = 0;
 
     this.callbacks.onComplete();

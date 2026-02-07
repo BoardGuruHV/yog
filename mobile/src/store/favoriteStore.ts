@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { Favorite, Asana } from "@/types";
-import { getFavorites, addFavorite, removeFavorite } from "@/api/endpoints/favorites";
-import { offlineStorage } from "@/services/offline/storage";
+import { create } from 'zustand';
+import { Favorite, Asana } from '@/types';
+import { getFavorites, addFavorite, removeFavorite } from '@/api/endpoints/favorites';
+import { offlineStorage } from '@/services/offline/storage';
 
 interface FavoriteStore {
   favorites: Favorite[];
@@ -47,7 +47,7 @@ export const useFavoriteStore = create<FavoriteStore>((set, get) => ({
         });
       } else {
         set({
-          error: response.error?.message || "Failed to fetch favorites",
+          error: response.error?.message || 'Failed to fetch favorites',
           isLoading: false,
         });
       }
@@ -71,7 +71,7 @@ export const useFavoriteStore = create<FavoriteStore>((set, get) => ({
       newIds.add(asanaId);
       const newFavorite: Favorite = {
         id: `temp-${Date.now()}`,
-        userId: "",
+        userId: '',
         asanaId,
         asana,
         createdAt: new Date().toISOString(),
@@ -83,20 +83,16 @@ export const useFavoriteStore = create<FavoriteStore>((set, get) => ({
     }
 
     // Make API call
-    const response = isFav
-      ? await removeFavorite(asanaId)
-      : await addFavorite(asanaId);
+    const response = isFav ? await removeFavorite(asanaId) : await addFavorite(asanaId);
 
     if (!response.success) {
       // Revert on failure
       get().fetchFavorites();
 
       // Queue for offline sync if needed
-      await offlineStorage.addToSyncQueue(
-        isFav ? "delete" : "create",
-        "favorite",
-        { asanaId }
-      );
+      await offlineStorage.addToSyncQueue(isFav ? 'delete' : 'create', 'favorite', {
+        asanaId,
+      });
     }
   },
 

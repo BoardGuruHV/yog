@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import {
   IntervalTimerEngine,
   IntervalTimerState,
   IntervalTimerConfig,
-} from "@/services/timer/intervalTimer";
-import { soundPlayer } from "@/services/audio/soundPlayer";
-import { formatTime } from "@/services/timer/engine";
+} from '@/services/timer/intervalTimer';
+import { soundPlayer } from '@/services/audio/soundPlayer';
+import { formatTime } from '@/services/timer/engine';
 
 interface IntervalTimerProps {
   config: IntervalTimerConfig;
@@ -14,14 +14,10 @@ interface IntervalTimerProps {
   onExit: () => void;
 }
 
-export function IntervalTimer({
-  config,
-  onComplete,
-  onExit,
-}: IntervalTimerProps) {
+export function IntervalTimer({ config, onComplete, onExit }: IntervalTimerProps) {
   const [timerState, setTimerState] = useState<IntervalTimerState>({
-    status: "idle",
-    phase: "work",
+    status: 'idle',
+    phase: 'work',
     currentRound: 1,
     totalRounds: config.rounds,
     currentExerciseIndex: 0,
@@ -53,6 +49,7 @@ export function IntervalTimer({
     return () => {
       engine.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config]);
 
   const handlePlayPause = () => {
@@ -68,9 +65,9 @@ export function IntervalTimer({
   };
 
   const currentExercise = config.exercises[timerState.currentExerciseIndex];
-  const isWork = timerState.phase === "work";
+  const isWork = timerState.phase === 'work';
 
-  if (timerState.status === "completed") {
+  if (timerState.status === 'completed') {
     return null;
   }
 
@@ -92,7 +89,7 @@ export function IntervalTimer({
       {/* Phase Label */}
       <View style={styles.phaseContainer}>
         <Text style={[styles.phaseLabel, isWork ? styles.workText : styles.restText]}>
-          {isWork ? "WORK" : "REST"}
+          {isWork ? 'WORK' : 'REST'}
         </Text>
       </View>
 
@@ -133,10 +130,7 @@ export function IntervalTimer({
 
       {/* Controls */}
       <View style={styles.controls}>
-        <TouchableOpacity
-          style={styles.skipButton}
-          onPress={handleSkipPhase}
-        >
+        <TouchableOpacity style={styles.skipButton} onPress={handleSkipPhase}>
           <Text style={styles.skipText}>Skip ⏭</Text>
         </TouchableOpacity>
 
@@ -145,7 +139,7 @@ export function IntervalTimer({
           onPress={handlePlayPause}
         >
           <Text style={styles.playPauseIcon}>
-            {timerState.status === "playing" ? "⏸" : "▶️"}
+            {timerState.status === 'playing' ? '⏸' : '▶️'}
           </Text>
         </TouchableOpacity>
 
@@ -156,7 +150,7 @@ export function IntervalTimer({
       <View style={styles.totalProgress}>
         <Text style={styles.totalLabel}>Total Time</Text>
         <Text style={styles.totalTime}>
-          {formatTime(timerState.totalTimeElapsed)} /{" "}
+          {formatTime(timerState.totalTimeElapsed)} /{' '}
           {formatTime(
             config.rounds *
               config.exercises.length *
@@ -172,7 +166,7 @@ export function IntervalTimer({
           <Text style={styles.nextName}>
             {config.exercises[
               (timerState.currentExerciseIndex + 1) % config.exercises.length
-            ]?.name || "Complete!"}
+            ]?.name || 'Complete!'}
           </Text>
         </View>
       )}
@@ -186,95 +180,95 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   workBg: {
-    backgroundColor: "#dc2626",
+    backgroundColor: '#dc2626',
   },
   restBg: {
-    backgroundColor: "#16a34a",
+    backgroundColor: '#16a34a',
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginBottom: 20,
   },
   exitButton: {
     fontSize: 24,
-    color: "#fff",
+    color: '#fff',
   },
   roundCounter: {
     fontSize: 16,
-    color: "rgba(255, 255, 255, 0.8)",
-    fontWeight: "500",
+    color: 'rgba(255, 255, 255, 0.8)',
+    fontWeight: '500',
   },
   resetButton: {
     fontSize: 24,
-    color: "#fff",
+    color: '#fff',
   },
   phaseContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 20,
   },
   phaseLabel: {
     fontSize: 48,
-    fontWeight: "900",
+    fontWeight: '900',
     letterSpacing: 8,
   },
   workText: {
-    color: "#fecaca",
+    color: '#fecaca',
   },
   restText: {
-    color: "#bbf7d0",
+    color: '#bbf7d0',
   },
   exerciseContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 30,
   },
   exerciseName: {
     fontSize: 28,
-    fontWeight: "700",
-    color: "#fff",
-    textAlign: "center",
+    fontWeight: '700',
+    color: '#fff',
+    textAlign: 'center',
   },
   exerciseIndex: {
     fontSize: 16,
-    color: "rgba(255, 255, 255, 0.7)",
+    color: 'rgba(255, 255, 255, 0.7)',
     marginTop: 8,
   },
   timerContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 40,
   },
   timeDisplay: {
     fontSize: 120,
-    fontWeight: "200",
-    color: "#fff",
-    fontVariant: ["tabular-nums"],
+    fontWeight: '200',
+    color: '#fff',
+    fontVariant: ['tabular-nums'],
   },
   progressBar: {
-    width: "100%",
+    width: '100%',
     height: 12,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     borderRadius: 6,
-    overflow: "hidden",
+    overflow: 'hidden',
     marginTop: 30,
   },
   progressFill: {
-    height: "100%",
+    height: '100%',
     borderRadius: 6,
   },
   workProgress: {
-    backgroundColor: "#fecaca",
+    backgroundColor: '#fecaca',
   },
   restProgress: {
-    backgroundColor: "#bbf7d0",
+    backgroundColor: '#bbf7d0',
   },
   controls: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 20,
     marginBottom: 30,
   },
@@ -282,61 +276,61 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 25,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     width: 80,
   },
   skipText: {
     fontSize: 14,
-    color: "#fff",
-    fontWeight: "500",
-    textAlign: "center",
+    color: '#fff',
+    fontWeight: '500',
+    textAlign: 'center',
   },
   playPauseButton: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   workButton: {
-    backgroundColor: "#fecaca",
+    backgroundColor: '#fecaca',
   },
   restButton: {
-    backgroundColor: "#bbf7d0",
+    backgroundColor: '#bbf7d0',
   },
   playPauseIcon: {
     fontSize: 36,
   },
   totalProgress: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingBottom: 20,
   },
   totalLabel: {
     fontSize: 12,
-    color: "rgba(255, 255, 255, 0.6)",
+    color: 'rgba(255, 255, 255, 0.6)',
     marginBottom: 4,
   },
   totalTime: {
     fontSize: 16,
-    color: "rgba(255, 255, 255, 0.9)",
-    fontWeight: "500",
-    fontVariant: ["tabular-nums"],
+    color: 'rgba(255, 255, 255, 0.9)',
+    fontWeight: '500',
+    fontVariant: ['tabular-nums'],
   },
   nextExercise: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 40,
     gap: 8,
   },
   nextLabel: {
     fontSize: 14,
-    color: "rgba(255, 255, 255, 0.6)",
+    color: 'rgba(255, 255, 255, 0.6)',
   },
   nextName: {
     fontSize: 14,
-    color: "#fff",
-    fontWeight: "500",
+    color: '#fff',
+    fontWeight: '500',
   },
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,9 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-} from "react-native";
-import { FilterState, Category, CATEGORY_LABELS, BODY_PARTS } from "@/types";
-import { Button, Input } from "@/components/common";
+} from 'react-native';
+import { FilterState, Category, CATEGORY_LABELS, BODY_PARTS } from '@/types';
+import { Button, Input } from '@/components/common';
 
 interface AsanaFilterProps {
   filters: FilterState;
@@ -16,11 +16,7 @@ interface AsanaFilterProps {
   onReset: () => void;
 }
 
-export function AsanaFilter({
-  filters,
-  onFiltersChange,
-  onReset,
-}: AsanaFilterProps) {
+export function AsanaFilter({ filters, onFiltersChange, onReset }: AsanaFilterProps) {
   const [showModal, setShowModal] = useState(false);
 
   const activeFilterCount =
@@ -38,10 +34,7 @@ export function AsanaFilter({
           onChangeText={(text) => onFiltersChange({ search: text })}
           containerStyle={styles.searchInput}
         />
-        <TouchableOpacity
-          style={styles.filterButton}
-          onPress={() => setShowModal(true)}
-        >
+        <TouchableOpacity style={styles.filterButton} onPress={() => setShowModal(true)}>
           <Text style={styles.filterIcon}>⚙️</Text>
           {activeFilterCount > 0 && (
             <View style={styles.filterBadge}>
@@ -135,8 +128,7 @@ function FilterModal({
                 <Text
                   style={[
                     styles.chipText,
-                    filters.categories.includes(category) &&
-                      styles.chipTextSelected,
+                    filters.categories.includes(category) && styles.chipTextSelected,
                   ]}
                 >
                   {CATEGORY_LABELS[category]}
@@ -161,8 +153,7 @@ function FilterModal({
                 <Text
                   style={[
                     styles.chipText,
-                    filters.difficulty.includes(level) &&
-                      styles.chipTextSelected,
+                    filters.difficulty.includes(level) && styles.chipTextSelected,
                   ]}
                 >
                   {level}
@@ -203,11 +194,7 @@ function FilterModal({
             onPress={handleReset}
             style={styles.footerButton}
           />
-          <Button
-            title="Apply"
-            onPress={onClose}
-            style={styles.footerButton}
-          />
+          <Button title="Apply" onPress={onClose} style={styles.footerButton} />
         </View>
       </View>
     </Modal>
@@ -220,8 +207,8 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
   searchRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   searchInput: {
@@ -232,49 +219,49 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 12,
-    backgroundColor: "#f1f5f9",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#f1f5f9',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   filterIcon: {
     fontSize: 20,
   },
   filterBadge: {
-    position: "absolute",
+    position: 'absolute',
     top: 6,
     right: 6,
     width: 16,
     height: 16,
     borderRadius: 8,
-    backgroundColor: "#6366f1",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#6366f1',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   filterBadgeText: {
     fontSize: 10,
-    fontWeight: "600",
-    color: "#fff",
+    fontWeight: '600',
+    color: '#fff',
   },
   modalContainer: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   modalHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#e2e8f0",
+    borderBottomColor: '#e2e8f0',
   },
   modalTitle: {
     fontSize: 20,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   closeButton: {
     fontSize: 24,
-    color: "#64748b",
+    color: '#64748b',
   },
   modalContent: {
     flex: 1,
@@ -282,47 +269,47 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#334155",
+    fontWeight: '600',
+    color: '#334155',
     marginBottom: 12,
     marginTop: 16,
   },
   chipContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 8,
   },
   chip: {
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 20,
-    backgroundColor: "#f1f5f9",
+    backgroundColor: '#f1f5f9',
     borderWidth: 1,
-    borderColor: "#e2e8f0",
+    borderColor: '#e2e8f0',
   },
   chipSmall: {
     paddingHorizontal: 12,
     minWidth: 40,
-    alignItems: "center",
+    alignItems: 'center',
   },
   chipSelected: {
-    backgroundColor: "#6366f1",
-    borderColor: "#6366f1",
+    backgroundColor: '#6366f1',
+    borderColor: '#6366f1',
   },
   chipText: {
     fontSize: 14,
-    color: "#475569",
+    color: '#475569',
   },
   chipTextSelected: {
-    color: "#fff",
-    fontWeight: "500",
+    color: '#fff',
+    fontWeight: '500',
   },
   modalFooter: {
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 16,
     gap: 12,
     borderTopWidth: 1,
-    borderTopColor: "#e2e8f0",
+    borderTopColor: '#e2e8f0',
   },
   footerButton: {
     flex: 1,

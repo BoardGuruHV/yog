@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
@@ -7,9 +7,9 @@ import {
   ViewStyle,
   TextInputProps,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
-interface InputProps extends Omit<TextInputProps, "style"> {
+interface InputProps extends Omit<TextInputProps, 'style'> {
   label?: string;
   error?: string;
   hint?: string;
@@ -79,32 +79,32 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    fontWeight: "500",
-    color: "#334155",
+    fontWeight: '500',
+    color: '#334155',
     marginBottom: 6,
   },
   inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#f8fafc",
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f8fafc',
     borderRadius: 12,
     borderWidth: 1.5,
-    borderColor: "#e2e8f0",
+    borderColor: '#e2e8f0',
   },
   inputContainerFocused: {
-    borderColor: "#6366f1",
-    backgroundColor: "#ffffff",
+    borderColor: '#6366f1',
+    backgroundColor: '#ffffff',
   },
   inputContainerError: {
-    borderColor: "#ef4444",
-    backgroundColor: "#fef2f2",
+    borderColor: '#ef4444',
+    backgroundColor: '#fef2f2',
   },
   input: {
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 16,
     fontSize: 16,
-    color: "#1e293b",
+    color: '#1e293b',
   },
   inputWithLeftIcon: {
     paddingLeft: 8,
@@ -120,12 +120,12 @@ const styles = StyleSheet.create({
   },
   error: {
     fontSize: 12,
-    color: "#ef4444",
+    color: '#ef4444',
     marginTop: 4,
   },
   hint: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
 });

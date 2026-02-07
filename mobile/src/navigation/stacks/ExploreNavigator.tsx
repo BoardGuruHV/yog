@@ -1,8 +1,8 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ExploreStackParamList } from "../types";
-import { AsanaBrowserScreen } from "@/screens/asana/AsanaBrowserScreen";
-import { AsanaDetailScreen } from "@/screens/asana/AsanaDetailScreen";
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ExploreStackParamList } from '../types';
+import { AsanaBrowserScreen } from '@/screens/asana/AsanaBrowserScreen';
+import { AsanaDetailScreen } from '@/screens/asana/AsanaDetailScreen';
 
 const Stack = createNativeStackNavigator<ExploreStackParamList>();
 
@@ -11,11 +11,11 @@ export function ExploreNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#fff",
+          backgroundColor: '#fff',
         },
-        headerTintColor: "#1e293b",
+        headerTintColor: '#1e293b',
         headerTitleStyle: {
-          fontWeight: "600",
+          fontWeight: '600',
         },
         headerShadowVisible: false,
       }}
@@ -23,12 +23,12 @@ export function ExploreNavigator() {
       <Stack.Screen
         name="AsanaBrowser"
         component={AsanaBrowserScreen}
-        options={{ title: "Explore Poses" }}
+        options={{ title: 'Explore Poses' }}
       />
       <Stack.Screen
         name="AsanaDetail"
         component={AsanaDetailScreen}
-        options={{ title: "Pose Details" }}
+        options={{ title: 'Pose Details' }}
       />
     </Stack.Navigator>
   );

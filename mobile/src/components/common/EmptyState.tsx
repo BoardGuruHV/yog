@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet, ViewStyle } from "react-native";
-import Button from "./Button";
+import React from 'react';
+import { View, Text, StyleSheet, ViewStyle } from 'react-native';
+import Button from './Button';
 
 interface EmptyStateProps {
   icon?: React.ReactNode;
@@ -40,8 +40,8 @@ export function EmptyState({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 32,
   },
   iconContainer: {
@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#334155",
-    textAlign: "center",
+    fontWeight: '600',
+    color: '#334155',
+    textAlign: 'center',
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: "#64748b",
-    textAlign: "center",
+    color: '#64748b',
+    textAlign: 'center',
     lineHeight: 20,
     marginBottom: 16,
   },

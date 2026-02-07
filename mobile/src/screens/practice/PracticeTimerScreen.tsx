@@ -1,19 +1,19 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { PracticeTimer } from "@/components/timer";
-import { PracticeStackScreenProps } from "@/navigation/types";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { PracticeTimer } from '@/components/timer';
+import { PracticeStackScreenProps } from '@/navigation/types';
 
 export function PracticeTimerScreen({
   route,
   navigation,
-}: PracticeStackScreenProps<"PracticeTimer">) {
+}: PracticeStackScreenProps<'PracticeTimer'>) {
   const { program } = route.params;
 
   const handleComplete = (totalSeconds: number) => {
-    navigation.replace("PracticeComplete", {
+    navigation.replace('PracticeComplete', {
       durationSeconds: totalSeconds,
       programId: program.id,
-      type: "practice",
+      type: 'practice',
     });
   };
 

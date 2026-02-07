@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import { useAsanaStore, useFavoriteStore } from "@/store";
-import { AsanaSvg, AsanaSvgPlaceholder } from "@/components/asana";
-import { Card, Badge, CategoryBadge, Loading } from "@/components/common";
-import { CATEGORY_LABELS, CATEGORY_COLORS } from "@/types";
-import { ExploreStackScreenProps } from "@/navigation/types";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useAsanaStore, useFavoriteStore } from '@/store';
+import { AsanaSvg, AsanaSvgPlaceholder } from '@/components/asana';
+import { Card, Badge, CategoryBadge, Loading } from '@/components/common';
+import { CATEGORY_LABELS, CATEGORY_COLORS } from '@/types';
+import { ExploreStackScreenProps } from '@/navigation/types';
 
-export function AsanaDetailScreen({
-  route,
-}: ExploreStackScreenProps<"AsanaDetail">) {
+export function AsanaDetailScreen({ route }: ExploreStackScreenProps<'AsanaDetail'>) {
   const { asanaId, asana: initialAsana } = route.params;
   const { fetchAsanaById, selectedAsana } = useAsanaStore();
   const { isFavorite, toggleFavorite } = useFavoriteStore();
@@ -27,6 +19,7 @@ export function AsanaDetailScreen({
       setIsLoading(true);
       fetchAsanaById(asanaId).finally(() => setIsLoading(false));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asanaId]);
 
   if (isLoading) {
@@ -57,7 +50,7 @@ export function AsanaDetailScreen({
           style={styles.favoriteButton}
           onPress={() => toggleFavorite(asana.id, asana)}
         >
-          <Text style={styles.favoriteIcon}>{isFav ? "❤️" : "🤍"}</Text>
+          <Text style={styles.favoriteIcon}>{isFav ? '❤️' : '🤍'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -137,20 +130,18 @@ export function AsanaDetailScreen({
               <Badge
                 label={contra.severity}
                 variant={
-                  contra.severity === "avoid"
-                    ? "error"
-                    : contra.severity === "caution"
-                    ? "warning"
-                    : "info"
+                  contra.severity === 'avoid'
+                    ? 'error'
+                    : contra.severity === 'caution'
+                      ? 'warning'
+                      : 'info'
                 }
                 size="sm"
               />
               <Text style={styles.contraText}>
-                {contra.condition?.name || "Unknown condition"}
+                {contra.condition?.name || 'Unknown condition'}
               </Text>
-              {contra.notes && (
-                <Text style={styles.contraNotes}>{contra.notes}</Text>
-              )}
+              {contra.notes && <Text style={styles.contraNotes}>{contra.notes}</Text>}
             </View>
           ))}
         </Card>
@@ -182,34 +173,34 @@ export function AsanaDetailScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   errorContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   errorText: {
     fontSize: 16,
-    color: "#64748b",
+    color: '#64748b',
   },
   imageContainer: {
-    backgroundColor: "#fff",
-    alignItems: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
     paddingVertical: 24,
-    position: "relative",
+    position: 'relative',
   },
   favoriteButton: {
-    position: "absolute",
+    position: 'absolute',
     top: 16,
     right: 16,
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -220,58 +211,58 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderBottomColor: "#f1f5f9",
+    borderBottomColor: '#f1f5f9',
   },
   name: {
     fontSize: 28,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
     marginTop: 12,
   },
   sanskrit: {
     fontSize: 18,
-    color: "#64748b",
-    fontStyle: "italic",
+    color: '#64748b',
+    fontStyle: 'italic',
     marginTop: 4,
   },
   stats: {
-    flexDirection: "row",
-    backgroundColor: "#fff",
+    flexDirection: 'row',
+    backgroundColor: '#fff',
     padding: 16,
     marginBottom: 16,
   },
   stat: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   statLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginBottom: 8,
   },
   statValue: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   statDivider: {
     width: 1,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: '#e2e8f0',
   },
   difficulty: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 3,
   },
   difficultyDot: {
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: '#e2e8f0',
   },
   difficultyDotFilled: {
-    backgroundColor: "#6366f1",
+    backgroundColor: '#6366f1',
   },
   section: {
     marginHorizontal: 16,
@@ -279,33 +270,33 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginBottom: 12,
   },
   description: {
     fontSize: 15,
-    color: "#475569",
+    color: '#475569',
     lineHeight: 24,
   },
   listItem: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 8,
   },
   bulletPoint: {
-    color: "#6366f1",
+    color: '#6366f1',
     marginRight: 8,
     fontSize: 15,
   },
   listText: {
     flex: 1,
     fontSize: 15,
-    color: "#475569",
+    color: '#475569',
     lineHeight: 22,
   },
   bodyParts: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 8,
   },
   contraItem: {
@@ -313,21 +304,21 @@ const styles = StyleSheet.create({
   },
   contraText: {
     fontSize: 15,
-    color: "#475569",
+    color: '#475569',
     marginTop: 4,
   },
   contraNotes: {
     fontSize: 13,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 2,
-    fontStyle: "italic",
+    fontStyle: 'italic',
   },
   modItem: {
     marginBottom: 12,
   },
   modDescription: {
     fontSize: 15,
-    color: "#475569",
+    color: '#475569',
     marginTop: 4,
   },
   bottomPadding: {

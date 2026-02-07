@@ -1,2 +1,2 @@
-export { RootNavigator } from "./RootNavigator";
-export * from "./types";
+export { RootNavigator } from './RootNavigator';
+export * from './types';

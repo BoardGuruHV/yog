@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { ProgramAsana, TimerState } from "@/types";
-import { PracticeTimerEngine, TimerCallbacks } from "@/services/timer/engine";
-import { soundPlayer } from "@/services/audio/soundPlayer";
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { ProgramAsana, TimerState } from '@/types';
+import { PracticeTimerEngine, TimerCallbacks } from '@/services/timer/engine';
+import { soundPlayer } from '@/services/audio/soundPlayer';
 
 interface UseTimerOptions {
   asanas: ProgramAsana[];
@@ -32,7 +32,7 @@ export function useTimer({
   playAudio = true,
 }: UseTimerOptions): UseTimerReturn {
   const [state, setState] = useState<TimerState>({
-    status: "idle",
+    status: 'idle',
     currentPoseIndex: 0,
     poseTimeRemaining: asanas[0]?.duration || 0,
     totalTimeRemaining: 0,
@@ -80,16 +80,15 @@ export function useTimer({
   const toggle = useCallback(() => engineRef.current?.toggle(), []);
   const skipToNext = useCallback(() => engineRef.current?.skipToNext(), []);
   const skipToPrevious = useCallback(() => engineRef.current?.skipToPrevious(), []);
-  const goToPose = useCallback(
-    (index: number) => engineRef.current?.goToPose(index),
-    []
-  );
+  const goToPose = useCallback((index: number) => engineRef.current?.goToPose(index), []);
   const reset = useCallback(() => engineRef.current?.reset(), []);
 
   return {
     state,
-    currentPose: engineRef.current?.getCurrentPose() || asanas[state.currentPoseIndex] || null,
-    nextPose: engineRef.current?.getNextPose() || asanas[state.currentPoseIndex + 1] || null,
+    currentPose:
+      engineRef.current?.getCurrentPose() || asanas[state.currentPoseIndex] || null,
+    nextPose:
+      engineRef.current?.getNextPose() || asanas[state.currentPoseIndex + 1] || null,
     totalPoses: asanas.length,
     isTransitioning,
     nextPoseIndex,

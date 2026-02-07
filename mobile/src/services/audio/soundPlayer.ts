@@ -1,12 +1,12 @@
 // Sound Player Service for React Native
 // Uses react-native-sound for audio playback
 
-import Sound from "react-native-sound";
+import Sound from 'react-native-sound';
 
 // Enable playback in silence mode (iOS)
-Sound.setCategory("Playback");
+Sound.setCategory('Playback');
 
-type SoundType = "bell" | "complete" | "rain" | "ocean" | "forest" | "gong";
+type SoundType = 'bell' | 'complete' | 'rain' | 'ocean' | 'forest' | 'gong';
 
 class SoundPlayerService {
   private sounds: Map<SoundType, Sound | null> = new Map();
@@ -16,18 +16,15 @@ class SoundPlayerService {
   // Preload common sounds
   async preloadSounds(): Promise<void> {
     const soundFiles: Record<SoundType, string> = {
-      bell: "bell.mp3",
-      complete: "complete.mp3",
-      rain: "rain.mp3",
-      ocean: "ocean.mp3",
-      forest: "forest.mp3",
-      gong: "gong.mp3",
+      bell: 'bell.mp3',
+      complete: 'complete.mp3',
+      rain: 'rain.mp3',
+      ocean: 'ocean.mp3',
+      forest: 'forest.mp3',
+      gong: 'gong.mp3',
     };
 
-    for (const [type, file] of Object.entries(soundFiles) as [
-      SoundType,
-      string
-    ][]) {
+    for (const [type, file] of Object.entries(soundFiles) as [SoundType, string][]) {
       try {
         const sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
           if (error) {
@@ -62,28 +59,30 @@ class SoundPlayerService {
 
   // Play transition bell
   playTransitionBell(): void {
-    this.playSound("bell", 0.5);
+    this.playSound('bell', 0.5);
   }
 
   // Play completion sound
   playCompletionSound(): void {
-    this.playSound("complete", 0.7);
+    this.playSound('complete', 0.7);
   }
 
   // Play interval bell (meditation)
   playIntervalBell(): void {
-    this.playSound("gong", 0.4);
+    this.playSound('gong', 0.4);
   }
 
   // Start ambient sound (for meditation)
   startAmbientSound(
-    type: "rain" | "ocean" | "forest" | "none",
+    type: 'rain' | 'ocean' | 'forest' | 'none',
     volume: number = 0.3
   ): void {
     // Stop any currently playing ambient sound
     this.stopAmbientSound();
 
-    if (type === "none") return;
+    if (type === 'none') {
+      return;
+    }
 
     const sound = this.sounds.get(type);
     if (sound) {

@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { Goal } from "@/types";
+import { create } from 'zustand';
+import { Goal } from '@/types';
 import {
   getGoals,
   getGoalById,
@@ -7,7 +7,7 @@ import {
   updateGoal,
   deleteGoal,
   CreateGoalRequest,
-} from "@/api/endpoints/goals";
+} from '@/api/endpoints/goals';
 
 interface GoalStore {
   goals: Goal[];
@@ -42,12 +42,8 @@ export const useGoalStore = create<GoalStore>((set, get) => ({
       const goals = response.data.goals;
       const now = new Date();
 
-      const active = goals.filter(
-        (g) => !g.completed && new Date(g.endDate) >= now
-      );
-      const completed = goals.filter(
-        (g) => g.completed || new Date(g.endDate) < now
-      );
+      const active = goals.filter((g) => !g.completed && new Date(g.endDate) >= now);
+      const completed = goals.filter((g) => g.completed || new Date(g.endDate) < now);
 
       set({
         goals,
@@ -57,7 +53,7 @@ export const useGoalStore = create<GoalStore>((set, get) => ({
       });
     } else {
       set({
-        error: response.error?.message || "Failed to fetch goals",
+        error: response.error?.message || 'Failed to fetch goals',
         isLoading: false,
       });
     }

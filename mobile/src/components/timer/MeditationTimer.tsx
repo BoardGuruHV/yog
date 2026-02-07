@@ -1,29 +1,23 @@
-import React, { useEffect, useState, useRef } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withTiming,
   Easing,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 import {
   MeditationTimerEngine,
   MeditationTimerState,
-} from "@/services/timer/meditationTimer";
-import { soundPlayer } from "@/services/audio/soundPlayer";
-import { formatTime } from "@/services/timer/engine";
+} from '@/services/timer/meditationTimer';
+import { soundPlayer } from '@/services/audio/soundPlayer';
+import { formatTime } from '@/services/timer/engine';
 
 interface MeditationTimerProps {
   durationMinutes: number;
   bellIntervalMinutes: number;
-  ambientSound: "none" | "rain" | "ocean" | "forest";
+  ambientSound: 'none' | 'rain' | 'ocean' | 'forest';
   onComplete: (totalSeconds: number) => void;
   onExit: () => void;
 }
@@ -36,7 +30,7 @@ export function MeditationTimer({
   onExit,
 }: MeditationTimerProps) {
   const [timerState, setTimerState] = useState<MeditationTimerState>({
-    status: "idle",
+    status: 'idle',
     timeRemaining: durationMinutes * 60,
     timeElapsed: 0,
     totalDuration: durationMinutes * 60,
@@ -49,21 +43,17 @@ export function MeditationTimer({
   const breathOpacity = useSharedValue(0.3);
 
   useEffect(() => {
-    const engine = new MeditationTimerEngine(
-      durationMinutes * 60,
-      bellIntervalMinutes,
-      {
-        onTick: (state) => setTimerState(state),
-        onIntervalBell: () => {
-          soundPlayer.playIntervalBell();
-        },
-        onComplete: () => {
-          soundPlayer.stopAmbientSound();
-          soundPlayer.playCompletionSound();
-          onComplete(timerState.timeElapsed);
-        },
-      }
-    );
+    const engine = new MeditationTimerEngine(durationMinutes * 60, bellIntervalMinutes, {
+      onTick: (state) => setTimerState(state),
+      onIntervalBell: () => {
+        soundPlayer.playIntervalBell();
+      },
+      onComplete: () => {
+        soundPlayer.stopAmbientSound();
+        soundPlayer.playCompletionSound();
+        onComplete(timerState.timeElapsed);
+      },
+    });
 
     engineRef.current = engine;
 
@@ -71,11 +61,12 @@ export function MeditationTimer({
       engine.destroy();
       soundPlayer.stopAmbientSound();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [durationMinutes, bellIntervalMinutes]);
 
   // Start breathing animation when playing
   useEffect(() => {
-    if (timerState.status === "playing") {
+    if (timerState.status === 'playing') {
       // 4 seconds inhale, 4 seconds exhale
       breathScale.value = withRepeat(
         withTiming(1.3, { duration: 4000, easing: Easing.inOut(Easing.ease) }),
@@ -88,6 +79,7 @@ export function MeditationTimer({
         true
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timerState.status]);
 
   const animatedCircleStyle = useAnimatedStyle(() => ({
@@ -96,8 +88,8 @@ export function MeditationTimer({
   }));
 
   const handlePlayPause = () => {
-    if (timerState.status === "idle") {
-      if (ambientSound !== "none") {
+    if (timerState.status === 'idle') {
+      if (ambientSound !== 'none') {
         soundPlayer.startAmbientSound(ambientSound);
       }
     }
@@ -115,7 +107,7 @@ export function MeditationTimer({
 
   const progress = 1 - timerState.timeRemaining / timerState.totalDuration;
 
-  if (timerState.status === "completed") {
+  if (timerState.status === 'completed') {
     return null;
   }
 
@@ -146,15 +138,11 @@ export function MeditationTimer({
             />
           </View>
 
-          <Text style={styles.timeDisplay}>
-            {formatTime(timerState.timeRemaining)}
-          </Text>
+          <Text style={styles.timeDisplay}>{formatTime(timerState.timeRemaining)}</Text>
 
-          {timerState.status === "playing" && (
+          {timerState.status === 'playing' && (
             <Text style={styles.breathGuide}>
-              {Math.floor(timerState.timeElapsed / 4) % 2 === 0
-                ? "Inhale"
-                : "Exhale"}
+              {Math.floor(timerState.timeElapsed / 4) % 2 === 0 ? 'Inhale' : 'Exhale'}
             </Text>
           )}
         </View>
@@ -162,26 +150,17 @@ export function MeditationTimer({
 
       {/* Controls */}
       <View style={styles.controls}>
-        <TouchableOpacity
-          style={styles.addTimeButton}
-          onPress={() => handleAddTime(1)}
-        >
+        <TouchableOpacity style={styles.addTimeButton} onPress={() => handleAddTime(1)}>
           <Text style={styles.addTimeText}>+1 min</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.playPauseButton}
-          onPress={handlePlayPause}
-        >
+        <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
           <Text style={styles.playPauseIcon}>
-            {timerState.status === "playing" ? "⏸" : "▶️"}
+            {timerState.status === 'playing' ? '⏸' : '▶️'}
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.addTimeButton}
-          onPress={() => handleAddTime(5)}
-        >
+        <TouchableOpacity style={styles.addTimeButton} onPress={() => handleAddTime(5)}>
           <Text style={styles.addTimeText}>+5 min</Text>
         </TouchableOpacity>
       </View>
@@ -196,15 +175,15 @@ export function MeditationTimer({
         <View style={styles.infoItem}>
           <Text style={styles.infoLabel}>Bells</Text>
           <Text style={styles.infoValue}>
-            {bellIntervalMinutes > 0 ? `Every ${bellIntervalMinutes} min` : "Off"}
+            {bellIntervalMinutes > 0 ? `Every ${bellIntervalMinutes} min` : 'Off'}
           </Text>
         </View>
         <View style={styles.infoDivider} />
         <View style={styles.infoItem}>
           <Text style={styles.infoLabel}>Sound</Text>
           <Text style={styles.infoValue}>
-            {ambientSound === "none"
-              ? "Silent"
+            {ambientSound === 'none'
+              ? 'Silent'
               : ambientSound.charAt(0).toUpperCase() + ambientSound.slice(1)}
           </Text>
         </View>
@@ -213,83 +192,83 @@ export function MeditationTimer({
   );
 }
 
-const screenWidth = Dimensions.get("window").width;
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0f172a",
+    backgroundColor: '#0f172a',
     paddingTop: 60,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginBottom: 40,
   },
   exitButton: {
     fontSize: 24,
-    color: "#fff",
+    color: '#fff',
   },
   title: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#fff",
+    fontWeight: '600',
+    color: '#fff',
   },
   circleContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   breathCircle: {
-    position: "absolute",
+    position: 'absolute',
     width: screenWidth - 100,
     height: screenWidth - 100,
     borderRadius: (screenWidth - 100) / 2,
-    backgroundColor: "#6366f1",
+    backgroundColor: '#6366f1',
   },
   timerCircle: {
     width: screenWidth - 120,
     height: screenWidth - 120,
     borderRadius: (screenWidth - 120) / 2,
-    backgroundColor: "#1e293b",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#1e293b',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   progressRing: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     borderRadius: (screenWidth - 120) / 2,
     borderWidth: 4,
-    borderColor: "#334155",
+    borderColor: '#334155',
   },
   progressRingFill: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     borderRadius: (screenWidth - 120) / 2,
     borderWidth: 4,
-    borderColor: "#6366f1",
-    borderRightColor: "transparent",
-    borderBottomColor: "transparent",
+    borderColor: '#6366f1',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
   },
   timeDisplay: {
     fontSize: 56,
-    fontWeight: "300",
-    color: "#fff",
-    fontVariant: ["tabular-nums"],
+    fontWeight: '300',
+    color: '#fff',
+    fontVariant: ['tabular-nums'],
   },
   breathGuide: {
     fontSize: 18,
-    color: "#94a3b8",
+    color: '#94a3b8',
     marginTop: 8,
   },
   controls: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 20,
     marginBottom: 40,
   },
@@ -297,48 +276,48 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 25,
-    backgroundColor: "#1e293b",
+    backgroundColor: '#1e293b',
   },
   addTimeText: {
     fontSize: 14,
-    color: "#94a3b8",
-    fontWeight: "500",
+    color: '#94a3b8',
+    fontWeight: '500',
   },
   playPauseButton: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: "#6366f1",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#6366f1',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   playPauseIcon: {
     fontSize: 36,
   },
   sessionInfo: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 20,
     paddingBottom: 40,
   },
   infoItem: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   infoLabel: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginBottom: 4,
   },
   infoValue: {
     fontSize: 14,
-    color: "#94a3b8",
-    fontWeight: "500",
+    color: '#94a3b8',
+    fontWeight: '500',
   },
   infoDivider: {
     width: 1,
     height: 30,
-    backgroundColor: "#334155",
+    backgroundColor: '#334155',
     marginHorizontal: 20,
   },
 });

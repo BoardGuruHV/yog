@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   TouchableOpacity,
   Text,
@@ -6,13 +6,13 @@ import {
   ActivityIndicator,
   ViewStyle,
   TextStyle,
-} from "react-native";
+} from 'react-native';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: "primary" | "secondary" | "outline" | "ghost";
-  size?: "sm" | "md" | "lg";
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   loading?: boolean;
   style?: ViewStyle;
@@ -23,8 +23,8 @@ interface ButtonProps {
 export function Button({
   title,
   onPress,
-  variant = "primary",
-  size = "md",
+  variant = 'primary',
+  size = 'md',
   disabled = false,
   loading = false,
   style,
@@ -59,7 +59,7 @@ export function Button({
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === "primary" ? "#fff" : "#6366f1"}
+          color={variant === 'primary' ? '#fff' : '#6366f1'}
         />
       ) : (
         <>
@@ -73,27 +73,27 @@ export function Button({
 
 const styles = StyleSheet.create({
   base: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 12,
     gap: 8,
   },
 
   // Variants
   primaryContainer: {
-    backgroundColor: "#6366f1",
+    backgroundColor: '#6366f1',
   },
   secondaryContainer: {
-    backgroundColor: "#f1f5f9",
+    backgroundColor: '#f1f5f9',
   },
   outlineContainer: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     borderWidth: 1.5,
-    borderColor: "#6366f1",
+    borderColor: '#6366f1',
   },
   ghostContainer: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
   },
 
   // Sizes
@@ -117,21 +117,21 @@ const styles = StyleSheet.create({
 
   // Text base
   baseText: {
-    fontWeight: "600",
+    fontWeight: '600',
   },
 
   // Text variants
   primaryText: {
-    color: "#ffffff",
+    color: '#ffffff',
   },
   secondaryText: {
-    color: "#334155",
+    color: '#334155',
   },
   outlineText: {
-    color: "#6366f1",
+    color: '#6366f1',
   },
   ghostText: {
-    color: "#6366f1",
+    color: '#6366f1',
   },
 
   // Text sizes

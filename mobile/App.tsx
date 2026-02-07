@@ -1,17 +1,14 @@
-import React, { useEffect } from "react";
-import { StatusBar, LogBox } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RootNavigator } from "@/navigation";
-import { soundPlayer } from "@/services/audio/soundPlayer";
-import { syncService } from "@/services/offline/syncService";
+import React, { useEffect } from 'react';
+import { StatusBar, LogBox } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RootNavigator } from '@/navigation';
+import { soundPlayer } from '@/services/audio/soundPlayer';
+import { syncService } from '@/services/offline/syncService';
 
 // Ignore specific warnings in development
-LogBox.ignoreLogs([
-  "ViewPropTypes will be removed",
-  "ColorPropType will be removed",
-]);
+LogBox.ignoreLogs(['ViewPropTypes will be removed', 'ColorPropType will be removed']);
 
 // Create React Query client
 const queryClient = new QueryClient({

@@ -1,29 +1,29 @@
 // Offline Storage Service using MMKV
 // Adapted from web IndexedDB implementation (lib/offline/storage.ts)
 
-import { MMKV } from "react-native-mmkv";
-import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
-import { Asana, Program, Favorite, Streak } from "@/types";
+import { MMKV } from 'react-native-mmkv';
+import NetInfo, { NetInfoState } from '@react-native-community/netinfo';
+import { Asana, Program, Favorite, Streak } from '@/types';
 
 // Initialize MMKV storage
-const storage = new MMKV({ id: "yog-offline-storage" });
+const storage = new MMKV({ id: 'yog-offline-storage' });
 
 // Storage keys
 const KEYS = {
-  ASANAS: "offline:asanas",
-  PROGRAMS: "offline:programs",
-  FAVORITES: "offline:favorites",
-  STREAK: "offline:streak",
-  SYNC_QUEUE: "offline:sync_queue",
-  LAST_SYNC: "offline:last_sync",
-  DOWNLOADED_PROGRAMS: "offline:downloaded_programs",
+  ASANAS: 'offline:asanas',
+  PROGRAMS: 'offline:programs',
+  FAVORITES: 'offline:favorites',
+  STREAK: 'offline:streak',
+  SYNC_QUEUE: 'offline:sync_queue',
+  LAST_SYNC: 'offline:last_sync',
+  DOWNLOADED_PROGRAMS: 'offline:downloaded_programs',
 } as const;
 
 // Sync queue item type
 interface SyncQueueItem {
   id: string;
-  action: "create" | "update" | "delete";
-  type: "practice" | "favorite" | "program";
+  action: 'create' | 'update' | 'delete';
+  type: 'practice' | 'favorite' | 'program';
   data: unknown;
   createdAt: number;
 }
@@ -45,7 +45,9 @@ class OfflineStorageService {
 
   async getAsanas(): Promise<Asana[]> {
     const data = storage.getString(KEYS.ASANAS);
-    if (!data) return [];
+    if (!data) {
+      return [];
+    }
 
     try {
       return JSON.parse(data);
@@ -75,7 +77,9 @@ class OfflineStorageService {
 
   async getPrograms(): Promise<Program[]> {
     const data = storage.getString(KEYS.PROGRAMS);
-    if (!data) return [];
+    if (!data) {
+      return [];
+    }
 
     try {
       return JSON.parse(data);
@@ -99,7 +103,9 @@ class OfflineStorageService {
 
   getDownloadedProgramIds(): string[] {
     const data = storage.getString(KEYS.DOWNLOADED_PROGRAMS);
-    if (!data) return [];
+    if (!data) {
+      return [];
+    }
 
     try {
       return JSON.parse(data);
@@ -130,7 +136,9 @@ class OfflineStorageService {
 
   async getFavorites(): Promise<Favorite[]> {
     const data = storage.getString(KEYS.FAVORITES);
-    if (!data) return [];
+    if (!data) {
+      return [];
+    }
 
     try {
       return JSON.parse(data);
@@ -149,7 +157,9 @@ class OfflineStorageService {
 
   async getStreak(): Promise<Streak | null> {
     const data = storage.getString(KEYS.STREAK);
-    if (!data) return null;
+    if (!data) {
+      return null;
+    }
 
     try {
       return JSON.parse(data);
@@ -163,8 +173,8 @@ class OfflineStorageService {
   // ==========================================
 
   async addToSyncQueue(
-    action: "create" | "update" | "delete",
-    type: "practice" | "favorite" | "program",
+    action: 'create' | 'update' | 'delete',
+    type: 'practice' | 'favorite' | 'program',
     data: unknown
   ): Promise<void> {
     const queue = await this.getSyncQueue();
@@ -181,7 +191,9 @@ class OfflineStorageService {
 
   async getSyncQueue(): Promise<SyncQueueItem[]> {
     const data = storage.getString(KEYS.SYNC_QUEUE);
-    if (!data) return [];
+    if (!data) {
+      return [];
+    }
 
     try {
       return JSON.parse(data);
@@ -209,9 +221,7 @@ class OfflineStorageService {
     return state.isConnected === true;
   }
 
-  subscribeToNetworkChanges(
-    callback: (isOnline: boolean) => void
-  ): () => void {
+  subscribeToNetworkChanges(callback: (isOnline: boolean) => void): () => void {
     return NetInfo.addEventListener((state: NetInfoState) => {
       callback(state.isConnected === true);
     });
@@ -241,12 +251,16 @@ class OfflineStorageService {
 
     try {
       const asanas = storage.getString(KEYS.ASANAS);
-      if (asanas) asanaCount = JSON.parse(asanas).length;
+      if (asanas) {
+        asanaCount = JSON.parse(asanas).length;
+      }
     } catch {}
 
     try {
       const programs = storage.getString(KEYS.PROGRAMS);
-      if (programs) programCount = JSON.parse(programs).length;
+      if (programs) {
+        programCount = JSON.parse(programs).length;
+      }
     } catch {}
 
     const downloadedCount = this.getDownloadedProgramIds().length;
@@ -254,7 +268,9 @@ class OfflineStorageService {
     let syncQueueCount = 0;
     try {
       const queue = storage.getString(KEYS.SYNC_QUEUE);
-      if (queue) syncQueueCount = JSON.parse(queue).length;
+      if (queue) {
+        syncQueueCount = JSON.parse(queue).length;
+      }
     } catch {}
 
     return {
@@ -284,11 +300,13 @@ export { OfflineStorageService };
 
 // Utility functions
 export function formatBytes(bytes: number): string {
-  if (bytes === 0) return "0 Bytes";
+  if (bytes === 0) {
+    return '0 Bytes';
+  }
 
   const k = 1024;
-  const sizes = ["Bytes", "KB", "MB", "GB"];
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }

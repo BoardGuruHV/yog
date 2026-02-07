@@ -1,15 +1,15 @@
 // Types ported from web app (types/index.ts)
 
 export type Category =
-  | "STANDING"
-  | "SEATED"
-  | "PRONE"
-  | "SUPINE"
-  | "INVERSION"
-  | "BALANCE"
-  | "TWIST"
-  | "FORWARD_BEND"
-  | "BACK_BEND";
+  | 'STANDING'
+  | 'SEATED'
+  | 'PRONE'
+  | 'SUPINE'
+  | 'INVERSION'
+  | 'BALANCE'
+  | 'TWIST'
+  | 'FORWARD_BEND'
+  | 'BACK_BEND';
 
 export interface Asana {
   id: string;
@@ -37,7 +37,7 @@ export interface Contraindication {
   asanaId: string;
   conditionId: string;
   condition?: Condition;
-  severity: "avoid" | "caution" | "modify";
+  severity: 'avoid' | 'caution' | 'modify';
   notes?: string;
 }
 
@@ -79,44 +79,44 @@ export interface FilterState {
 }
 
 export const CATEGORY_LABELS: Record<Category, string> = {
-  STANDING: "Standing",
-  SEATED: "Seated",
-  PRONE: "Prone",
-  SUPINE: "Supine",
-  INVERSION: "Inversion",
-  BALANCE: "Balance",
-  TWIST: "Twist",
-  FORWARD_BEND: "Forward Bend",
-  BACK_BEND: "Back Bend",
+  STANDING: 'Standing',
+  SEATED: 'Seated',
+  PRONE: 'Prone',
+  SUPINE: 'Supine',
+  INVERSION: 'Inversion',
+  BALANCE: 'Balance',
+  TWIST: 'Twist',
+  FORWARD_BEND: 'Forward Bend',
+  BACK_BEND: 'Back Bend',
 };
 
 // React Native colors (converted from Tailwind)
 export const CATEGORY_COLORS: Record<Category, { bg: string; text: string }> = {
-  STANDING: { bg: "#dbeafe", text: "#1d4ed8" },
-  SEATED: { bg: "#f3e8ff", text: "#7c3aed" },
-  PRONE: { bg: "#fef3c7", text: "#b45309" },
-  SUPINE: { bg: "#ccfbf1", text: "#0f766e" },
-  INVERSION: { bg: "#fee2e2", text: "#b91c1c" },
-  BALANCE: { bg: "#e0e7ff", text: "#4338ca" },
-  TWIST: { bg: "#fce7f3", text: "#be185d" },
-  FORWARD_BEND: { bg: "#d1fae5", text: "#047857" },
-  BACK_BEND: { bg: "#ffedd5", text: "#c2410c" },
+  STANDING: { bg: '#dbeafe', text: '#1d4ed8' },
+  SEATED: { bg: '#f3e8ff', text: '#7c3aed' },
+  PRONE: { bg: '#fef3c7', text: '#b45309' },
+  SUPINE: { bg: '#ccfbf1', text: '#0f766e' },
+  INVERSION: { bg: '#fee2e2', text: '#b91c1c' },
+  BALANCE: { bg: '#e0e7ff', text: '#4338ca' },
+  TWIST: { bg: '#fce7f3', text: '#be185d' },
+  FORWARD_BEND: { bg: '#d1fae5', text: '#047857' },
+  BACK_BEND: { bg: '#ffedd5', text: '#c2410c' },
 };
 
 export const BODY_PARTS = [
-  "back",
-  "core",
-  "hamstrings",
-  "hips",
-  "shoulders",
-  "chest",
-  "legs",
-  "arms",
-  "spine",
-  "neck",
-  "glutes",
-  "ankles",
-  "wrists",
+  'back',
+  'core',
+  'hamstrings',
+  'hips',
+  'shoulders',
+  'chest',
+  'legs',
+  'arms',
+  'spine',
+  'neck',
+  'glutes',
+  'ankles',
+  'wrists',
 ] as const;
 
 export type BodyPart = (typeof BODY_PARTS)[number];
@@ -138,13 +138,13 @@ export interface AuthState {
 }
 
 // Subscription types
-export type SubscriptionTier = "FREE" | "PREMIUM" | "PRO";
+export type SubscriptionTier = 'FREE' | 'PREMIUM' | 'PRO';
 export type SubscriptionStatus =
-  | "ACTIVE"
-  | "PAST_DUE"
-  | "CANCELED"
-  | "TRIALING"
-  | "PAUSED";
+  | 'ACTIVE'
+  | 'PAST_DUE'
+  | 'CANCELED'
+  | 'TRIALING'
+  | 'PAUSED';
 
 export interface Subscription {
   tier: SubscriptionTier;
@@ -184,7 +184,7 @@ export const TIER_LIMITS = {
   },
 } as const;
 
-export type Feature = keyof (typeof TIER_LIMITS)["FREE"];
+export type Feature = keyof (typeof TIER_LIMITS)['FREE'];
 
 // Streak types
 export interface Streak {
@@ -198,7 +198,7 @@ export interface Streak {
 export interface Goal {
   id: string;
   userId: string;
-  type: "practice_days" | "duration_minutes" | "poses_completed";
+  type: 'practice_days' | 'duration_minutes' | 'poses_completed';
   target: number;
   current: number;
   startDate: string;
@@ -241,7 +241,7 @@ export interface ApiResponse<T> {
 
 // Timer types
 export interface TimerState {
-  status: "idle" | "playing" | "paused" | "completed";
+  status: 'idle' | 'playing' | 'paused' | 'completed';
   currentPoseIndex: number;
   poseTimeRemaining: number;
   totalTimeRemaining: number;
@@ -251,7 +251,7 @@ export interface TimerState {
 // Meditation types
 export interface MeditationSession {
   durationMinutes: number;
-  ambientSound: "none" | "rain" | "ocean" | "forest" | "bells";
+  ambientSound: 'none' | 'rain' | 'ocean' | 'forest' | 'bells';
   intervalBells: number; // minutes between bells, 0 for no bells
 }
 

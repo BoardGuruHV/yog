@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
-import { offlineStorage } from "@/services/offline/storage";
-import { syncService } from "@/services/offline/syncService";
+import { useState, useEffect, useCallback } from 'react';
+import { offlineStorage } from '@/services/offline/storage';
+import { syncService } from '@/services/offline/syncService';
 
 interface UseOfflineReturn {
   isOnline: boolean;
@@ -37,6 +37,7 @@ export function useOffline(): UseOfflineReturn {
       unsubscribe();
       syncService.stopNetworkListener();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const checkStatus = async () => {

@@ -1,5 +1,5 @@
-import apiClient, { setTokens, clearTokens } from "../client";
-import { ApiResponse, User } from "@/types";
+import apiClient, { setTokens, clearTokens } from '../client';
+import { ApiResponse, User } from '@/types';
 
 export interface LoginRequest {
   email: string;
@@ -22,7 +22,7 @@ export interface AuthResponse {
 export async function login(data: LoginRequest): Promise<ApiResponse<AuthResponse>> {
   try {
     const response = await apiClient.post<ApiResponse<AuthResponse>>(
-      "/auth/mobile/login",
+      '/auth/mobile/login',
       data
     );
 
@@ -33,18 +33,18 @@ export async function login(data: LoginRequest): Promise<ApiResponse<AuthRespons
 
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<AuthResponse> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
@@ -54,7 +54,7 @@ export async function register(
 ): Promise<ApiResponse<AuthResponse>> {
   try {
     const response = await apiClient.post<ApiResponse<AuthResponse>>(
-      "/auth/mobile/register",
+      '/auth/mobile/register',
       data
     );
 
@@ -65,25 +65,25 @@ export async function register(
 
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<AuthResponse> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
 
 export async function logout(): Promise<void> {
   try {
-    await apiClient.post("/auth/mobile/logout");
+    await apiClient.post('/auth/mobile/logout');
   } catch {
     // Ignore logout errors
   } finally {
@@ -93,44 +93,44 @@ export async function logout(): Promise<void> {
 
 export async function getProfile(): Promise<ApiResponse<User>> {
   try {
-    const response = await apiClient.get<ApiResponse<User>>("/profile");
+    const response = await apiClient.get<ApiResponse<User>>('/profile');
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<User> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
 
 export async function updateProfile(
-  data: Partial<Pick<User, "name" | "image">>
+  data: Partial<Pick<User, 'name' | 'image'>>
 ): Promise<ApiResponse<User>> {
   try {
-    const response = await apiClient.put<ApiResponse<User>>("/profile", data);
+    const response = await apiClient.put<ApiResponse<User>>('/profile', data);
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<User> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }

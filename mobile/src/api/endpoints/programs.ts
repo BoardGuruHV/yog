@@ -1,5 +1,5 @@
-import apiClient from "../client";
-import { ApiResponse, Program } from "@/types";
+import apiClient from '../client';
+import { ApiResponse, Program } from '@/types';
 
 export interface ProgramsResponse {
   programs: Program[];
@@ -17,23 +17,23 @@ export interface CreateProgramRequest {
 
 export async function getPrograms(): Promise<ApiResponse<ProgramsResponse>> {
   try {
-    const response = await apiClient.get<ApiResponse<ProgramsResponse>>("/programs");
+    const response = await apiClient.get<ApiResponse<ProgramsResponse>>('/programs');
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as {
         response?: { data?: ApiResponse<ProgramsResponse> };
       };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
@@ -43,18 +43,18 @@ export async function getProgramById(id: string): Promise<ApiResponse<Program>> 
     const response = await apiClient.get<ApiResponse<Program>>(`/programs/${id}`);
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<Program> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
@@ -63,21 +63,21 @@ export async function createProgram(
   data: CreateProgramRequest
 ): Promise<ApiResponse<Program>> {
   try {
-    const response = await apiClient.post<ApiResponse<Program>>("/programs", data);
+    const response = await apiClient.post<ApiResponse<Program>>('/programs', data);
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<Program> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
@@ -87,24 +87,21 @@ export async function updateProgram(
   data: Partial<CreateProgramRequest>
 ): Promise<ApiResponse<Program>> {
   try {
-    const response = await apiClient.put<ApiResponse<Program>>(
-      `/programs/${id}`,
-      data
-    );
+    const response = await apiClient.put<ApiResponse<Program>>(`/programs/${id}`, data);
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as { response?: { data?: ApiResponse<Program> } };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }
@@ -118,20 +115,20 @@ export async function deleteProgram(
     );
     return response.data;
   } catch (error) {
-    if (error && typeof error === "object" && "response" in error) {
+    if (error && typeof error === 'object' && 'response' in error) {
       const axiosError = error as {
         response?: { data?: ApiResponse<{ success: boolean }> };
       };
       return (
         axiosError.response?.data || {
           success: false,
-          error: { code: "NETWORK_ERROR", message: "Network request failed" },
+          error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
         }
       );
     }
     return {
       success: false,
-      error: { code: "NETWORK_ERROR", message: "Network request failed" },
+      error: { code: 'NETWORK_ERROR', message: 'Network request failed' },
     };
   }
 }

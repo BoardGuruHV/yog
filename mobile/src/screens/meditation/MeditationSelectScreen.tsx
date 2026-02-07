@@ -1,34 +1,28 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import { Card, Button } from "@/components/common";
-import { PracticeStackScreenProps } from "@/navigation/types";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Card, Button } from '@/components/common';
+import { PracticeStackScreenProps } from '@/navigation/types';
 
-type AmbientSound = "none" | "rain" | "ocean" | "forest";
+type AmbientSound = 'none' | 'rain' | 'ocean' | 'forest';
 
 export function MeditationSelectScreen({
   navigation,
-}: PracticeStackScreenProps<"MeditationSelect">) {
+}: PracticeStackScreenProps<'MeditationSelect'>) {
   const [duration, setDuration] = useState(10);
   const [bellInterval, setBellInterval] = useState(0);
-  const [ambientSound, setAmbientSound] = useState<AmbientSound>("none");
+  const [ambientSound, setAmbientSound] = useState<AmbientSound>('none');
 
   const durations = [5, 10, 15, 20, 30, 45, 60];
   const bellIntervals = [0, 1, 2, 5, 10];
   const sounds: Array<{ value: AmbientSound; label: string; emoji: string }> = [
-    { value: "none", label: "Silent", emoji: "🔇" },
-    { value: "rain", label: "Rain", emoji: "🌧️" },
-    { value: "ocean", label: "Ocean", emoji: "🌊" },
-    { value: "forest", label: "Forest", emoji: "🌲" },
+    { value: 'none', label: 'Silent', emoji: '🔇' },
+    { value: 'rain', label: 'Rain', emoji: '🌧️' },
+    { value: 'ocean', label: 'Ocean', emoji: '🌊' },
+    { value: 'forest', label: 'Forest', emoji: '🌲' },
   ];
 
   const handleStart = () => {
-    navigation.navigate("MeditationTimer", {
+    navigation.navigate('MeditationTimer', {
       durationMinutes: duration,
       bellIntervalMinutes: bellInterval,
       ambientSound,
@@ -44,10 +38,7 @@ export function MeditationSelectScreen({
           {durations.map((mins) => (
             <TouchableOpacity
               key={mins}
-              style={[
-                styles.option,
-                duration === mins && styles.optionSelected,
-              ]}
+              style={[styles.option, duration === mins && styles.optionSelected]}
               onPress={() => setDuration(mins)}
             >
               <Text
@@ -81,10 +72,7 @@ export function MeditationSelectScreen({
           {bellIntervals.map((mins) => (
             <TouchableOpacity
               key={mins}
-              style={[
-                styles.option,
-                bellInterval === mins && styles.optionSelected,
-              ]}
+              style={[styles.option, bellInterval === mins && styles.optionSelected]}
               onPress={() => setBellInterval(mins)}
             >
               <Text
@@ -93,7 +81,7 @@ export function MeditationSelectScreen({
                   bellInterval === mins && styles.optionTextSelected,
                 ]}
               >
-                {mins === 0 ? "Off" : mins}
+                {mins === 0 ? 'Off' : mins}
               </Text>
               {mins > 0 && (
                 <Text
@@ -142,10 +130,8 @@ export function MeditationSelectScreen({
         <View style={styles.summary}>
           <Text style={styles.summaryDuration}>{duration} minutes</Text>
           <Text style={styles.summaryDetails}>
-            {bellInterval > 0
-              ? `Bell every ${bellInterval} min`
-              : "No interval bells"}
-            {" • "}
+            {bellInterval > 0 ? `Bell every ${bellInterval} min` : 'No interval bells'}
+            {' • '}
             {sounds.find((s) => s.value === ambientSound)?.label}
           </Text>
         </View>
@@ -173,7 +159,7 @@ export function MeditationSelectScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 16,
@@ -184,18 +170,18 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginBottom: 4,
   },
   sectionSubtitle: {
     fontSize: 13,
-    color: "#64748b",
+    color: '#64748b',
     marginBottom: 12,
   },
   options: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 8,
     marginTop: 8,
   },
@@ -203,31 +189,31 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 12,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
     borderWidth: 1,
-    borderColor: "#e2e8f0",
-    alignItems: "center",
+    borderColor: '#e2e8f0',
+    alignItems: 'center',
     minWidth: 60,
   },
   optionSelected: {
-    backgroundColor: "#6366f1",
-    borderColor: "#6366f1",
+    backgroundColor: '#6366f1',
+    borderColor: '#6366f1',
   },
   optionText: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   optionUnit: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 2,
   },
   optionTextSelected: {
-    color: "#fff",
+    color: '#fff',
   },
   soundOptions: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 12,
     marginTop: 8,
   },
@@ -235,14 +221,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 16,
     borderRadius: 12,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
     borderWidth: 1,
-    borderColor: "#e2e8f0",
-    alignItems: "center",
+    borderColor: '#e2e8f0',
+    alignItems: 'center',
   },
   soundOptionSelected: {
-    backgroundColor: "#6366f1",
-    borderColor: "#6366f1",
+    backgroundColor: '#6366f1',
+    borderColor: '#6366f1',
   },
   soundEmoji: {
     fontSize: 28,
@@ -250,27 +236,27 @@ const styles = StyleSheet.create({
   },
   soundLabel: {
     fontSize: 13,
-    fontWeight: "500",
-    color: "#475569",
+    fontWeight: '500',
+    color: '#475569',
   },
   soundLabelSelected: {
-    color: "#fff",
+    color: '#fff',
   },
   summaryCard: {
     marginTop: 8,
   },
   summary: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 16,
   },
   summaryDuration: {
     fontSize: 36,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   summaryDetails: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
   startButton: {
@@ -282,13 +268,13 @@ const styles = StyleSheet.create({
   },
   tipsTitle: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#64748b",
+    fontWeight: '600',
+    color: '#64748b',
     marginBottom: 12,
   },
   tip: {
     fontSize: 14,
-    color: "#94a3b8",
+    color: '#94a3b8',
     marginBottom: 6,
   },
 });

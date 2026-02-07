@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useAuthStore } from "@/store";
-import { Loading } from "@/components/common";
-import { AuthNavigator } from "./AuthNavigator";
-import { MainNavigator } from "./MainNavigator";
-import { RootStackParamList } from "./types";
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuthStore } from '@/store';
+import { Loading } from '@/components/common';
+import { AuthNavigator } from './AuthNavigator';
+import { MainNavigator } from './MainNavigator';
+import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,6 +14,7 @@ export function RootNavigator() {
 
   useEffect(() => {
     checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {

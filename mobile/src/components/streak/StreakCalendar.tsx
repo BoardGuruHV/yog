@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import {
   format,
   startOfMonth,
@@ -7,8 +7,8 @@ import {
   eachDayOfInterval,
   isSameDay,
   getDay,
-} from "date-fns";
-import { PracticeLog } from "@/types";
+} from 'date-fns';
+import { PracticeLog } from '@/types';
 
 interface StreakCalendarProps {
   practiceLogs: PracticeLog[];
@@ -29,28 +29,24 @@ export function StreakCalendar({
 
   // Create a set of practice dates for quick lookup
   const practiceDates = new Set(
-    practiceLogs.map((log) =>
-      format(new Date(log.completedAt), "yyyy-MM-dd")
-    )
+    practiceLogs.map((log) => format(new Date(log.completedAt), 'yyyy-MM-dd'))
   );
 
   const isPracticeDay = (date: Date) => {
-    return practiceDates.has(format(date, "yyyy-MM-dd"));
+    return practiceDates.has(format(date, 'yyyy-MM-dd'));
   };
 
   const isToday = (date: Date) => {
     return isSameDay(date, new Date());
   };
 
-  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
     <View style={styles.container}>
       {/* Month Header */}
       <View style={styles.header}>
-        <Text style={styles.monthTitle}>
-          {format(currentMonth, "MMMM yyyy")}
-        </Text>
+        <Text style={styles.monthTitle}>{format(currentMonth, 'MMMM yyyy')}</Text>
       </View>
 
       {/* Weekday Headers */}
@@ -90,7 +86,7 @@ export function StreakCalendar({
                     today && styles.todayDayText,
                   ]}
                 >
-                  {format(day, "d")}
+                  {format(day, 'd')}
                 </Text>
               </View>
             </View>
@@ -115,80 +111,80 @@ export function StreakCalendar({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 16,
     padding: 16,
   },
   header: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 16,
   },
   monthTitle: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   weekDays: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 8,
   },
   weekDay: {
     flex: 1,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 12,
-    fontWeight: "500",
-    color: "#64748b",
+    fontWeight: '500',
+    color: '#64748b',
   },
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   dayCell: {
     width: `${100 / 7}%`,
     aspectRatio: 1,
     padding: 2,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   dayCircle: {
-    width: "100%",
+    width: '100%',
     maxWidth: 36,
     aspectRatio: 1,
     borderRadius: 18,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   dayText: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
   },
   practicedDay: {
-    backgroundColor: "#dcfce7",
+    backgroundColor: '#dcfce7',
   },
   practicedDayText: {
-    color: "#166534",
-    fontWeight: "600",
+    color: '#166534',
+    fontWeight: '600',
   },
   todayDay: {
     borderWidth: 2,
-    borderColor: "#6366f1",
+    borderColor: '#6366f1',
   },
   todayDayText: {
-    color: "#6366f1",
-    fontWeight: "600",
+    color: '#6366f1',
+    fontWeight: '600',
   },
   legend: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     gap: 24,
     marginTop: 16,
     paddingTop: 16,
     borderTopWidth: 1,
-    borderTopColor: "#f1f5f9",
+    borderTopColor: '#f1f5f9',
   },
   legendItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   legendDot: {
@@ -198,7 +194,7 @@ const styles = StyleSheet.create({
   },
   legendText: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
   },
 });
 

@@ -1,14 +1,8 @@
-import React from "react";
-import {
-  View,
-  ActivityIndicator,
-  Text,
-  StyleSheet,
-  ViewStyle,
-} from "react-native";
+import React from 'react';
+import { View, ActivityIndicator, Text, StyleSheet, ViewStyle } from 'react-native';
 
 interface LoadingProps {
-  size?: "small" | "large";
+  size?: 'small' | 'large';
   color?: string;
   message?: string;
   fullScreen?: boolean;
@@ -16,8 +10,8 @@ interface LoadingProps {
 }
 
 export function Loading({
-  size = "large",
-  color = "#6366f1",
+  size = 'large',
+  color = '#6366f1',
   message,
   fullScreen = false,
   style,
@@ -38,7 +32,9 @@ interface LoadingOverlayProps {
 }
 
 export function LoadingOverlay({ visible, message }: LoadingOverlayProps) {
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
 
   return (
     <View style={styles.overlay}>
@@ -53,40 +49,40 @@ export function LoadingOverlay({ visible, message }: LoadingOverlayProps) {
 const styles = StyleSheet.create({
   fullScreen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ffffff",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
   },
   inline: {
     padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   message: {
     marginTop: 12,
     fontSize: 14,
-    color: "#64748b",
-    textAlign: "center",
+    color: '#64748b',
+    textAlign: 'center',
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
     zIndex: 1000,
   },
   overlayContent: {
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 24,
-    alignItems: "center",
+    alignItems: 'center',
     minWidth: 120,
   },
   overlayMessage: {
     marginTop: 12,
     fontSize: 14,
-    color: "#334155",
-    textAlign: "center",
+    color: '#334155',
+    textAlign: 'center',
   },
 });
 

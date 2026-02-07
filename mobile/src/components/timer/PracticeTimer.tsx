@@ -1,18 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
-import { ProgramAsana, TimerState } from "@/types";
-import {
-  PracticeTimerEngine,
-  formatTime,
-} from "@/services/timer/engine";
-import { soundPlayer } from "@/services/audio/soundPlayer";
-import { AsanaSvg, AsanaSvgPlaceholder } from "@/components/asana";
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { ProgramAsana, TimerState } from '@/types';
+import { PracticeTimerEngine, formatTime } from '@/services/timer/engine';
+import { soundPlayer } from '@/services/audio/soundPlayer';
+import { AsanaSvg, AsanaSvgPlaceholder } from '@/components/asana';
 
 interface PracticeTimerProps {
   asanas: ProgramAsana[];
@@ -20,13 +11,9 @@ interface PracticeTimerProps {
   onExit: () => void;
 }
 
-export function PracticeTimer({
-  asanas,
-  onComplete,
-  onExit,
-}: PracticeTimerProps) {
+export function PracticeTimer({ asanas, onComplete, onExit }: PracticeTimerProps) {
   const [timerState, setTimerState] = useState<TimerState>({
-    status: "idle",
+    status: 'idle',
     currentPoseIndex: 0,
     poseTimeRemaining: asanas[0]?.duration || 0,
     totalTimeRemaining: 0,
@@ -60,6 +47,7 @@ export function PracticeTimer({
     return () => {
       engine.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asanas]);
 
   const currentPose = asanas[timerState.currentPoseIndex];
@@ -81,7 +69,7 @@ export function PracticeTimer({
     engineRef.current?.skipToPrevious();
   };
 
-  if (timerState.status === "completed") {
+  if (timerState.status === 'completed') {
     return null; // Parent handles completion screen
   }
 
@@ -103,7 +91,7 @@ export function PracticeTimer({
         <View style={styles.transitionOverlay}>
           <Text style={styles.transitionText}>Next Up</Text>
           <Text style={styles.transitionPoseName}>
-            {asanas[nextPoseIndex]?.asana?.nameEnglish || "Next Pose"}
+            {asanas[nextPoseIndex]?.asana?.nameEnglish || 'Next Pose'}
           </Text>
         </View>
       )}
@@ -117,24 +105,17 @@ export function PracticeTimer({
             height={screenWidth - 80}
           />
         ) : (
-          <AsanaSvgPlaceholder
-            width={screenWidth - 80}
-            height={screenWidth - 80}
-          />
+          <AsanaSvgPlaceholder width={screenWidth - 80} height={screenWidth - 80} />
         )}
       </View>
 
       {/* Pose Info */}
       <View style={styles.poseInfo}>
         <Text style={styles.poseName}>
-          {currentPose?.asana?.nameEnglish || "Loading..."}
+          {currentPose?.asana?.nameEnglish || 'Loading...'}
         </Text>
-        <Text style={styles.poseSanskrit}>
-          {currentPose?.asana?.nameSanskrit}
-        </Text>
-        {currentPose?.notes && (
-          <Text style={styles.poseNotes}>{currentPose.notes}</Text>
-        )}
+        <Text style={styles.poseSanskrit}>{currentPose?.asana?.nameSanskrit}</Text>
+        {currentPose?.notes && <Text style={styles.poseNotes}>{currentPose.notes}</Text>}
       </View>
 
       {/* Timer Display */}
@@ -143,9 +124,7 @@ export function PracticeTimer({
           <View style={[styles.progressFill, { width: `${progress * 100}%` }]} />
         </View>
 
-        <Text style={styles.timeDisplay}>
-          {formatTime(timerState.poseTimeRemaining)}
-        </Text>
+        <Text style={styles.timeDisplay}>{formatTime(timerState.poseTimeRemaining)}</Text>
 
         <Text style={styles.totalTime}>
           Total: {formatTime(timerState.totalTimeRemaining)}
@@ -169,19 +148,13 @@ export function PracticeTimer({
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.playPauseButton}
-          onPress={handlePlayPause}
-        >
+        <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
           <Text style={styles.playPauseIcon}>
-            {timerState.status === "playing" ? "⏸" : "▶️"}
+            {timerState.status === 'playing' ? '⏸' : '▶️'}
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.controlButton}
-          onPress={handleSkipNext}
-        >
+        <TouchableOpacity style={styles.controlButton} onPress={handleSkipNext}>
           <Text style={styles.controlIcon}>⏭</Text>
         </TouchableOpacity>
       </View>
@@ -191,7 +164,7 @@ export function PracticeTimer({
         <View style={styles.nextPosePreview}>
           <Text style={styles.nextPoseLabel}>Up Next:</Text>
           <Text style={styles.nextPoseName}>
-            {nextPose.asana?.nameEnglish || "Loading..."}
+            {nextPose.asana?.nameEnglish || 'Loading...'}
           </Text>
         </View>
       )}
@@ -199,108 +172,108 @@ export function PracticeTimer({
   );
 }
 
-const screenWidth = Dimensions.get("window").width;
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0f172a",
+    backgroundColor: '#0f172a',
     paddingTop: 60,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginBottom: 20,
   },
   exitButton: {
     fontSize: 24,
-    color: "#fff",
+    color: '#fff',
   },
   poseCounter: {
     fontSize: 16,
-    color: "#94a3b8",
-    fontWeight: "500",
+    color: '#94a3b8',
+    fontWeight: '500',
   },
   transitionOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(99, 102, 241, 0.95)",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'rgba(99, 102, 241, 0.95)',
+    justifyContent: 'center',
+    alignItems: 'center',
     zIndex: 100,
   },
   transitionText: {
     fontSize: 18,
-    color: "rgba(255, 255, 255, 0.8)",
+    color: 'rgba(255, 255, 255, 0.8)',
     marginBottom: 8,
   },
   transitionPoseName: {
     fontSize: 32,
-    fontWeight: "700",
-    color: "#fff",
+    fontWeight: '700',
+    color: '#fff',
   },
   poseContainer: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
   },
   poseInfo: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginBottom: 20,
   },
   poseName: {
     fontSize: 28,
-    fontWeight: "700",
-    color: "#fff",
-    textAlign: "center",
+    fontWeight: '700',
+    color: '#fff',
+    textAlign: 'center',
   },
   poseSanskrit: {
     fontSize: 18,
-    color: "#94a3b8",
-    fontStyle: "italic",
+    color: '#94a3b8',
+    fontStyle: 'italic',
     marginTop: 4,
   },
   poseNotes: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 8,
-    textAlign: "center",
+    textAlign: 'center',
   },
   timerContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 40,
     marginBottom: 30,
   },
   progressBar: {
-    width: "100%",
+    width: '100%',
     height: 8,
-    backgroundColor: "#334155",
+    backgroundColor: '#334155',
     borderRadius: 4,
-    overflow: "hidden",
+    overflow: 'hidden',
     marginBottom: 16,
   },
   progressFill: {
-    height: "100%",
-    backgroundColor: "#6366f1",
+    height: '100%',
+    backgroundColor: '#6366f1',
     borderRadius: 4,
   },
   timeDisplay: {
     fontSize: 64,
-    fontWeight: "300",
-    color: "#fff",
-    fontVariant: ["tabular-nums"],
+    fontWeight: '300',
+    color: '#fff',
+    fontVariant: ['tabular-nums'],
   },
   totalTime: {
     fontSize: 16,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 8,
   },
   controls: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 30,
     marginBottom: 30,
   },
@@ -308,9 +281,9 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#1e293b",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#1e293b',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   controlIcon: {
     fontSize: 28,
@@ -322,29 +295,29 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: "#6366f1",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#6366f1',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   playPauseIcon: {
     fontSize: 36,
   },
   nextPosePreview: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     paddingBottom: 40,
     gap: 8,
   },
   nextPoseLabel: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
   },
   nextPoseName: {
     fontSize: 14,
-    color: "#94a3b8",
-    fontWeight: "500",
+    color: '#94a3b8',
+    fontWeight: '500',
   },
 });
 

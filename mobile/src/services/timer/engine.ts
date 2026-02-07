@@ -1,7 +1,7 @@
 // Timer Engine - Ported from web (lib/timer/engine.ts)
 // Adapted for React Native
 
-import { ProgramAsana, TimerState } from "@/types";
+import { ProgramAsana, TimerState } from '@/types';
 
 export interface TimerCallbacks {
   onTick: (state: TimerState) => void;
@@ -26,7 +26,7 @@ export class PracticeTimerEngine {
       (asanas.length - 1) * this.transitionDuration;
 
     this.state = {
-      status: "idle",
+      status: 'idle',
       currentPoseIndex: 0,
       poseTimeRemaining: asanas[0]?.duration || 0,
       totalTimeRemaining: totalDuration,
@@ -51,17 +51,21 @@ export class PracticeTimerEngine {
   }
 
   start(): void {
-    if (this.state.status === "playing") return;
+    if (this.state.status === 'playing') {
+      return;
+    }
 
-    this.state.status = "playing";
+    this.state.status = 'playing';
     this.intervalId = setInterval(() => this.tick(), 1000);
     this.callbacks.onTick(this.getState());
   }
 
   pause(): void {
-    if (this.state.status !== "playing") return;
+    if (this.state.status !== 'playing') {
+      return;
+    }
 
-    this.state.status = "paused";
+    this.state.status = 'paused';
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
@@ -70,14 +74,16 @@ export class PracticeTimerEngine {
   }
 
   resume(): void {
-    if (this.state.status !== "paused") return;
+    if (this.state.status !== 'paused') {
+      return;
+    }
     this.start();
   }
 
   toggle(): void {
-    if (this.state.status === "playing") {
+    if (this.state.status === 'playing') {
       this.pause();
-    } else if (this.state.status === "paused" || this.state.status === "idle") {
+    } else if (this.state.status === 'paused' || this.state.status === 'idle') {
       this.start();
     }
   }
@@ -96,20 +102,18 @@ export class PracticeTimerEngine {
   }
 
   skipToPrevious(): void {
-    if (this.state.currentPoseIndex <= 0) return;
+    if (this.state.currentPoseIndex <= 0) {
+      return;
+    }
 
     const currentPoseDuration = this.asanas[this.state.currentPoseIndex].duration;
-    const elapsedInCurrentPose =
-      currentPoseDuration - this.state.poseTimeRemaining;
+    const elapsedInCurrentPose = currentPoseDuration - this.state.poseTimeRemaining;
 
-    this.state.totalTimeRemaining +=
-      elapsedInCurrentPose + this.transitionDuration;
-    this.state.totalTimeElapsed -=
-      elapsedInCurrentPose + this.transitionDuration;
+    this.state.totalTimeRemaining += elapsedInCurrentPose + this.transitionDuration;
+    this.state.totalTimeElapsed -= elapsedInCurrentPose + this.transitionDuration;
 
     this.state.currentPoseIndex--;
-    this.state.poseTimeRemaining =
-      this.asanas[this.state.currentPoseIndex].duration;
+    this.state.poseTimeRemaining = this.asanas[this.state.currentPoseIndex].duration;
 
     const isLast = this.state.currentPoseIndex === this.asanas.length - 1;
     this.callbacks.onPoseChange(this.state.currentPoseIndex, isLast);
@@ -117,7 +121,9 @@ export class PracticeTimerEngine {
   }
 
   goToPose(index: number): void {
-    if (index < 0 || index >= this.asanas.length) return;
+    if (index < 0 || index >= this.asanas.length) {
+      return;
+    }
 
     // Recalculate times
     let elapsed = 0;
@@ -150,7 +156,7 @@ export class PracticeTimerEngine {
       (this.asanas.length - 1) * this.transitionDuration;
 
     this.state = {
-      status: "idle",
+      status: 'idle',
       currentPoseIndex: 0,
       poseTimeRemaining: this.asanas[0]?.duration || 0,
       totalTimeRemaining: totalDuration,
@@ -168,7 +174,9 @@ export class PracticeTimerEngine {
   }
 
   private tick(): void {
-    if (this.state.status !== "playing") return;
+    if (this.state.status !== 'playing') {
+      return;
+    }
 
     this.state.poseTimeRemaining--;
     this.state.totalTimeRemaining--;
@@ -185,14 +193,14 @@ export class PracticeTimerEngine {
 
       // Wait for transition, then move to next pose
       setTimeout(() => {
-        if (this.state.status === "playing" || this.state.status === "paused") {
+        if (this.state.status === 'playing' || this.state.status === 'paused') {
           this.moveToNextPose();
         }
       }, this.transitionDuration * 1000);
 
       // Pause during transition
       this.pause();
-      this.state.status = "playing"; // Keep showing as playing
+      this.state.status = 'playing'; // Keep showing as playing
 
       return;
     }
@@ -202,14 +210,13 @@ export class PracticeTimerEngine {
 
   private moveToNextPose(): void {
     this.state.currentPoseIndex++;
-    this.state.poseTimeRemaining =
-      this.asanas[this.state.currentPoseIndex].duration;
+    this.state.poseTimeRemaining = this.asanas[this.state.currentPoseIndex].duration;
 
     const isLast = this.state.currentPoseIndex === this.asanas.length - 1;
     this.callbacks.onPoseChange(this.state.currentPoseIndex, isLast);
 
     // Resume the timer
-    if (this.state.status === "playing") {
+    if (this.state.status === 'playing') {
       this.intervalId = setInterval(() => this.tick(), 1000);
     }
 
@@ -222,7 +229,7 @@ export class PracticeTimerEngine {
       this.intervalId = null;
     }
 
-    this.state.status = "completed";
+    this.state.status = 'completed';
     this.state.poseTimeRemaining = 0;
     this.state.totalTimeRemaining = 0;
 
@@ -235,5 +242,5 @@ export class PracticeTimerEngine {
 export function formatTime(seconds: number): string {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  return `${mins}:${secs.toString().padStart(2, "0")}`;
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
 }

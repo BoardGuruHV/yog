@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useStreakStore } from "@/store";
-import { Card, Button } from "@/components/common";
-import { StreakBadge } from "@/components/streak";
-import { PracticeStackScreenProps } from "@/navigation/types";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useStreakStore } from '@/store';
+import { Card, Button } from '@/components/common';
+import { StreakBadge } from '@/components/streak';
+import { PracticeStackScreenProps } from '@/navigation/types';
 
 export function PracticeCompleteScreen({
   route,
   navigation,
-}: PracticeStackScreenProps<"PracticeComplete">) {
+}: PracticeStackScreenProps<'PracticeComplete'>) {
   const { durationSeconds, programId, type } = route.params;
   const { streak, logPractice, fetchStreak } = useStreakStore();
   const [, setIsLogging] = useState(false);
@@ -17,10 +17,13 @@ export function PracticeCompleteScreen({
 
   useEffect(() => {
     handleLogPractice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogPractice = async () => {
-    if (logged) return;
+    if (logged) {
+      return;
+    }
 
     setIsLogging(true);
     await logPractice({
@@ -45,23 +48,23 @@ export function PracticeCompleteScreen({
 
   const getTypeTitle = () => {
     switch (type) {
-      case "practice":
-        return "Practice Complete!";
-      case "meditation":
-        return "Meditation Complete!";
-      case "interval":
-        return "Workout Complete!";
+      case 'practice':
+        return 'Practice Complete!';
+      case 'meditation':
+        return 'Meditation Complete!';
+      case 'interval':
+        return 'Workout Complete!';
     }
   };
 
   const getTypeEmoji = () => {
     switch (type) {
-      case "practice":
-        return "🧘";
-      case "meditation":
-        return "🧘‍♀️";
-      case "interval":
-        return "💪";
+      case 'practice':
+        return '🧘';
+      case 'meditation':
+        return '🧘‍♀️';
+      case 'interval':
+        return '💪';
     }
   };
 
@@ -70,9 +73,9 @@ export function PracticeCompleteScreen({
   };
 
   const handleViewProgress = () => {
-    navigation.navigate("PracticeHome");
+    navigation.navigate('PracticeHome');
     // Navigate to progress tab
-    navigation.getParent()?.navigate("ProgressTab");
+    navigation.getParent()?.navigate('ProgressTab');
   };
 
   return (
@@ -120,16 +123,8 @@ export function PracticeCompleteScreen({
 
         {/* Actions */}
         <View style={styles.actions}>
-          <Button
-            title="Done"
-            onPress={handleDone}
-            style={styles.doneButton}
-          />
-          <Button
-            title="View Progress"
-            variant="outline"
-            onPress={handleViewProgress}
-          />
+          <Button title="Done" onPress={handleDone} style={styles.doneButton} />
+          <Button title="View Progress" variant="outline" onPress={handleViewProgress} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -139,13 +134,13 @@ export function PracticeCompleteScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: '#f8fafc',
   },
   content: {
     padding: 24,
   },
   celebration: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 32,
   },
   celebrationEmoji: {
@@ -154,32 +149,32 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: "#64748b",
+    color: '#64748b',
   },
   statsCard: {
     marginBottom: 16,
   },
   stats: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   stat: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   statValue: {
     fontSize: 32,
-    fontWeight: "700",
-    color: "#1e293b",
+    fontWeight: '700',
+    color: '#1e293b',
   },
   statLabel: {
     fontSize: 14,
-    color: "#64748b",
+    color: '#64748b',
     marginTop: 4,
   },
   streakCard: {
@@ -187,34 +182,34 @@ const styles = StyleSheet.create({
   },
   streakTitle: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
-    textAlign: "center",
+    fontWeight: '600',
+    color: '#1e293b',
+    textAlign: 'center',
     marginBottom: 16,
   },
   streakContent: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   streakMessage: {
     fontSize: 14,
-    color: "#64748b",
-    textAlign: "center",
+    color: '#64748b',
+    textAlign: 'center',
     marginTop: 16,
   },
   motivation: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 32,
   },
   motivationText: {
     fontSize: 16,
-    color: "#64748b",
-    fontStyle: "italic",
-    textAlign: "center",
+    color: '#64748b',
+    fontStyle: 'italic',
+    textAlign: 'center',
     lineHeight: 24,
   },
   motivationAuthor: {
     fontSize: 14,
-    color: "#94a3b8",
+    color: '#94a3b8',
     marginTop: 8,
   },
   actions: {

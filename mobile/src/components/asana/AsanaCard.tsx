@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Asana, CATEGORY_LABELS, CATEGORY_COLORS } from "@/types";
-import { Card, CategoryBadge } from "@/components/common";
-import { AsanaSvg, AsanaSvgPlaceholder } from "./AsanaSvg";
-import { useFavoriteStore } from "@/store";
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Asana, CATEGORY_LABELS, CATEGORY_COLORS } from '@/types';
+import { Card, CategoryBadge } from '@/components/common';
+import { AsanaSvg, AsanaSvgPlaceholder } from './AsanaSvg';
+import { useFavoriteStore } from '@/store';
 
 interface AsanaCardProps {
   asana: Asana;
@@ -29,12 +29,7 @@ export function AsanaCard({
 
   if (compact) {
     return (
-      <Card
-        onPress={onPress}
-        variant="elevated"
-        padding="sm"
-        style={styles.compactCard}
-      >
+      <Card onPress={onPress} variant="elevated" padding="sm" style={styles.compactCard}>
         <View style={styles.compactContent}>
           {asana.svgPath ? (
             <AsanaSvg svgPath={asana.svgPath} width={60} height={60} />
@@ -68,7 +63,7 @@ export function AsanaCard({
             onPress={handleFavoritePress}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Text style={styles.favoriteIcon}>{isFav ? "❤️" : "🤍"}</Text>
+            <Text style={styles.favoriteIcon}>{isFav ? '❤️' : '🤍'}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -99,9 +94,7 @@ export function AsanaCard({
               />
             ))}
           </View>
-          <Text style={styles.duration}>
-            {Math.floor(asana.durationSeconds / 60)}m
-          </Text>
+          <Text style={styles.duration}>{Math.floor(asana.durationSeconds / 60)}m</Text>
         </View>
       </View>
     </Card>
@@ -110,19 +103,19 @@ export function AsanaCard({
 
 const styles = StyleSheet.create({
   card: {
-    width: "100%",
+    width: '100%',
   },
   compactCard: {
     marginBottom: 8,
   },
   imageContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingTop: 16,
     paddingHorizontal: 16,
-    position: "relative",
+    position: 'relative',
   },
   favoriteButton: {
-    position: "absolute",
+    position: 'absolute',
     top: 12,
     right: 12,
   },
@@ -134,42 +127,42 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
     marginTop: 8,
   },
   sanskrit: {
     fontSize: 13,
-    color: "#64748b",
-    fontStyle: "italic",
+    color: '#64748b',
+    fontStyle: 'italic',
     marginTop: 2,
   },
   meta: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 8,
   },
   difficulty: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 2,
   },
   difficultyDot: {
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: '#e2e8f0',
   },
   difficultyDotFilled: {
-    backgroundColor: "#6366f1",
+    backgroundColor: '#6366f1',
   },
   duration: {
     fontSize: 12,
-    color: "#64748b",
+    color: '#64748b',
   },
   compactContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 12,
   },
   compactInfo: {
@@ -177,13 +170,13 @@ const styles = StyleSheet.create({
   },
   compactName: {
     fontSize: 15,
-    fontWeight: "600",
-    color: "#1e293b",
+    fontWeight: '600',
+    color: '#1e293b',
   },
   compactSanskrit: {
     fontSize: 13,
-    color: "#64748b",
-    fontStyle: "italic",
+    color: '#64748b',
+    fontStyle: 'italic',
     marginTop: 2,
   },
 });
